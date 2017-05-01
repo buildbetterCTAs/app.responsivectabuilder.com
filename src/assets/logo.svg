@@ -1,0 +1,22 @@
+<svg width="64" height="32" viewBox="0 0 64 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
+<title>Logo</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" figma:type="canvas">
+<g id="Logo" figma:type="symbol">
+<g id="Rectangle" figma:type="rounded-rectangle">
+<use xlink:href="#path0_fill" fill="#48A7F9"/>
+</g>
+<g id="Rectangle" figma:type="vector">
+<use xlink:href="#path1_fill" transform="translate(16 0)" fill="#1385E8"/>
+</g>
+<g id="Rectangle" figma:type="vector">
+<use xlink:href="#path2_fill" transform="translate(32 0)" fill="#0E589A"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 0 3C 0 1.34315 1.34315 0 3 0L 61 0C 62.6569 0 64 1.34315 64 3L 64 13C 64 14.6569 62.6569 16 61 16L 3 16C 1.34315 16 0 14.6569 0 13L 0 3Z"/>
+<path id="path1_fill" d="M 0 0L 45 0C 46.6569 0 48 1.34315 48 3L 48 21C 48 22.6569 46.6569 24 45 24L 3 24C 1.34315 24 0 22.6569 0 21L 0 0Z"/>
+<path id="path2_fill" d="M 0 0L 29 0C 30.6569 0 32 1.34315 32 3L 32 29C 32 30.6569 30.6569 32 29 32L 3 32C 1.34315 32 0 30.6569 0 29L 0 0Z"/>
+</defs>
+</svg>
