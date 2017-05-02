@@ -23,6 +23,13 @@ new Clipboard('.embedCopyButton', {
     return target.previousElementSibling.innerText;
     // FIRE INTERCOM COPIED EVENT
     Intercom('trackEvent', 'cta-built');
+    // FIRE GOOGLE ANALYTICS EVENT
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Call-to-Action',
+      eventAction: 'copy',
+      eventLabel: 'Embed Code Copied'
+    });
   }
 });
 
