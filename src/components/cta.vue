@@ -20,21 +20,21 @@
         required: true,
         default: function () {
           return {
-            headline,
-            description,
-            buttonText,
-            hubspotCta,
-            hubspotCtaId,
-            buttonUrl,
+            headline: '',
+            description: '',
+            buttonText: '',
+            hubspotCta: '',
+            hubspotCtaId: '',
+            buttonUrl: '',
             ctaSS: {
               cta: {
-                borderRadius,
-                backgroundColor,
-                color
+                borderRadius: '',
+                backgroundColor: '',
+                color: ''
               },
               button: {
-                backgroundColor,
-                color
+                backgroundColor: '',
+                color: ''
               }
             }
           }

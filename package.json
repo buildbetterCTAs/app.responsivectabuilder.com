@@ -1,9 +1,8 @@
 {
-  "name": "buefy-simple",
-  "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "Rafael <rafael.pimpa@gmail.com>",
-  "private": true,
+  "name": "app.responsivectabuilder.com",
+  "version": "0.0.1",
+  "description": "Responsive CTA Builder Application",
+  "author": "Jeff Reiner <jeff@reiner.io>",
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",

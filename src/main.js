@@ -18,7 +18,7 @@ new Vue({
 
 // CLIPBOARD
 new Clipboard('.embedCopyButton', {
-  text: target => {
+  text: function (target) {
     target.innerText = 'Copied';
     return target.previousElementSibling.innerText;
     // FIRE INTERCOM EVENT

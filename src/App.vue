@@ -240,7 +240,7 @@
 
   export default {
     name: 'app',
-    data () {
+    data: function () {
       return {
         ctaStyle: 'standard',
         ctaWidth: 1000,
