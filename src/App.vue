@@ -51,25 +51,24 @@
 
       <!-- EDIT BOXES -->
       <div class="boxes">
-        <div class="container">
-          <div class="numberTabs">
-            <div class="columns">
-              <div class="column">
-                <div data-tab="text" class="circle is-active">1</div>
-                <p class="title is-5 has-text-centered">Text</p>
-              </div>
-              <div class="column">
-                <div data-tab="style" class="circle">2</div>
-                <p class="title is-5 has-text-centered">Stylize</p>
-              </div>
-              <div class="column">
-                <div data-tab="link" class="circle">3</div>
-                <p class="title is-5 has-text-centered">Link</p>
-              </div>
-              <div class="column">
-                <div data-tab="embed" class="circle">4</div>
-                <p class="title is-5 has-text-centered">Embed</p>
-              </div>
+        <div class="numberTabs">
+          <div class="dotLiner"></div>
+          <div class="columns is-mobile">
+            <div class="column">
+              <div data-tab="text" class="circle is-active">1</div>
+              <p class="title is-5 has-text-centered">Text</p>
+            </div>
+            <div class="column">
+              <div data-tab="style" class="circle">2</div>
+              <p class="title is-5 has-text-centered">Stylize</p>
+            </div>
+            <div class="column">
+              <div data-tab="link" class="circle">3</div>
+              <p class="title is-5 has-text-centered">Link</p>
+            </div>
+            <div class="column">
+              <div data-tab="embed" class="circle">4</div>
+              <p class="title is-5 has-text-centered">Embed</p>
             </div>
           </div>
         </div>
@@ -336,7 +335,20 @@
       display: inline-block
 
   .numberTabs
-    margin-bottom: 32px
+    max-width: 768px
+    margin: 0 auto 32px auto
+    
+    .columns
+      z-index: 0
+    
+    .dotLiner
+      border-bottom: 2px solid #E0E0E0
+      position: relative
+      top: 17px
+      margin: 0 auto
+      width: 600px
+      z-index: -1
+      
     p
       margin-top: 8px
 
