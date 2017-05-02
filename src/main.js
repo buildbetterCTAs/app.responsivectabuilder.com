@@ -21,7 +21,7 @@ new Clipboard('.embedCopyButton', {
   text: target => {
     target.innerText = 'Copied';
     return target.previousElementSibling.innerText;
-    // FIRE INTERCOM COPIED EVENT
+    // FIRE INTERCOM EVENT
     Intercom('trackEvent', 'cta-built');
     // FIRE GOOGLE ANALYTICS EVENT
     ga('send', {
