@@ -20,8 +20,9 @@ new Vue({
 new Clipboard('.embedCopyButton', {
   text: target => {
     target.innerText = 'Copied';
-    // console.log(target.previousElementSibling.innerText);
     return target.previousElementSibling.innerText;
+    // FIRE INTERCOM COPIED EVENT
+    Intercom('trackEvent', 'cta-built');
   }
 });
 
@@ -37,27 +38,6 @@ new Clipboard('.embedCopyButton', {
 
 // TABS
 (function () {
-  // var button = document.querySelectorAll('.tab .button')
-  //
-  // // BUTTON
-  // for (var i = 0; i < button.length; i++) {
-  //   button[i].addEventListener("click", function () {
-  //     const id = this.getAttribute('data-tab');
-  //
-  //     var el = document.querySelectorAll('.circle');
-  //     for (var i = 0; i < button.length; i++) {
-  //       el[i].classList.remove('active');
-  //     }
-  //
-  //     var tabContents = document.querySelectorAll('.tab');
-  //     for (var i = 0; i < button.length; i++) {
-  //       tabContents[i].classList.remove('active');
-  //     }
-  //
-  //     document.getElementById(id).classList.add('active');
-  //   }, false);
-  // }
-
   var el = document.querySelectorAll('.circle');
 
   // TAB
