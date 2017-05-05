@@ -1,10 +1,14 @@
 <template>
-  <div class="bars"><span></span></div>
+  <div class="bars"><span v-if="width">{{ value + 'px' }}</span></div>
 </template>
 
 <script>
   export default {
     name: 'bar',
+    props: {
+      width: Boolean,
+      value: Number
+    },
     created: function () {
       // console.log(this.firstChild);
       // var bars = document.querySelector('.bars');
@@ -40,7 +44,7 @@ $widthBarTextColor: rgba($black, .38)
   &::after
     border-top: $widthBarStroke
     bottom: 0
-    content: ''
+    content: ""
     left: 50%
     position: absolute
     top: calc(50% - 1px)

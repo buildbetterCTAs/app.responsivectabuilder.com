@@ -2,12 +2,8 @@
   <div :style="{ borderRadius: cta.ctaSS.cta.borderRadius + 'px', backgroundColor: cta.ctaSS.cta.backgroundColor }" class="cta">
     <div class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">{{ cta.headline }}</div>
     <div class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">{{ cta.description }}</div>
-    <div v-if="!cta.hubspotCta">
-      <a class="ctaButton" :style="cta.ctaSS.button" :href="cta.buttonUrl" target="_blank">{{ cta.buttonText }}</a>
-    </div>
-    <div v-else>
-      <div v-text="cta.hubspotCtaId"></div>
-    </div>
+    <a v-if="!cta.hubspotCta" class="ctaButton" :style="cta.ctaSS.button" :href="cta.buttonUrl" target="_blank">{{ cta.buttonText }}</a>
+    <div v-else class="ctaButton hubl" :style="cta.ctaSS.button"><span v-text="hubl"></span></div>
   </div>
 </template>
 
@@ -15,6 +11,7 @@
   export default {
     name: 'cta',
     props: {
+      hubl: String,
       cta: {
         type: Object,
         required: true,
@@ -23,9 +20,8 @@
             headline: '',
             description: '',
             buttonText: '',
-            hubspotCta: '',
-            hubspotCtaId: '',
             buttonUrl: '',
+            hubspotCta: false,
             ctaSS: {
               cta: {
                 borderRadius: '',
@@ -54,10 +50,10 @@ $smallScreen: 600px
 $smallerScreen: 400px
 $tinyScreen: 330px
 
-$mediumAndDown: 'only screen and (max-width : #{$mediumScreen})' !default
-$smallAndDown: 'only screen and (max-width : #{$smallScreen})' !default
-$smallerAndDown: 'only screen and (max-width : #{$smallerScreen})' !default
-$tinyAndDown: 'only screen and (max-width : #{$tinyScreen})' !default
+$mediumAndDown: "only screen and (max-width : #{$mediumScreen})" !default
+$smallAndDown: "only screen and (max-width : #{$smallScreen})" !default
+$smallerAndDown: "only screen and (max-width : #{$smallerScreen})" !default
+$tinyAndDown: "only screen and (max-width : #{$tinyScreen})" !default
 
 // STYLES
 .cta
@@ -111,6 +107,12 @@ $tinyAndDown: 'only screen and (max-width : #{$tinyScreen})' !default
   padding: 0 32px
   text-decoration: none
   text-transform: uppercase
+
+  &.hubl
+    span
+      font-size: 16px
+      line-height: $buttonHeight
+      text-transform: initial
 
   @media #{$mediumAndDown}
     height: $buttonHeightLarge

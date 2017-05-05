@@ -11,7 +11,7 @@
                   <span class="select">
                     <select v-model="ctaStyle">
                       <option value="standard">Standard</option>
-                      <!-- <option value="standardImage">Standard & Image</option> -->
+                      <option value="standardImage">Standard & Image</option>
                       <option value="backgroundImage">Background Image</option>
                     </select>
                   </span>
@@ -31,8 +31,8 @@
         <div v-else-if="ctaStyle === 'backgroundImage'">backgroundImage</div>
       </div> -->
       <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
-        <bar></bar>
-        <cta :cta="cta"></cta>
+        <bar :width='true' :value="ctaWidth"></bar>
+        <cta :hubl="hublCta" :cta="cta"></cta>
       </div>
       <!-- CTA WIDTH SLIDER -->
       <div class="ctaWidthRangeSlider">
@@ -94,9 +94,9 @@
                 </div>
               </div>
             </div>
-            <div class="has-text-right">
+            <!-- <div class="has-text-right">
               <a data-tab="style" class="button is-primary">Next</a>
-            </div>
+            </div> -->
           </div>
           <!-- STYLE -->
           <div id="style" class="tab">
@@ -168,9 +168,9 @@
                 </div>
               </div>
             </div>
-            <div class="has-text-right">
+            <!-- <div class="has-text-right">
               <a data-tab="link" class="button is-primary">Next</a>
-            </div>
+            </div> -->
           </div>
           <!-- LINK -->
           <div id="link" class="tab">
@@ -180,25 +180,42 @@
                   <p class="title is-5">Add a link or connect this CTA to a HubSpot Call-to-action</p>
                 </div>
                 <div class="column">
-                  <div class="column">
-                    <div class="field">
-                      <label class="label">URL</label>
-                      <p class="control">
-                        <input class="input" type="url" placeholder="Placeholder" v-model="cta.buttonUrl">
-                      </p>
+                  <div class="columns">
+                    <div class="column">
+                      <div class="field">
+                        <label class="label">URL</label>
+                        <p class="control">
+                          <input class="input" type="url" placeholder="Placeholder" v-model="cta.buttonUrl">
+                        </p>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="field">
+                        <label class="label">
+                          <b-tooltip label='After making a HubSpot CTA, open the "Details" view and copy the page URL, then paste the URL below' dashed animated multilined>HubSpot CTA</b-tooltip>
+                        </label>
+                        <p class="control">
+                          <input class="input" type="url" placeholder="Paste HubSpot CTA URL" v-model="cta.hubspotCtaUrl">
+                        </p>
+                      </div>
+                      <div class="field">
+                        <b-switch v-model="cta.hubspotCta" :disabled="cta.hubspotCtaUrl">Enable</b-switch>
+                        <!-- <input type="checkbox" v-model="cta.hubspotCta" :disabled="cta.hubspotCtaUrl"> -->
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="has-text-right">
+            <!-- <div class="has-text-right">
               <a data-tab="embed" class="button is-primary">Next</a>
-            </div>
+            </div> -->
           </div>
           <!-- EMBED -->
           <div id="embed" class="tab">
             <div class="box">
               <p class="title is-5">Copy this code and embed it at the end of your blog post</p>
+              <p>{{ hublCta }}</p>
               <div class="content">
                 <!-- <p class="title is-4">Here is your CTA Embed Code!</p> -->
                 <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
@@ -253,7 +270,7 @@
           buttonText: 'Button text',
           buttonUrl: 'https://www.responsivectabuilder.com',
           hubspotCta: false,
-          hubspotCtaId: '{{ cta(' + 2136218358721375 + ')}',
+          hubspotCtaUrl: '',
           ctaSS: {
             cta: {
               borderRadius: 4,
@@ -266,6 +283,14 @@
             }
           }
         }
+      }
+    },
+    computed: {
+      hublCta: function () {
+        let id = this.cta.hubspotCtaUrl.replace(/https:\/\/app\.hubspot\.com\/cta\/.{6}\//, '')
+        let hubl = `{{ cta('` + id + `') }}`
+
+        return hubl
       }
     },
     methods: {},
@@ -290,8 +315,13 @@ $grey500: #9e9e9e
 
 $primary: $primaryColor
 
-@import '~bulma'
-@import '~buefy/src/scss/buefy'
+// OVERWRITE BULMA'S DEFAULT GRID WIDTH
+$grid: 1000px
+$widescreen: $grid
+$fullhd: $grid
+
+@import "~bulma"
+@import "~buefy/src/scss/buefy"
 
 
 // STYLES
@@ -351,7 +381,7 @@ $primary: $primaryColor
   width: 100%
 
   input
-    &[type='range']
+    &[type="range"]
       width: 100%
 
 .boxes
@@ -380,6 +410,9 @@ $primary: $primaryColor
 
 .tab
   display: none
+
+  .title
+    line-height: 1.3
 
   &.active
     display: block
