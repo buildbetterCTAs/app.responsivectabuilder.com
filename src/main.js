@@ -19,17 +19,22 @@ new Vue({
 // CLIPBOARD
 new Clipboard('.embedCopyButton', {
   text: function (target) {
-    target.innerText = 'Copied';
-    return target.previousElementSibling.innerText;
     // FIRE INTERCOM EVENT
-    Intercom('trackEvent', 'cta-built');
+    // Intercom('trackEvent', 'cta-built')
+
     // FIRE GOOGLE ANALYTICS EVENT
-    ga('send', {
-      hitType: 'event',
-      eventCategory: 'Call-to-Action',
-      eventAction: 'copy',
-      eventLabel: 'Embed Code Copied'
-    });
+    // ga('send', {
+    //   hitType: 'event',
+    //   eventCategory: 'Call-to-Action',
+    //   eventAction: 'copy',
+    //   eventLabel: 'Embed Code Copied'
+    // })
+
+    // CHANGE BUTTON TEXT
+    target.innerText = 'Copied'
+
+    // COPY INNER TEXT TO CLIPBOARD
+    return target.previousElementSibling.innerText
   }
 });
 
@@ -45,25 +50,25 @@ new Clipboard('.embedCopyButton', {
 
 // TABS
 (function () {
-  var el = document.querySelectorAll('.circle');
+  var el = document.querySelectorAll('.circle')
 
   // TAB
   for (var i = 0; i < el.length; i++) {
-    el[i].addEventListener("click", function () {
-      const id = this.getAttribute('data-tab');
+    el[i].addEventListener('click', function () {
+      const id = this.getAttribute('data-tab')
 
       for (var i = 0; i < el.length; i++) {
-        el[i].classList.remove('is-active');
+        el[i].classList.remove('isActive')
       }
 
-      var tabContents = document.querySelectorAll('.tab');
-      for (var i = 0; i < el.length; i++) {
-        tabContents[i].classList.remove('active');
+      var tabContents = document.querySelectorAll('.tab')
+      for (i = 0; i < el.length; i++) {
+        tabContents[i].classList.remove('active')
       }
 
-      this.classList.add('is-active');
+      this.classList.add('isActive')
 
-      document.getElementById(id).classList.add('active');
-    }, false);
+      document.getElementById(id).classList.add('active')
+    }, false)
   }
-})();
+})()
