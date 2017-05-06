@@ -7,15 +7,18 @@
     name: 'bar',
     props: {
       width: Boolean,
-      value: Number
-    },
-    created: function () {
-      // console.log(this.firstChild);
-      // var bars = document.querySelector('.bars');
-      // var width = bars.nextElementSibling.clientWidth;
-      // bars.firstChild.innerText = width + 'px';
+      value: [String, Number]
     }
   }
+  // BARS
+  // (function () {
+  //   var bars = document.querySelectorAll('.bars');
+  //
+  //   for (var i = 0; i < bars.length; i++) {
+  //     var width = bars[i].nextElementSibling.clientWidth;
+  //     bars[i].firstChild.innerText = width + 'px';
+  //   }
+  // })();
 </script>
 
 <style lang="sass" scoped>

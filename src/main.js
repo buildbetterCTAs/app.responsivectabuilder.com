@@ -38,16 +38,6 @@ new Clipboard('.embedCopyButton', {
   }
 });
 
-// BARS
-// (function () {
-//   var bars = document.querySelectorAll('.bars');
-//
-//   for (var i = 0; i < bars.length; i++) {
-//     var width = bars[i].nextElementSibling.clientWidth;
-//     bars[i].firstChild.innerText = width + 'px';
-//   }
-// })();
-
 // TABS
 (function () {
   var el = document.querySelectorAll('.circle')
