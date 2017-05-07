@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-
+    <!-- APPLICATION HEADER -->
     <section class="section">
       <div class="container">
         <img src="./assets/wordmark.svg" alt="Logo">
@@ -23,6 +23,7 @@
       </div>
     </section>
 
+    <!-- CTA PREVIEW AND WIDTH SLIDER -->
     <div class="container">
       <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
         <bar :width='true' :value="ctaWidth"></bar>
@@ -34,7 +35,7 @@
       </div>
     </div>
 
-    <!-- EDIT BOXES -->
+    <!-- EDITOR -->
     <div class="container">
       <div class="tabs is-centered is-fullwidth is-marginless">
         <ul>
@@ -212,6 +213,7 @@
       </div>
     </div>
 
+    <!-- CTA MULTIPLE WIDTH PREVIEW -->
     <div class="container">
       <div style="margin: 48px 0 32px 0;">
         <p class="title is-4">How your CTA will look at different widths:</p>
@@ -281,9 +283,9 @@
 
 <style lang="sass">
 // VARS
-$primaryColorLight: #48a7f9
-$primaryColor: #1385e8
-$primaryColorDark: #0e589a
+$picton: #48a7f9
+$dodger: #1385e8
+$yale: #0e589a
 
 $white: #fff
 $black: #000
@@ -291,7 +293,7 @@ $grey300: #e0e0e0
 $grey400: #bdbdbd
 $grey500: #9e9e9e
 
-$primary: $primaryColor
+$primary: $dodger
 
 // OVERWRITE BULMA'S DEFAULT GRID WIDTH
 $grid: 1000px
