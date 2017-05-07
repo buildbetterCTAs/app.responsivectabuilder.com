@@ -1,25 +1,27 @@
 <template>
   <div id="app">
 
-    <div class="container">
-      <img src="./assets/wordmark.svg" alt="Logo">
-      <div class="field" style="margin-top: 16px;">
-        <p class="control">
-          <span class="select">
-            <select v-model="ctaStyle">
-              <option value="standard">Standard</option>
-              <option value="standardImage">Standard & Image</option>
-              <option value="backgroundImage">Background Image</option>
-            </select>
-          </span>
-        </p>
+    <section class="section">
+      <div class="container">
+        <img src="./assets/wordmark.svg" alt="Logo">
+        <div class="field" style="margin-top: 16px">
+          <p class="control">
+            <span class="select">
+              <select v-model="ctaStyle">
+                <option value="standard">Standard</option>
+                <option value="standardImage">Standard & Image</option>
+                <option value="backgroundImage">Background Image</option>
+              </select>
+            </span>
+          </p>
+        </div>
+        <!-- <div>
+          <div v-if="ctaStyle === 'standard'">standard</div>
+          <div v-else-if="ctaStyle === 'standardImage'">standardImage</div>
+          <div v-else-if="ctaStyle === 'backgroundImage'">backgroundImage</div>
+        </div> -->
       </div>
-      <!-- <div>
-        <div v-if="ctaStyle === 'standard'">standard</div>
-        <div v-else-if="ctaStyle === 'standardImage'">standardImage</div>
-        <div v-else-if="ctaStyle === 'backgroundImage'">backgroundImage</div>
-      </div> -->
-    </div>
+    </section>
 
     <div class="container">
       <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
@@ -32,28 +34,15 @@
       </div>
     </div>
 
+    <!-- EDIT BOXES -->
     <div class="container">
-      <!-- EDIT BOXES -->
-      <div class="dotTabs">
-        <div class="columns is-mobile" style="position: relative;">
-          <div class="column">
-            <div data-tab="text" class="circle isActive">1</div>
-            <!-- <p class="title is-5 has-text-centered">Text</p> -->
-          </div>
-          <div class="column">
-            <div data-tab="style" class="circle">2</div>
-            <!-- <p class="title is-5 has-text-centered">Stylize</p> -->
-          </div>
-          <div class="column">
-            <div data-tab="link" class="circle">3</div>
-            <!-- <p class="title is-5 has-text-centered">Link</p> -->
-          </div>
-          <div class="column">
-            <div data-tab="embed" class="circle">4</div>
-            <!-- <p class="title is-5 has-text-centered">Embed</p> -->
-          </div>
-          <div class="dotTabsLine"></div>
-        </div>
+      <div class="tabs is-centered is-fullwidth is-marginless">
+        <ul>
+          <li data-tab="text" class="is-active"><a>1. Text</a></li>
+          <li data-tab="style"><a>2. Style</a></li>
+          <li data-tab="link"><a>3. Link</a></li>
+          <li data-tab="embed"><a>4. Embed</a></li>
+        </ul>
       </div>
       <div class="tabs-content">
         <!-- TEXT -->
@@ -190,7 +179,7 @@
                       </p>
                     </div>
                     <div class="field">
-                      <b-switch v-model="cta.hubspotCta" :disabled="!cta.hubspotCta">Enable</b-switch>
+                      <b-switch v-model="cta.hubspotCta" :disabled="!cta.hubspotCtaUrl">Enable</b-switch>
                     </div>
                   </div>
                 </div>
@@ -205,18 +194,16 @@
         <div id="embed" class="tab">
           <div class="box">
             <p class="title is-5">Copy this code and embed it at the end of your blog post</p>
-            <p>{{ hublCta }}</p>
             <div class="content">
-              <!-- <p class="title is-4">Here is your CTA Embed Code!</p> -->
               <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
               <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet into the <code>&lt;head&gt;</code> section of your website</p>
             </div>
             <div class="embedCopy">
 <pre><code>&lt;link rel="stylesheet" href="https://unpkg.com/responsive-cta-builder-css"&gt;
 &lt;div class="cta" style="border-radius: {{ cta.ctaSS.cta.borderRadius + 'px' }}; background-color: {{ cta.ctaSS.cta.backgroundColor }};"&gt;
-&lt;div class="ctaHeadline" style="color: {{ cta.ctaSS.cta.color }};"&gt;{{ cta.headline }}&lt;/div&gt;
-&lt;div class="ctaDescription" style="color: {{ cta.ctaSS.cta.color }};"&gt;{{ cta.description }}&lt;/div&gt;
-&lt;a class="ctaButton" href="{{ cta.buttonUrl }}" target="_blank" style="background-color: {{ cta.ctaSS.button.backgroundColor }}; color: {{ cta.ctaSS.button.color }};"&gt;{{ cta.buttonText }}&lt;/a&gt;
+    &lt;div class="ctaHeadline" style="color: {{ cta.ctaSS.cta.color }};"&gt;{{ cta.headline }}&lt;/div&gt;
+    &lt;div class="ctaDescription" style="color: {{ cta.ctaSS.cta.color }};"&gt;{{ cta.description }}&lt;/div&gt;
+    &lt;a class="ctaButton" href="{{ cta.buttonUrl }}" target="_blank" style="background-color: {{ cta.ctaSS.button.backgroundColor }}; color: {{ cta.ctaSS.button.color }};"&gt;{{ cta.buttonText }}&lt;/a&gt;
 &lt;/div&gt;</code></pre>
               <a class="embedCopyButton">Copy</a>
             </div>
@@ -226,7 +213,7 @@
     </div>
 
     <div class="container">
-      <div style="margin-bottom: 32px">
+      <div style="margin: 32px 0 32px 0;">
         <p class="title is-4">How your CTA will look at different widths:</p>
       </div>
       <div class="columns">
@@ -319,6 +306,23 @@ $dots: 580px
 
 // STYLES
 
+.tab
+  display: none
+
+  .title
+    line-height: 1.3
+
+  &.active
+    display: block
+
+  .box
+    border-radius: 0 0 5px 5px
+
+.tabs
+  ul,
+  a
+    border-bottom: 1px solid transparent
+
 .borderRadiusSlider
   height: 32px
   margin-right: 8px
@@ -328,47 +332,8 @@ $dots: 580px
     line-height: 32px
     position: absolute
 
-.dotTabs
-  margin: 0 auto 32px
-  max-width: $dots
-
-  .circle
-    background-color: $grey300
-    border-radius: 16px
-    cursor: pointer
-    font-size: 14px
-    font-weight: bold
-    height: 24px
-    line-height: 24px
-    margin: 0 auto
-    text-align: center
-    width: 24px
-
-    &.isActive
-      background-color: $primaryColorDark
-      color: $white
-
-  .dotTabsLine
-    background-color: $grey300
-    bottom: 0
-    display: block
-    height: 2px
-    left: 0
-    margin: auto
-    position: absolute
-    right: 0
-    top: 0
-    width: 75%
-    z-index: -1
-
-  .columns
-    z-index: 0
-
-  p
-    margin-top: 8px
-
 .ctaWidthSlider
-  margin: 16px auto
+  margin: 0 auto
   max-width: 840px
 
   input
@@ -395,13 +360,4 @@ $dots: 580px
 
     &:hover
       background-color: $grey500
-
-.tab
-  display: none
-
-  .title
-    line-height: 1.3
-
-  &.active
-    display: block
 </style>

@@ -40,7 +40,7 @@ new Clipboard('.embedCopyButton', {
 
 // TABS
 (function () {
-  var el = document.querySelectorAll('.circle')
+  var el = document.querySelectorAll('.tabs ul li')
 
   // TAB
   for (var i = 0; i < el.length; i++) {
@@ -48,7 +48,7 @@ new Clipboard('.embedCopyButton', {
       const id = this.getAttribute('data-tab')
 
       for (var i = 0; i < el.length; i++) {
-        el[i].classList.remove('isActive')
+        el[i].classList.remove('is-active')
       }
 
       var tabContents = document.querySelectorAll('.tab')
@@ -56,7 +56,7 @@ new Clipboard('.embedCopyButton', {
         tabContents[i].classList.remove('active')
       }
 
-      this.classList.add('isActive')
+      this.classList.add('is-active')
 
       document.getElementById(id).classList.add('active')
     }, false)
