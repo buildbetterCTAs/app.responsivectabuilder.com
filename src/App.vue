@@ -31,7 +31,7 @@
       </div>
       <!-- CTA WIDTH SLIDER -->
       <div class="ctaWidthSlider">
-        <input type="range" v-model="ctaWidth" value="840" min="250" max="840">
+        <input type="range" v-model="ctaWidth" value="1000" min="250" max="1000">
       </div>
     </div>
 
