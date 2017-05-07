@@ -1,0 +1,15 @@
+{
+  "extends": "standard",
+  "plugins": [
+    "standard",
+    "promise",
+    "html"
+  ],
+  "globals": {
+    "ga": true,
+    "Intercom": true
+  },
+  "rules": {
+    "no-new": "off"
+  }
+}
