@@ -213,7 +213,7 @@
     </div>
 
     <div class="container">
-      <div style="margin: 32px 0 32px 0;">
+      <div style="margin: 48px 0 32px 0;">
         <p class="title is-4">How your CTA will look at different widths:</p>
       </div>
       <div class="columns">
@@ -241,7 +241,7 @@
     data: function () {
       return {
         ctaStyle: 'standard',
-        ctaWidth: 840,
+        ctaWidth: 1000,
         cta: {
           headline: 'This is a powerful, eye-catching headline',
           description: 'This is your secondary text that might explain why your reader should follow your call-to-action.',
@@ -334,7 +334,7 @@ $dots: 580px
 
 .ctaWidthSlider
   margin: 0 auto
-  max-width: 840px
+  max-width: 1000px
 
   input
     &[type="range"]
