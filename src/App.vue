@@ -23,8 +23,6 @@
       </div>
     </section>
 
-
-
     <!-- CTA PREVIEW AND WIDTH SLIDER -->
     <div class="container">
       <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
@@ -50,19 +48,19 @@
                 <div class="field">
                   <label class="label">Headline</label>
                   <p class="control">
-                    <input id="headline" class="input" type="text" v-model="cta.headline">
+                    <input @focus="select($event)" id="headline" class="input" type="text" v-model="cta.headline">
                   </p>
                 </div>
                 <div class="field">
                   <label class="label">Summary</label>
                   <p class="control">
-                    <input id="description" class="input" type="text" v-model="cta.description">
+                    <input @focus="select($event)" id="description" class="input" type="text" v-model="cta.description">
                   </p>
                 </div>
                 <div class="field">
                   <label class="label">Button</label>
                   <p class="control">
-                    <input id="buttonText" class="input" type="text" v-model="cta.buttonText">
+                    <input @focus="select($event)" id="buttonText" class="input" type="text" v-model="cta.buttonText">
                   </p>
                 </div>
               </div>
@@ -84,14 +82,14 @@
                     <div class="field">
                       <label class="label">Background Color</label>
                       <p class="control">
-                        <input class="input" type="text" v-model="cta.ctaSS.cta.backgroundColor">
+                        <input @focus="select($event)" class="input" type="text" v-model="cta.ctaSS.cta.backgroundColor">
                       </p>
                     </div>
                   </div>
                   <div class="column">
                     <div class="field">
                       <label class="label">Border Radius</label>
-                      <input class="borderRadiusSlider" type="range" v-model="cta.ctaSS.cta.borderRadius" min="0" max="32">
+                      <input @focus="select($event)" class="borderRadiusSlider" type="range" v-model="cta.ctaSS.cta.borderRadius" min="0" max="32">
                       <p>{{ cta.ctaSS.cta.borderRadius + 'px' }}</p>
                     </div>
                   </div>
@@ -115,7 +113,7 @@
                     <div class="field">
                       <label class="label">Text Color</label>
                       <p class="control">
-                        <input class="input" type="text" v-model="cta.ctaSS.cta.color">
+                        <input @focus="select($event)" class="input" type="text" v-model="cta.ctaSS.cta.color">
                       </p>
                     </div>
                   </div>
@@ -125,7 +123,7 @@
                     <div class="field">
                       <label class="label">Button Color</label>
                       <p class="control">
-                        <input class="input" type="text" v-model="cta.ctaSS.button.backgroundColor">
+                        <input @focus="select($event)" class="input" type="text" v-model="cta.ctaSS.button.backgroundColor">
                       </p>
                     </div>
                   </div>
@@ -133,7 +131,7 @@
                     <div class="field">
                       <label class="label">Button Text Color</label>
                       <p class="control">
-                        <input class="input" type="text" v-model="cta.ctaSS.button.color">
+                        <input @focus="select($event)" class="input" type="text" v-model="cta.ctaSS.button.color">
                       </p>
                     </div>
                   </div>
@@ -157,7 +155,7 @@
                     <div class="field">
                       <label class="label">URL</label>
                       <p class="control">
-                        <input class="input" type="url" v-model="cta.buttonUrl">
+                        <input @focus="select($event)" class="input" type="url" v-model="cta.buttonUrl">
                       </p>
                     </div>
                     <p><small><a target="_blank" :href="cta.buttonUrl">Test your URL</a></small></p>
@@ -168,7 +166,7 @@
                         <b-tooltip label='After making a HubSpot CTA, open the "Details" view and copy the page URL, then paste the URL below' dashed animated multilined>HubSpot CTA</b-tooltip>
                       </label>
                       <p class="control">
-                        <input class="input" type="url" placeholder="Paste HubSpot CTA URL" v-model="cta.hubspotCtaUrl">
+                        <input @focus="select($event)" class="input" type="url" placeholder="Paste HubSpot CTA URL" v-model="cta.hubspotCtaUrl">
                       </p>
                     </div>
                     <div class="field">
@@ -264,7 +262,11 @@
         return hubl
       }
     },
-    methods: {},
+    methods: {
+      select: function (event) {
+        event.target.select()
+      }
+    },
     components: {
       cta,
       bar,
