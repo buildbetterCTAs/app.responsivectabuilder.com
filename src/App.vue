@@ -224,8 +224,8 @@
 <script>
   import cta from './components/cta'
   import bar from './components/bar'
-  import tabs from './components/tabs'
-  import tab from './components/tab'
+  import tabs from './components/ui/tabs'
+  import tab from './components/ui/tab'
 
   export default {
     name: 'app',
