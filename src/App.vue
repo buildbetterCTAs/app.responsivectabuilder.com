@@ -23,6 +23,8 @@
       </div>
     </section>
 
+
+
     <!-- CTA PREVIEW AND WIDTH SLIDER -->
     <div class="container">
       <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
@@ -37,17 +39,8 @@
 
     <!-- EDITOR -->
     <div class="container">
-      <div class="tabs is-centered is-fullwidth is-marginless">
-        <ul>
-          <li data-tab="text" class="is-active"><a>1. Text</a></li>
-          <li data-tab="style"><a>2. Style</a></li>
-          <li data-tab="link"><a>3. Link</a></li>
-          <li data-tab="embed"><a>4. Embed</a></li>
-        </ul>
-      </div>
-      <div class="tabs-content">
-        <!-- TEXT -->
-        <div id="text" class="tab active">
+      <tabs>
+        <tab label="1. Text" selected>
           <div class="box">
             <div class="columns">
               <div class="column is-one-quarter has-text-centered" style="align-self: center">
@@ -78,9 +71,8 @@
           <!-- <div class="has-text-right">
             <a data-tab="style" class="button is-primary">Next</a>
           </div> -->
-        </div>
-        <!-- STYLE -->
-        <div id="style" class="tab">
+        </tab>
+        <tab label="2. Style">
           <div class="box">
             <div class="columns">
               <div class="column is-one-quarter has-text-centered" style="align-self: center">
@@ -152,9 +144,8 @@
           <!-- <div class="has-text-right">
             <a data-tab="link" class="button is-primary">Next</a>
           </div> -->
-        </div>
-        <!-- LINK -->
-        <div id="link" class="tab">
+        </tab>
+        <tab label="3. Link">
           <div class="box">
             <div class="columns">
               <div class="column is-one-quarter has-text-centered" style="align-self: center">
@@ -190,9 +181,8 @@
           <!-- <div class="has-text-right">
             <a data-tab="embed" class="button is-primary">Next</a>
           </div> -->
-        </div>
-        <!-- EMBED -->
-        <div id="embed" class="tab">
+        </tab>
+        <tab label="4. Embed">
           <div class="box">
             <p class="title is-5">Copy this code and embed it at the end of your blog post</p>
             <div class="content">
@@ -209,8 +199,8 @@
               <a class="embedCopyButton">Copy</a>
             </div>
           </div>
-        </div>
-      </div>
+        </tab>
+      </tabs>
     </div>
 
     <!-- CTA MULTIPLE WIDTH PREVIEW -->
@@ -229,14 +219,14 @@
         </div>
       </div>
     </div>
-
   </div>
-
 </template>
 
 <script>
   import cta from './components/cta'
   import bar from './components/bar'
+  import tabs from './components/tabs'
+  import tab from './components/tab'
 
   export default {
     name: 'app',
@@ -276,7 +266,9 @@
     methods: {},
     components: {
       cta,
-      bar
+      bar,
+      tabs,
+      tab
     }
   }
 </script>
@@ -304,27 +296,7 @@ $fullhd: $grid
 @import "~buefy/src/scss/buefy"
 
 
-$dots: 580px
-
 // STYLES
-
-.tab
-  display: none
-
-  .title
-    line-height: 1.3
-
-  &.active
-    display: block
-
-  .box
-    border-radius: 0 0 5px 5px
-
-.tabs
-  ul,
-  a
-    border-bottom: 1px solid transparent
-
 .borderRadiusSlider
   height: 32px
   margin-right: 8px
