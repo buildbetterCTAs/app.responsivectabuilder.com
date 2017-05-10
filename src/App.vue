@@ -43,26 +43,26 @@
         <tab label="1. Text" selected>
           <div class="box">
             <div class="columns">
-              <div class="column is-one-quarter has-text-centered" style="align-self: center">
+              <div class="column is-one-quarter" style="align-self: center">
                 <p class="title is-5">Add text to your CTA</p>
               </div>
               <div class="column">
                 <div class="field">
                   <label class="label">Headline</label>
                   <p class="control">
-                    <input class="input" type="text" placeholder="Placeholder" v-model="cta.headline">
+                    <input id="headline" class="input" type="text" v-model="cta.headline">
                   </p>
                 </div>
                 <div class="field">
                   <label class="label">Summary</label>
                   <p class="control">
-                    <input class="input" type="text" placeholder="Placeholder" v-model="cta.description">
+                    <input id="description" class="input" type="text" v-model="cta.description">
                   </p>
                 </div>
                 <div class="field">
                   <label class="label">Button</label>
                   <p class="control">
-                    <input class="input" type="text" placeholder="Placeholder" v-model="cta.buttonText">
+                    <input id="buttonText" class="input" type="text" v-model="cta.buttonText">
                   </p>
                 </div>
               </div>
@@ -75,7 +75,7 @@
         <tab label="2. Style">
           <div class="box">
             <div class="columns">
-              <div class="column is-one-quarter has-text-centered" style="align-self: center">
+              <div class="column is-one-quarter" style="align-self: center">
                 <p class="title is-5">Now customize the look & feel of your CTA</p>
               </div>
               <div class="column">
@@ -84,7 +84,7 @@
                     <div class="field">
                       <label class="label">Background Color</label>
                       <p class="control">
-                        <input class="input" type="text" placeholder="Placeholder" v-model="cta.ctaSS.cta.backgroundColor">
+                        <input class="input" type="text" v-model="cta.ctaSS.cta.backgroundColor">
                       </p>
                     </div>
                   </div>
@@ -115,7 +115,7 @@
                     <div class="field">
                       <label class="label">Text Color</label>
                       <p class="control">
-                        <input class="input" type="text" placeholder="Placeholder" v-model="cta.ctaSS.cta.color">
+                        <input class="input" type="text" v-model="cta.ctaSS.cta.color">
                       </p>
                     </div>
                   </div>
@@ -125,7 +125,7 @@
                     <div class="field">
                       <label class="label">Button Color</label>
                       <p class="control">
-                        <input class="input" type="text" placeholder="Placeholder" v-model="cta.ctaSS.button.backgroundColor">
+                        <input class="input" type="text" v-model="cta.ctaSS.button.backgroundColor">
                       </p>
                     </div>
                   </div>
@@ -133,7 +133,7 @@
                     <div class="field">
                       <label class="label">Button Text Color</label>
                       <p class="control">
-                        <input class="input" type="text" placeholder="Placeholder" v-model="cta.ctaSS.button.color">
+                        <input class="input" type="text" v-model="cta.ctaSS.button.color">
                       </p>
                     </div>
                   </div>
@@ -148,7 +148,7 @@
         <tab label="3. Link">
           <div class="box">
             <div class="columns">
-              <div class="column is-one-quarter has-text-centered" style="align-self: center">
+              <div class="column is-one-quarter" style="align-self: center">
                 <p class="title is-5">Add a link or connect this CTA to a HubSpot Call-to-action</p>
               </div>
               <div class="column">
@@ -157,9 +157,10 @@
                     <div class="field">
                       <label class="label">URL</label>
                       <p class="control">
-                        <input class="input" type="url" placeholder="Placeholder" v-model="cta.buttonUrl">
+                        <input class="input" type="url" v-model="cta.buttonUrl">
                       </p>
                     </div>
+                    <p><small><a target="_blank" :href="cta.buttonUrl">Test your URL</a></small></p>
                   </div>
                   <div class="column">
                     <div class="field">

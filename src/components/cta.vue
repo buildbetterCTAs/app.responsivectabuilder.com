@@ -1,8 +1,8 @@
 <template>
   <div :style="{ borderRadius: cta.ctaSS.cta.borderRadius + 'px', backgroundColor: cta.ctaSS.cta.backgroundColor }" class="cta">
-    <div class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">{{ cta.headline }}</div>
-    <div class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">{{ cta.description }}</div>
-    <a v-if="!cta.hubspotCta" class="ctaButton" :style="cta.ctaSS.button" :href="cta.buttonUrl" target="_blank">{{ cta.buttonText }}</a>
+    <label for="headline" class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">{{ cta.headline }}</label>
+    <label for="description" class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">{{ cta.description }}</label>
+    <label for="buttonText" v-if="!cta.hubspotCta" class="ctaButton" :style="cta.ctaSS.button" :href="cta.buttonUrl" target="_blank">{{ cta.buttonText }}</label>
     <div v-else class="ctaButton hubl" :style="cta.ctaSS.button"><span v-text="hubl"></span></div>
   </div>
 </template>
@@ -75,6 +75,7 @@ $tinyAndDown: "only screen and (max-width : #{$tinyScreen})" !default
 
 
 .ctaHeadline
+  display: block
   font-size: 40px
   font-weight: bold
   line-height: 1.3
@@ -88,6 +89,7 @@ $tinyAndDown: "only screen and (max-width : #{$tinyScreen})" !default
 
 
 .ctaDescription
+  display: block
   font-size: 20px
   font-weight: normal
   margin-bottom: 16px
