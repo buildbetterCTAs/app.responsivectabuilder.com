@@ -1,8 +1,17 @@
 <template>
   <div :style="{ borderRadius: cta.ctaSS.cta.borderRadius + 'px', backgroundColor: cta.ctaSS.cta.backgroundColor }" class="cta">
-    <label for="headline" v-bind:class="{ edit: isEditable }" class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">{{ cta.headline }}</label>
-    <label for="description" v-bind:class="{ edit: isEditable }" class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">{{ cta.description }}</label>
-    <label for="buttonText" v-bind:class="{ edit: isEditable }" v-if="!cta.hubspotCta" class="ctaButton" :style="cta.ctaSS.button" :href="cta.buttonUrl" target="_blank">{{ cta.buttonText }}</label>
+    <div v-bind:class="{ editable: isEditable }" class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">
+      <label for="headline" class="edit" v-if="isEditable"></label>
+      {{ cta.headline }}
+    </div>
+    <div v-bind:class="{ editable: isEditable }" class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">
+      <label for="description" class="edit" v-if="isEditable"></label>
+      {{ cta.description }}
+    </div>
+    <div v-if="!cta.hubspotCta" v-bind:class="{ editable: isEditable }" class="ctaButton" :style="cta.ctaSS.button">
+      <label for="buttonText" class="edit" v-if="isEditable"></label>
+      {{ cta.buttonText }}
+    </div>
     <div v-else class="ctaButton hubl" :style="cta.ctaSS.button"><span v-text="hubl"></span></div>
   </div>
 </template>
@@ -130,13 +139,29 @@ $tinyAndDown: "only screen and (max-width : #{$tinyScreen})" !default
 
 // EDITOR STYLES
 $white: #fff
-$line: rgba($white, .54)
+$overlay: rgba($white, .54)
+
+.editable
+  display: inline-block
+  position: relative
 
 .edit
+  background-color: $overlay
+  background-image: url("../assets/edit.svg")
+  background-position: center
+  background-repeat: no-repeat
+  background-size: auto calc(100% - 8px)
+  border-radius: 1px
+  bottom: 0
   cursor: pointer
+  left: 0
+  opacity: 0
+  position: absolute
+  right: 0
+  top: 0
+  transition: opacity .2s ease-out
 
   &:hover
-    background-color: $line
-    box-shadow: inset 0 0 0 1px $line
+    opacity: 1
 
 </style>
