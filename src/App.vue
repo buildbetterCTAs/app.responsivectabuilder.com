@@ -9,6 +9,7 @@
             <span class="select">
               <select v-model="ctaStyle">
                 <option value="standard">Standard</option>
+                <option value="standard">Standard - HubSpot</option>
                 <option value="standardImage">Standard & Image</option>
                 <option value="backgroundImage">Background Image</option>
               </select>
@@ -26,7 +27,6 @@
     <!-- CTA PREVIEW AND WIDTH SLIDER -->
     <div class="container">
       <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
-        <bar :width="true" :value="ctaWidth"></bar>
         <cta :isEditable="true" :hubl="hublCta" :cta="cta"></cta>
       </div>
       <!-- CTA WIDTH SLIDER -->
@@ -34,7 +34,6 @@
         <input type="range" v-model="ctaWidth" value="1000" min="250" max="1000">
       </div>
     </div>
-
     <!-- EDITOR -->
     <div class="container editor">
       <tabs>
@@ -45,24 +44,15 @@
                 <p class="title is-5">Add text to your CTA</p>
               </div>
               <div class="column">
-                <div class="field">
-                  <label class="label">Headline</label>
-                  <p class="control">
-                    <input @focus="select($event)" id="headline" class="input" type="text" v-model="cta.headline">
-                  </p>
-                </div>
-                <div class="field">
-                  <label class="label">Summary</label>
-                  <p class="control">
-                    <input @focus="select($event)" id="description" class="input" type="text" v-model="cta.description">
-                  </p>
-                </div>
-                <div class="field">
-                  <label class="label">Button</label>
-                  <p class="control">
-                    <input @focus="select($event)" id="buttonText" class="input" type="text" v-model="cta.buttonText">
-                  </p>
-                </div>
+                <b-field label="Headline" message="We recommend keeping your headline under 70 characters">
+                  <b-input @focus="select($event)" id="headline" type="text" maxlength="140" v-model="cta.headline"></b-input>
+                </b-field>
+                <b-field label="Summary" message="We recommend keeping your description under 140 characters">
+                  <b-input @focus="select($event)" id="description" type="text" maxlength="140" v-model="cta.description"></b-input>
+                </b-field>
+                <b-field label="Button" message="We recommend keeping your button text under 40 characters">
+                  <b-input @focus="select($event)" id="buttonText" type="text" maxlength="40" v-model="cta.buttonText"></b-input>
+                </b-field>
               </div>
             </div>
           </div>
@@ -82,7 +72,7 @@
                     <div class="field">
                       <label class="label">Background Color</label>
                       <p class="control">
-                        <input @focus="select($event)" class="input" type="text" v-model="cta.ctaSS.cta.backgroundColor">
+                        <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.cta.backgroundColor">
                       </p>
                     </div>
                   </div>
@@ -96,25 +86,21 @@
                 </div>
                 <div class="columns">
                   <div class="column">
-                    <div class="field">
-                      <label class="label">Font Family</label>
-                      <p class="control is-expanded">
-                        <span class="select is-fullwidth">
-                          <select>
-                            <option selected disabled>Select Font Family</option>
-                            <option value="sans-serif">Sans Serif</option>
-                            <option value="serif">Serif</option>
-                            <option value="monospace">Monospace</option>
-                          </select>
-                        </span>
-                      </p>
-                    </div>
+                    <b-field label="Font Family" >
+                      <b-select :disabled="ctaFont" v-model="ctaFontFamily" placeholder="Select A Font" expanded>
+                        <option selected disabled>Select A Font</option>
+                        <option value="sans-serif">Sans Serif</option>
+                        <option value="serif">Serif</option>
+                        <option value="monospace">Monospace</option>
+                      </b-select>
+                    </b-field>
+                    <b-checkbox v-model="ctaFont"><b-tooltip label='DAN WRITE THE TEXT FOR THIS PLEASE' dashed animated multilined>Automatically use my website's font</b-tooltip></b-checkbox>
                   </div>
                   <div class="column">
                     <div class="field">
                       <label class="label">Text Color</label>
                       <p class="control">
-                        <input @focus="select($event)" class="input" type="text" v-model="cta.ctaSS.cta.color">
+                        <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.cta.color">
                       </p>
                     </div>
                   </div>
@@ -124,7 +110,7 @@
                     <div class="field">
                       <label class="label">Button Color</label>
                       <p class="control">
-                        <input @focus="select($event)" class="input" type="text" v-model="cta.ctaSS.button.backgroundColor">
+                        <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.button.backgroundColor">
                       </p>
                     </div>
                   </div>
@@ -132,7 +118,7 @@
                     <div class="field">
                       <label class="label">Button Text Color</label>
                       <p class="control">
-                        <input @focus="select($event)" class="input" type="text" v-model="cta.ctaSS.button.color">
+                        <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.button.color">
                       </p>
                     </div>
                   </div>
@@ -162,7 +148,7 @@
                     <p><small><a target="_blank" :href="cta.buttonUrl">Test your URL</a></small></p>
                   </div>
                   <div class="column">
-                    <div class="field">
+                    <!-- <div class="field">
                       <label class="label">
                         <b-tooltip label='After making a HubSpot CTA, open the "Details" view and copy the page URL, then paste the URL below' dashed animated multilined>HubSpot CTA</b-tooltip>
                       </label>
@@ -172,7 +158,7 @@
                     </div>
                     <div class="field">
                       <b-switch v-model="cta.hubspotCta" :disabled="!cta.hubspotCtaUrl">Enable</b-switch>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -202,11 +188,9 @@
       </div>
       <div class="columns">
         <div class="column is-two-thirds">
-          <bar></bar>
           <cta :cta="cta"></cta>
         </div>
         <div class="column">
-          <bar></bar>
           <cta :cta="cta"></cta>
         </div>
       </div>
@@ -216,7 +200,6 @@
 
 <script>
   import cta from './components/cta'
-  import bar from './components/bar'
   import tabs from './components/ui/tabs'
   import tab from './components/ui/tab'
   import embeder from './components/ui/embeder'
@@ -227,6 +210,8 @@
       return {
         ctaStyle: 'standard',
         ctaWidth: 1000,
+        ctaFont: false,
+        ctaFontFamily: '',
         cta: {
           headline: 'This is a powerful, eye-catching headline',
           description: 'This is your secondary text that might explain why your reader should follow your call-to-action.',
@@ -252,7 +237,6 @@
       hublCta: function () {
         let id = this.cta.hubspotCtaUrl.replace(/https:\/\/app\.hubspot\.com\/cta\/.{6}\//, '')
         let hubl = `{{ cta('` + id + `') }}`
-
         return hubl
       }
     },
@@ -263,7 +247,6 @@
     },
     components: {
       cta,
-      bar,
       tabs,
       tab,
       embeder
@@ -286,7 +269,7 @@ $grey500: #9e9e9e
 $primary: $dodger
 
 // OVERWRITE BULMA'S DEFAULT GRID WIDTH
-$grid: 1000px
+$grid: 1136px
 $widescreen: $grid
 $fullhd: $grid
 
@@ -297,7 +280,7 @@ $fullhd: $grid
 // STYLES
 .container
   &.editor
-    max-width: $grid - 128px
+    max-width: $grid - (128px * 1.5)
 
     .title
       line-height: 1.3
