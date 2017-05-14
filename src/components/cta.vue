@@ -1,15 +1,32 @@
 <template>
-  <div :style="{ borderRadius: cta.ctaSS.cta.borderRadius + 'px', backgroundColor: cta.ctaSS.cta.backgroundColor }" class="cta">
-    <label for="headline" v-bind:class="{ edit: isEditable }" class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">{{ cta.headline }}</label>
-    <label for="description" v-bind:class="{ edit: isEditable }" class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">{{ cta.description }}</label>
-    <label for="buttonText" v-bind:class="{ edit: isEditable }" v-if="!cta.hubspotCta" class="ctaButton" :style="cta.ctaSS.button" :href="cta.buttonUrl" target="_blank">{{ cta.buttonText }}</label>
-    <div v-else class="ctaButton hubl" :style="cta.ctaSS.button"><span v-text="hubl"></span></div>
+  <div>
+    <bar :width="true" :value="0"></bar>
+    <div :style="{ borderRadius: cta.ctaSS.cta.borderRadius + 'px', backgroundColor: cta.ctaSS.cta.backgroundColor }" class="cta">
+      <div v-bind:class="{ editable: isEditable }" class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">
+        <label for="headline" class="edit" v-if="isEditable"></label>
+        {{ cta.headline }}
+      </div>
+      <div v-bind:class="{ editable: isEditable }" class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">
+        <label for="description" class="edit" v-if="isEditable"></label>
+        {{ cta.description }}
+      </div>
+      <div v-if="!cta.hubspotCta" v-bind:class="{ editable: isEditable }" class="ctaButton" :style="cta.ctaSS.button">
+        <label for="buttonText" class="edit" v-if="isEditable"></label>
+        {{ cta.buttonText }}
+      </div>
+      <div v-else class="ctaButton hubl" :style="cta.ctaSS.button"><span v-text="hubl"></span></div>
+    </div>
   </div>
 </template>
 
 <script>
+  import bar from '../components/bar'
+
   export default {
     name: 'cta',
+    components: {
+      bar
+    },
     props: {
       isEditable: Boolean,
       hubl: String,
@@ -37,19 +54,47 @@
           }
         }
       }
+    },
+    mounted: function () {
+      const mediumScreen = 768
+      const smallScreen = 600
+      const smallerScreen = 425
+      const tinyScreen = 320
+      const classes = this.$el.classList
+
+      let width = this.$el.clientWidth
+
+      console.log('CTA Width: ' + width)
+
+      if (width <= mediumScreen) {
+        classes.add('mediumAndDown')
+      }
+      if (width <= smallScreen) {
+        classes.add('smallAndDown')
+      }
+      if (width <= smallerScreen) {
+        classes.add('smallerAndDown')
+      }
+      if (width <= tinyScreen) {
+        classes.add('tinyAndDown')
+      }
     }
   }
 </script>
 
 <style lang="sass" scoped>
+//******************
+// CTA EMBED STYLES
+//******************
+
 // VARS
 $buttonHeight: 40px
 $buttonHeightLarge: 54px
 
-$mediumScreen: 992px
+$mediumScreen: 768px
 $smallScreen: 600px
-$smallerScreen: 400px
-$tinyScreen: 330px
+$smallerScreen: 425px
+$tinyScreen: 320px
 
 $mediumAndDown: "only screen and (max-width : #{$mediumScreen})" !default
 $smallAndDown: "only screen and (max-width : #{$smallScreen})" !default
@@ -67,12 +112,14 @@ $tinyAndDown: "only screen and (max-width : #{$tinyScreen})" !default
   padding: 48px
   width: 100%
 
+  @media #{$mediumAndDown}
+    padding: 40px
   @media #{$smallAndDown}
     padding: 32px
   @media #{$smallerAndDown}
     padding: 24px
   @media #{$tinyAndDown}
-    padding: 16px
+    padding: 18px
 
 
 .ctaHeadline
@@ -83,9 +130,13 @@ $tinyAndDown: "only screen and (max-width : #{$tinyScreen})" !default
   margin-bottom: 16px
   margin-top: 0
 
+  @media #{$mediumAndDown}
+    font-size: 36px
   @media #{$smallAndDown}
-    font-size: 30px
+    font-size: 32px
   @media #{$smallerAndDown}
+    font-size: 28px
+  @media #{$tinyAndDown}
     font-size: 24px
 
 
@@ -120,23 +171,89 @@ $tinyAndDown: "only screen and (max-width : #{$tinyScreen})" !default
   @media #{$mediumAndDown}
     height: $buttonHeightLarge
     line-height: $buttonHeightLarge
-    margin-top: 16px
+    margin-top: 8px
 
   @media #{$smallAndDown}
     padding: 0
     text-align: center
     width: 100%
 
+//******************
+// JS MEDIA QUERIES
+//******************
 
-// EDITOR STYLES
+// Medium & Down
+.mediumAndDown
+  .cta
+    padding: 40px
+
+  .ctaHeadline
+    font-size: 36px
+
+  .ctaButton
+    height: $buttonHeightLarge
+    line-height: $buttonHeightLarge
+    margin-top: 8px
+
+// Small & Down
+.smallAndDown
+  .cta
+    padding: 32px
+
+  .ctaHeadline
+    font-size: 30px
+
+  .ctaButton
+    padding: 0
+    text-align: center
+    width: 100%
+
+// Smaller & Down
+.smallerAndDown
+  .cta
+    padding: 24px
+
+  .ctaHeadline
+    font-size: 28px
+
+  .ctaDescription
+    font-size: 18px
+
+// Tiny & Down
+.tinyAndDown
+  .cta
+    padding: 16px
+
+  .ctaHeadline
+    font-size: 24px
+
+//*****************
+// EDITABLE STYLES
+//*****************
+
 $white: #fff
-$line: rgba($white, .54)
+$overlay: rgba($white, .54)
+
+.editable
+  display: inline-block
+  position: relative
 
 .edit
+  background-color: $overlay
+  background-image: url("../assets/edit.svg")
+  background-position: center
+  background-repeat: no-repeat
+  background-size: auto calc(100% - 8px)
+  bottom: 0
   cursor: pointer
+  left: 0
+  opacity: 0
+  position: absolute
+  right: 0
+  top: 0
+  transition: opacity .2s ease-out
 
   &:hover
-    background-color: $line
-    box-shadow: inset 0 0 0 1px $line
+    opacity: 1
 
 </style>
