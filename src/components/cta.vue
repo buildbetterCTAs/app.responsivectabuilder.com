@@ -1,8 +1,8 @@
 <template>
   <div :style="{ borderRadius: cta.ctaSS.cta.borderRadius + 'px', backgroundColor: cta.ctaSS.cta.backgroundColor }" class="cta">
-    <label for="headline" class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">{{ cta.headline }}</label>
-    <label for="description" class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">{{ cta.description }}</label>
-    <label for="buttonText" v-if="!cta.hubspotCta" class="ctaButton" :style="cta.ctaSS.button" :href="cta.buttonUrl" target="_blank">{{ cta.buttonText }}</label>
+    <label for="headline" v-bind:class="{ edit: isEditable }" class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">{{ cta.headline }}</label>
+    <label for="description" v-bind:class="{ edit: isEditable }" class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">{{ cta.description }}</label>
+    <label for="buttonText" v-bind:class="{ edit: isEditable }" v-if="!cta.hubspotCta" class="ctaButton" :style="cta.ctaSS.button" :href="cta.buttonUrl" target="_blank">{{ cta.buttonText }}</label>
     <div v-else class="ctaButton hubl" :style="cta.ctaSS.button"><span v-text="hubl"></span></div>
   </div>
 </template>
@@ -11,6 +11,7 @@
   export default {
     name: 'cta',
     props: {
+      isEditable: Boolean,
       hubl: String,
       cta: {
         type: Object,
@@ -125,4 +126,17 @@ $tinyAndDown: "only screen and (max-width : #{$tinyScreen})" !default
     padding: 0
     text-align: center
     width: 100%
+
+
+// EDITOR STYLES
+$white: #fff
+$line: rgba($white, .54)
+
+.edit
+  cursor: pointer
+
+  &:hover
+    background-color: $line
+    box-shadow: inset 0 0 0 1px $line
+
 </style>

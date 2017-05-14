@@ -26,8 +26,8 @@
     <!-- CTA PREVIEW AND WIDTH SLIDER -->
     <div class="container">
       <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
-        <bar :width='true' :value="ctaWidth"></bar>
-        <cta :hubl="hublCta" :cta="cta"></cta>
+        <bar :width="true" :value="ctaWidth"></bar>
+        <cta :isEditable="true" :hubl="hublCta" :cta="cta"></cta>
       </div>
       <!-- CTA WIDTH SLIDER -->
       <div class="ctaWidthSlider">
@@ -36,7 +36,7 @@
     </div>
 
     <!-- EDITOR -->
-    <div class="container">
+    <div class="container editor">
       <tabs>
         <tab label="1. Text" selected>
           <div class="box">
@@ -101,7 +101,8 @@
                       <p class="control is-expanded">
                         <span class="select is-fullwidth">
                           <select>
-                            <option value="sansSerif">Sans Serif</option>
+                            <option selected disabled>Select Font Family</option>
+                            <option value="sans-serif">Sans Serif</option>
                             <option value="serif">Serif</option>
                             <option value="monospace">Monospace</option>
                           </select>
@@ -188,15 +189,7 @@
               <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
               <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet into the <code>&lt;head&gt;</code> section of your website</p>
             </div>
-            <div class="embedCopy">
-<pre><code>&lt;link rel="stylesheet" href="https://unpkg.com/responsive-cta-builder-css"&gt;
-&lt;div class="cta" style="border-radius: {{ cta.ctaSS.cta.borderRadius + 'px' }}; background-color: {{ cta.ctaSS.cta.backgroundColor }};"&gt;
-    &lt;div class="ctaHeadline" style="color: {{ cta.ctaSS.cta.color }};"&gt;{{ cta.headline }}&lt;/div&gt;
-    &lt;div class="ctaDescription" style="color: {{ cta.ctaSS.cta.color }};"&gt;{{ cta.description }}&lt;/div&gt;
-    &lt;a class="ctaButton" href="{{ cta.buttonUrl }}" target="_blank" style="background-color: {{ cta.ctaSS.button.backgroundColor }}; color: {{ cta.ctaSS.button.color }};"&gt;{{ cta.buttonText }}&lt;/a&gt;
-&lt;/div&gt;</code></pre>
-              <a class="embedCopyButton">Copy</a>
-            </div>
+            <embeder :cta="cta"></embeder>
           </div>
         </tab>
       </tabs>
@@ -226,6 +219,7 @@
   import bar from './components/bar'
   import tabs from './components/ui/tabs'
   import tab from './components/ui/tab'
+  import embeder from './components/ui/embeder'
 
   export default {
     name: 'app',
@@ -271,7 +265,8 @@
       cta,
       bar,
       tabs,
-      tab
+      tab,
+      embeder
     }
   }
 </script>
@@ -300,6 +295,13 @@ $fullhd: $grid
 
 
 // STYLES
+.container
+  &.editor
+    max-width: $grid - 128px
+
+    .title
+      line-height: 1.3
+
 .borderRadiusSlider
   height: 32px
   margin-right: 8px
@@ -316,25 +318,4 @@ $fullhd: $grid
   input
     &[type="range"]
       width: 100%
-
-.embedCopy
-  position: relative
-
-  &:not(:last-child)
-    margin-bottom: 16px
-
-  .embedCopyButton
-    background-color: $grey400
-    border-radius: 4px 0 0
-    bottom: 0
-    color: $white
-    cursor: pointer
-    font-size: 14px
-    font-weight: bold
-    padding: 2px 10px
-    position: absolute
-    right: 0
-
-    &:hover
-      background-color: $grey500
 </style>
