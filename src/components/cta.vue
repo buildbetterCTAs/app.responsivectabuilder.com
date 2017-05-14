@@ -151,7 +151,6 @@ $overlay: rgba($white, .54)
   background-position: center
   background-repeat: no-repeat
   background-size: auto calc(100% - 8px)
-  border-radius: 1px
   bottom: 0
   cursor: pointer
   left: 0
