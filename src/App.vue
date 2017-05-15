@@ -200,7 +200,7 @@
       </div>
     </div>
     <div v-else>
-      <button @click="login()" v-show="!authenticated">Login</button>
+      <button @click="login()" v-show="!authenticated">Login</button>{{ authenticated }}
     </div>
   </div>
 </template>
