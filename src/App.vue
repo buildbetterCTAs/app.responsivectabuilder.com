@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-show="authenticated">
+    <div v-if="authenticated">
       <button @click="logout()" v-show="authenticated">Logout</button>
 
       <!-- APPLICATION HEADER -->
