@@ -3,15 +3,15 @@
     <bar :width="true" :value="0"></bar>
     <div :style="{ borderRadius: cta.ctaSS.cta.borderRadius + 'px', backgroundColor: cta.ctaSS.cta.backgroundColor }" class="cta">
       <div v-bind:class="{ editable: isEditable }" class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">
-        <label for="headline" class="edit" v-if="isEditable"></label>
+        <div @click="focusOnInput('headline')" class="edit" v-if="isEditable"></div>
         {{ cta.headline }}
       </div>
       <div v-bind:class="{ editable: isEditable }" class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">
-        <label for="description" class="edit" v-if="isEditable"></label>
+        <div @click="focusOnInput('description')" class="edit" v-if="isEditable"></div>
         {{ cta.description }}
       </div>
       <div v-if="!cta.hubspotCta" v-bind:class="{ editable: isEditable }" class="ctaButton" :style="cta.ctaSS.button">
-        <label for="buttonText" class="edit" v-if="isEditable"></label>
+        <div @click="focusOnInput('buttonText')" class="edit" v-if="isEditable"></div>
         {{ cta.buttonText }}
       </div>
       <div v-else class="ctaButton hubl" :style="cta.ctaSS.button"><span v-text="hubl"></span></div>
@@ -53,6 +53,11 @@
             }
           }
         }
+      }
+    },
+    methods: {
+      focusOnInput: function (name) {
+        document.getElementsByName(name)[0].focus()
       }
     },
     mounted: function () {

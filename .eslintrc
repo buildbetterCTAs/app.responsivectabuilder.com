@@ -10,6 +10,7 @@
     "Intercom": true
   },
   "rules": {
-    "no-new": "off"
+    "no-new": "off",
+    "no-undef": "off"
   }
 }

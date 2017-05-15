@@ -1,29 +1,51 @@
 <template>
   <div id="app">
-    <div v-if="authenticated">
-      <button @click="logout()" v-show="authenticated">Logout</button>
+    <section class="hero" v-bind:class="{ 'is-fullheight': !authenticated }">
+      <div class="hero-head">
+        <header class="nav">
+          <div class="container">
+            <div class="nav-left">
+              <a href="/" class="nav-item is-brand">
+                <img src="./assets/logo.svg" alt="Responsive CTA Builder logo">
+              </a>
+            </div>
 
-      <!-- APPLICATION HEADER -->
+            <div class="nav-right">
+              <a href="https://www.responsivectabuilder.com" target="_blank" class="nav-item">Home</a>
+              <!-- <a href="https://docs.responsivectabuilder.com" target="_blank" class="nav-item">Documentation</a> -->
+              <!-- <a href="https://blog.responsivectabuilder.com" target="_blank" class="nav-item">Blog</a> -->
+              <div class="nav-item">
+                <div class="field is-grouped">
+                  <p class="control">
+                    <a class="button is-primary" @click="login()" v-show="!authenticated">Login</a>
+                    <a class="button is-primary is-outlined" @click="logout()" v-show="authenticated">Logout</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+      <div v-show="!authenticated" class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title is-4">Log in to begin building your Call-to-Actions</p>
+          <div>
+            <a class="button is-primary" @click="login()">Login</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div v-if="authenticated">
       <section class="section">
         <div class="container">
-          <img src="./assets/wordmark.svg" alt="Logo">
-          <div class="field" style="margin-top: 16px">
-            <p class="control">
-              <span class="select">
-                <select v-model="ctaStyle">
-                  <option value="standard">Standard</option>
-                  <option value="standard">Standard - HubSpot</option>
-                  <option value="standardImage">Standard & Image</option>
-                  <option value="backgroundImage">Background Image</option>
-                </select>
-              </span>
-            </p>
-          </div>
-          <!-- <div>
-            <div v-if="ctaStyle === 'standard'">standard</div>
-            <div v-else-if="ctaStyle === 'standardImage'">standardImage</div>
-            <div v-else-if="ctaStyle === 'backgroundImage'">backgroundImage</div>
-          </div> -->
+          <b-field>
+            <b-select v-model="ctaStyle">
+              <option value="standard">Standard</option>
+              <option value="standard">Standard (HubSpot)</option>
+              <option value="backgroundImage">Background Image</option>
+            </b-select>
+          </b-field>
         </div>
       </section>
 
@@ -48,13 +70,13 @@
                 </div>
                 <div class="column">
                   <b-field label="Headline" message="We recommend keeping your headline under 70 characters">
-                    <b-input @focus="select($event)" id="headline" type="text" maxlength="140" v-model="cta.headline"></b-input>
+                    <b-input @focus="select($event)" name="headline" type="text" maxlength="140" v-model="cta.headline"></b-input>
                   </b-field>
                   <b-field label="Summary" message="We recommend keeping your description under 140 characters">
-                    <b-input @focus="select($event)" id="description" type="text" maxlength="140" v-model="cta.description"></b-input>
+                    <b-input @focus="select($event)" name="description" type="text" maxlength="140" v-model="cta.description"></b-input>
                   </b-field>
                   <b-field label="Button" message="We recommend keeping your button text under 40 characters">
-                    <b-input @focus="select($event)" id="buttonText" type="text" maxlength="40" v-model="cta.buttonText"></b-input>
+                    <b-input @focus="select($event)" name="buttonText" type="text" maxlength="40" v-model="cta.buttonText"></b-input>
                   </b-field>
                 </div>
               </div>
@@ -199,9 +221,6 @@
         </div>
       </div>
     </div>
-    <div v-else>
-      <button @click="login()" v-show="!authenticated">Login</button>{{ authenticated }}
-    </div>
   </div>
 </template>
 
@@ -243,7 +262,7 @@
         lock: new Auth0Lock('fTi1j_-M7Xoe2bvTMqxLG9p8ewqupq06', 'responsivectabuilder.auth0.com', {
           rememberLastLogin: true,
           theme: {
-            'logo': 'https://github.com/buildbetterCTAs/branding/raw/master/img/logo.png',
+            // 'logo': 'https://github.com/buildbetterCTAs/branding/raw/master/img/logo.png',
             'primaryColor': '#1385e8'
           }
         })
@@ -256,26 +275,33 @@
         return hubl
       }
     },
-    ready () {
+    mounted () {
       var self = this
-      this.authenticated = checkAuth()
-      this.lock.on('authenticated', (authResult) => {
-        console.log('authenticated')
-        localStorage.setItem('id_token', authResult.idToken)
-        this.lock.getProfile(authResult.idToken, (error, profile) => {
-          if (error) {
-            // Handle error
-            return
-          }
-          // Set the token and user profile in local storage
-          localStorage.setItem('profile', JSON.stringify(profile))
-          this.authenticated = true
+      this.$nextTick(function () {
+        self.authenticated = checkAuth()
+        self.lock.on('authenticated', (authResult) => {
+          console.log('authenticated')
+          localStorage.setItem('id_token', authResult.idToken)
+          self.lock.getProfile(authResult.idToken, (error, profile) => {
+            if (error) {
+              // Handle error
+              return
+            }
+            // Set the token and user profile in local storage
+            localStorage.setItem('profile', JSON.stringify(profile))
+
+            self.authenticated = true
+          })
+        })
+        self.lock.on('authorization_error', (error) => {
+          console.log('Oh Shit' + error)
         })
       })
-      this.lock.on('authorization_error', (error) => {
-        console.log('Auth Failed')
-        // handle error when authorizaton fails
-      })
+    },
+    events: {
+      'logout': function () {
+        this.logout()
+      }
     },
     methods: {
       select: function (event) {
@@ -298,6 +324,10 @@
       tab,
       embeder
     }
+  }
+
+  function checkAuth () {
+    return !!localStorage.getItem('id_token')
   }
 </script>
 
