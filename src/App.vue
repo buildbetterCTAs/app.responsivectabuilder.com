@@ -235,7 +235,7 @@
         },
         authenticated: false,
         secretThing: '',
-        lock: new Auth0Lock(String(process.env.AUTH0_CLIENT_ID), 'responsivectabuilder.auth0.com')
+        lock: new Auth0Lock('fTi1j_-M7Xoe2bvTMqxLG9p8ewqupq06', 'responsivectabuilder.auth0.com')
       }
     },
     computed: {
