@@ -13,9 +13,9 @@
     "vue": "^2.2.2"
   },
   "devDependencies": {
-    "dotenv-webpack": "^1.4.5",
-    "autoprefixer": "^7.0.1",
+    "autoprefixer": "^7.1.0",
     "babel-core": "^6.22.1",
+    "dotenv-webpack": "^1.4.5",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-preset-env": "^1.2.1",
