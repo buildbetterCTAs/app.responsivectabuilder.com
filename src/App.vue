@@ -235,7 +235,13 @@
         },
         authenticated: false,
         secretThing: '',
-        lock: new Auth0Lock('fTi1j_-M7Xoe2bvTMqxLG9p8ewqupq06', 'responsivectabuilder.auth0.com')
+        lock: new Auth0Lock('fTi1j_-M7Xoe2bvTMqxLG9p8ewqupq06', 'responsivectabuilder.auth0.com', {
+          rememberLastLogin: true,
+          theme: {
+            'logo': 'https://www.responsivectabuilder.com/img/wordmark.svg',
+            'primaryColor': '#0E589A'
+          }
+        })
       }
     },
     computed: {
@@ -262,6 +268,7 @@
         })
       })
       this.lock.on('authorization_error', (error) => {
+        console.log('Auth Failed')
         // handle error when authorizaton fails
       })
     },
