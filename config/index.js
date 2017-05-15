@@ -1,5 +1,6 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   build: {
@@ -34,5 +35,11 @@ module.exports = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     cssSourceMap: false
-  }
+  },
+  plugins: [
+    new Dotenv({
+      path: './.env', // Path to .env file (this is the default)
+      safe: false // load .env.example (defaults to "false" which does not use dotenv-safe)
+    })
+  ]
 }
