@@ -119,7 +119,7 @@
                           <option value="monospace">Monospace</option>
                         </b-select>
                       </b-field>
-                      <b-checkbox v-model="ctaFont"><b-tooltip label='When you embed this CTA on your website, we will automatically pull in your primary font.' dashed animated multilined>Automatically use my website's font</b-tooltip></b-checkbox>
+                      <b-checkbox v-model="ctaFont"><b-tooltip label='When you embed this CTA on your website, we will automatically pull in your primary font.' dashed multilined>Automatically use my website's font</b-tooltip></b-checkbox>
                     </div>
                     <div class="column">
                       <div class="field">
@@ -175,7 +175,7 @@
                     <div class="column">
                       <!-- <div class="field">
                         <label class="label">
-                          <b-tooltip label='After making a HubSpot CTA, open the "Details" view and copy the page URL, then paste the URL below' dashed animated multilined>HubSpot CTA</b-tooltip>
+                          <b-tooltip label='After making a HubSpot CTA, open the "Details" view and copy the page URL, then paste the URL below' dashed multilined>HubSpot CTA</b-tooltip>
                         </label>
                         <p class="control">
                           <input @focus="select($event)" class="input" type="url" placeholder="Paste HubSpot CTA URL" v-model="cta.hubspotCtaUrl">

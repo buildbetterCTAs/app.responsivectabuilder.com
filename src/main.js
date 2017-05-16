@@ -6,7 +6,9 @@ import App from './App'
 import Buefy from 'buefy'
 import Clipboard from 'clipboard'
 
-Vue.use(Buefy)
+Vue.use(Buefy, {
+  defaultTooltipAnimated: true
+})
 
 Vue.config.productionTip = false
 
