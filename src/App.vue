@@ -119,7 +119,7 @@
                           <option value="monospace">Monospace</option>
                         </b-select>
                       </b-field>
-                      <b-checkbox v-model="ctaFont"><b-tooltip label='DAN WRITE THE TEXT FOR THIS PLEASE' dashed animated multilined>Automatically use my website's font</b-tooltip></b-checkbox>
+                      <b-checkbox v-model="ctaFont"><b-tooltip label='When you embed this CTA on your website, we will automatically pull in your primary font.' dashed animated multilined>Automatically use my website's font</b-tooltip></b-checkbox>
                     </div>
                     <div class="column">
                       <div class="field">
