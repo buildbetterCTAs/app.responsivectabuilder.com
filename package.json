@@ -65,5 +65,14 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buildbetterCTAs/app.responsivectabuilder.com.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/buildbetterCTAs/app.responsivectabuilder.com/issues"
+  },
+  "homepage": "https://www.responsivectabuilder.com"
 }
