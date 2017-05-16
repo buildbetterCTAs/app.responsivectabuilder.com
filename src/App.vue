@@ -109,6 +109,30 @@
                       </div>
                     </div>
                   </div>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+                </div>
+                <div class="columns">
+                  <div class="column">
+                    <b-field label="Font Family" >
+                      <b-select :disabled="ctaFont" v-model="ctaFontFamily" placeholder="Select A Font" expanded>
+                        <option selected disabled>Select A Font</option>
+                        <option value="sans-serif">Sans Serif</option>
+                        <option value="serif">Serif</option>
+                        <option value="monospace">Monospace</option>
+                      </b-select>
+                    </b-field>
+                    <b-checkbox v-model="ctaFont"><b-tooltip label='When you embed this CTA on your website, we will automatically pull in your primary font.' dashed animated multilined>Automatically use my website's font</b-tooltip></b-checkbox>
+                  </div>
+                  <div class="column">
+                    <div class="field">
+                      <label class="label">Text Color</label>
+                      <p class="control">
+                        <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.cta.color">
+                      </p>
+=======
+>>>>>>> Stashed changes
                   <div class="columns">
                     <div class="column">
                       <b-field label="Font Family" >
@@ -120,6 +144,10 @@
                         </b-select>
                       </b-field>
                       <b-checkbox v-model="ctaFont"><b-tooltip label='DAN WRITE THE TEXT FOR THIS PLEASE' dashed animated multilined>Automatically use my website's font</b-tooltip></b-checkbox>
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
                     </div>
                     <div class="column">
                       <div class="field">
