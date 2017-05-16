@@ -264,8 +264,11 @@
         lock: new Auth0Lock('fTi1j_-M7Xoe2bvTMqxLG9p8ewqupq06', 'responsivectabuilder.auth0.com', {
           rememberLastLogin: true,
           theme: {
-            // 'logo': 'https://github.com/buildbetterCTAs/branding/raw/master/img/logo.png',
+            'logo': 'https://github.com/buildbetterCTAs/branding/raw/master/img/logo.png',
             'primaryColor': '#1385e8'
+          },
+          languageDictionary: {
+            title: 'Responsive CTA Builder'
           }
         })
       }
