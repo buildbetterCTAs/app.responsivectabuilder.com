@@ -52,13 +52,14 @@
       <!-- CTA PREVIEW AND WIDTH SLIDER -->
       <div class="container">
         <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
-          <cta :isEditable="true" :hubl="hublCta" :cta="cta"></cta>
+          <cta :isEditable="editable" :hubl="hublCta" :cta="cta"></cta>
         </div>
         <!-- CTA WIDTH SLIDER -->
         <div class="ctaWidthSlider">
           <input type="range" v-model="ctaWidth" value="1000" min="250" max="1000">
         </div>
       </div>
+
       <!-- EDITOR -->
       <div class="container editor">
         <tabs>
@@ -81,9 +82,9 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="has-text-right">
-              <a data-tab="style" class="button is-primary">Next</a>
-            </div> -->
+            <div class="has-text-right">
+              <a data-tab="style" @click="nextTab('2. Style')" class="button is-primary">Next</a>
+            </div>
           </tab>
           <tab label="2. Style">
             <div class="box">
@@ -234,6 +235,7 @@
     name: 'app',
     data: function () {
       return {
+        editable: true,
         ctaStyle: 'standard',
         ctaWidth: 1000,
         ctaFont: false,
