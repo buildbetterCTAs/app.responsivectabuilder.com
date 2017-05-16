@@ -62,7 +62,7 @@
 
       <!-- EDITOR -->
       <div class="container editor">
-        <tabs>
+        <tabs @activateTab="onTabActivate">
           <tab label="1. Text" selected>
             <div class="box">
               <div class="columns">
@@ -318,6 +318,13 @@
         localStorage.removeItem('id_token')
         localStorage.removeItem('profile')
         this.authenticated = false
+      },
+      onTabActivate (tab, index) {
+        if (index === 0) {
+          this.editable = true
+        } else {
+          this.editable = false
+        }
       }
     },
     components: {
