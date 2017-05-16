@@ -2,19 +2,25 @@
   <div>
     <bar :width="true" :value="0"></bar>
     <div :style="{ borderRadius: cta.ctaSS.cta.borderRadius + 'px', backgroundColor: cta.ctaSS.cta.backgroundColor }" class="cta">
-      <div v-bind:class="{ editable: isEditable }" class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">
-        <div @click="focusOnInput('headline')" class="edit" v-if="isEditable"></div>
-        {{ cta.headline }}
+      <div>
+        <div @click="focusOnInput('headline')" v-bind:class="{ editable: isEditable }" class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">
+          <div class="editOverlay" v-if="isEditable"></div>
+          {{ cta.headline }}
+        </div>
       </div>
-      <div v-bind:class="{ editable: isEditable }" class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">
-        <div @click="focusOnInput('description')" class="edit" v-if="isEditable"></div>
-        {{ cta.description }}
+      <div>
+        <div @click="focusOnInput('description')" v-bind:class="{ editable: isEditable }" class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">
+          <div class="editOverlay" v-if="isEditable"></div>
+          {{ cta.description }}
+        </div>
       </div>
-      <div v-if="!cta.hubspotCta" v-bind:class="{ editable: isEditable }" class="ctaButton" :style="cta.ctaSS.button">
-        <div @click="focusOnInput('buttonText')" class="edit" v-if="isEditable"></div>
-        {{ cta.buttonText }}
+      <div>
+        <div @click="focusOnInput('buttonText')" v-if="!cta.hubspotCta" v-bind:class="{ editable: isEditable }" class="ctaButton" :style="cta.ctaSS.button">
+          <div class="editOverlay" v-if="isEditable"></div>
+          {{ cta.buttonText }}
+        </div>
+        <div v-else class="ctaButton hubl" :style="cta.ctaSS.button"><span v-text="hubl"></span></div>
       </div>
-      <div v-else class="ctaButton hubl" :style="cta.ctaSS.button"><span v-text="hubl"></span></div>
     </div>
   </div>
 </template>
@@ -69,7 +75,7 @@
 
       let width = this.$el.clientWidth
 
-      console.log('CTA Width: ' + width)
+      // console.log('CTA Width: ' + width)
 
       if (width <= mediumScreen) {
         classes.add('mediumAndDown')
@@ -243,7 +249,7 @@ $overlay: rgba($white, .54)
   display: inline-block
   position: relative
 
-.edit
+.editOverlay
   background-color: $overlay
   background-image: url("../assets/edit.svg")
   background-position: center
