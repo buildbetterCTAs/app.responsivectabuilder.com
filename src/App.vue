@@ -170,11 +170,14 @@
                         <p class="control">
                           <input @focus="select($event)" class="input" type="url" v-model="cta.buttonUrl">
                         </p>
+                        <p class="help">
+                          <a target="_blank" :href="cta.buttonUrl">Click here to test your URL</a>
+                        </p>
                       </div>
-                      <p><small><a target="_blank" :href="cta.buttonUrl">Test your URL</a></small></p>
+
                     </div>
-                    <div class="column">
-                      <!-- <div class="field">
+                    <!-- <div class="column">
+                      <div class="field">
                         <label class="label">
                           <b-tooltip label='After making a HubSpot CTA, open the "Details" view and copy the page URL, then paste the URL below' dashed multilined>HubSpot CTA</b-tooltip>
                         </label>
@@ -184,8 +187,8 @@
                       </div>
                       <div class="field">
                         <b-switch v-model="cta.hubspotCta" :disabled="!cta.hubspotCtaUrl">Enable</b-switch>
-                      </div> -->
-                    </div>
+                      </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
