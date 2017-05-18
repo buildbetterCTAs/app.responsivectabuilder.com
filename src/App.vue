@@ -96,6 +96,8 @@
                         <label class="label">Background Color</label>
                         <p class="control">
                           <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.cta.backgroundColor">
+                          <!-- <input @click="showPicker = true" @focus="select($event)" class="input" type="text" v-model="cta.ctaSS.cta.backgroundColor.hex"> -->
+                          <!-- <picker style="position: absolute; z-index: 1; margin-top: 8px" v-if="showPicker" v-model="cta.ctaSS.cta.backgroundColor"></picker> -->
                         </p>
                       </div>
                     </div>
@@ -149,9 +151,6 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="has-text-right">
-              <a data-tab="link" class="button is-primary">Next</a>
-            </div> -->
           </tab>
           <tab label="3. Link">
             <div class="box">
@@ -190,9 +189,6 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="has-text-right">
-              <a data-tab="embed" class="button is-primary">Next</a>
-            </div> -->
           </tab>
           <tab label="4. Embed">
             <div class="box">
@@ -230,11 +226,13 @@
   import tabs from './components/ui/tabs'
   import tab from './components/ui/tab'
   import embeder from './components/ui/embeder'
+  import { Chrome } from 'vue-color'
 
   export default {
     name: 'app',
     data: function () {
       return {
+        showPicker: false,
         editable: true,
         ctaStyle: 'standard',
         ctaWidth: 1000,
@@ -251,6 +249,9 @@
             cta: {
               borderRadius: 4,
               backgroundColor: '#0E589A',
+              // backgroundColor: {
+              //   hex: '#0E589A'
+              // },
               color: '#ffffff'
             },
             button: {
@@ -334,7 +335,8 @@
       cta,
       tabs,
       tab,
-      embeder
+      embeder,
+      picker: Chrome
     }
   }
 
