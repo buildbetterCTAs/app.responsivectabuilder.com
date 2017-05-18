@@ -353,6 +353,8 @@ $yale: #0e589a
 
 $white: #fff
 $black: #000
+$grey50: #fafafa
+$grey100: #f5f5f5
 $grey300: #e0e0e0
 $grey400: #bdbdbd
 $grey500: #9e9e9e
@@ -369,9 +371,18 @@ $fullhd: $grid
 
 
 // STYLES
+html
+  background-color: $grey50
+
+.grey50
+  background-color: $grey50
+
 .container
   &.editor
     max-width: $grid - (128px * 1.5)
+
+    .box
+      border-radius: 0 0 5px 5px
 
     .title
       line-height: 1.3
