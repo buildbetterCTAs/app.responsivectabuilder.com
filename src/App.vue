@@ -70,20 +70,17 @@
                   <p class="title is-5">Add text to your CTA</p>
                 </div>
                 <div class="column">
-                  <b-field label="Headline" message="We recommend keeping your headline under 70 characters">
-                    <b-input @focus="select($event)" name="headline" type="text" maxlength="140" v-model="cta.headline"></b-input>
+                  <b-field label="Headline" message="We recommend keeping your description under 100 characters">
+                    <b-input @focus="select($event)" name="headline" type="text" maxlength="100" v-model="cta.headline"></b-input>
                   </b-field>
-                  <b-field label="Summary" message="We recommend keeping your description under 140 characters">
-                    <b-input @focus="select($event)" name="description" type="text" maxlength="140" v-model="cta.description"></b-input>
+                  <b-field label="Summary" message="We recommend keeping your description under 160 characters">
+                    <b-input @focus="select($event)" name="description" type="text" maxlength="160" v-model="cta.description"></b-input>
                   </b-field>
                   <b-field label="Button" message="We recommend keeping your button text under 40 characters">
                     <b-input @focus="select($event)" name="buttonText" type="text" maxlength="40" v-model="cta.buttonText"></b-input>
                   </b-field>
                 </div>
               </div>
-            </div>
-            <div class="has-text-right">
-              <a data-tab="style" @click="nextTab('2. Style')" class="button is-primary">Next</a>
             </div>
           </tab>
           <tab label="2. Style">

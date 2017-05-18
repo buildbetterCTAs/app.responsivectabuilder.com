@@ -18,14 +18,6 @@
         tabs: []
       }
     },
-    // HACK: Should probably do this better
-    // updated: function () {
-    //   if (this.activeTab === '1. Text') {
-    //     this.$parent.editable = true
-    //   } else {
-    //     this.$parent.editable = false
-    //   }
-    // },
     methods: {
       activate: function (tab, index) {
         this.activeTab = tab
