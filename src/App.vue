@@ -37,7 +37,7 @@
     </section>
 
     <div v-if="authenticated">
-      <section class="section">
+      <section class="section grey50">
         <div class="container">
           <b-field>
             <b-select v-model="ctaStyle">
@@ -195,7 +195,7 @@
               <p class="title is-5">Copy this code and embed it at the end of your blog post</p>
               <div class="content">
                 <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
-                <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet into the <code>&lt;head&gt;</code> section of your website</p>
+                <!-- <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet into the <code>&lt;head&gt;</code> section of your website</p> -->
               </div>
               <embeder :cta="cta"></embeder>
             </div>

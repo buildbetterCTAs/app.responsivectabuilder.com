@@ -21,9 +21,6 @@ new Vue({
 // CLIPBOARD
 new Clipboard('.embedCopyButton', {
   text: function (target) {
-    // FIRE INTERCOM EVENT
-    Intercom('trackEvent', 'cta-built')
-
     // FIRE GOOGLE ANALYTICS EVENT
     ga('send', {
       hitType: 'event',
