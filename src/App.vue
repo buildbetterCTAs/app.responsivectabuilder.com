@@ -62,145 +62,153 @@
 
       <!-- EDITOR -->
       <div class="container editor">
-        <tabs @activateTab="onTabActivate">
-          <tab label="1. Text" selected>
-            <div class="box">
-              <div class="columns">
-                <div class="column is-one-quarter" style="align-self: center">
-                  <p class="title is-5">Add text to your CTA</p>
-                </div>
-                <div class="column">
-                  <b-field label="Headline" message="We recommend keeping your description under 100 characters">
-                    <b-input @focus="select($event)" name="headline" type="text" maxlength="120" v-model="cta.headline"></b-input>
-                  </b-field>
-                  <b-field label="Summary" message="We recommend keeping your description under 160 characters">
-                    <b-input @focus="select($event)" name="description" type="text" maxlength="180" v-model="cta.description"></b-input>
-                  </b-field>
-                  <b-field label="Button" message="We recommend keeping your button text under 40 characters">
-                    <b-input @focus="select($event)" name="buttonText" type="text" maxlength="60" v-model="cta.buttonText"></b-input>
-                  </b-field>
-                </div>
-              </div>
-            </div>
-          </tab>
-          <tab label="2. Style">
-            <div class="box">
-              <div class="columns">
-                <div class="column is-one-quarter" style="align-self: center">
-                  <p class="title is-5">Now customize the look & feel of your CTA</p>
-                </div>
-                <div class="column">
-                  <div class="columns">
-                    <div class="column">
-                      <div class="field">
-                        <label class="label">Background Color</label>
-                        <p class="control">
-                          <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.cta.backgroundColor">
-                          <!-- <input @click="showPicker = true" @focus="select($event)" class="input" type="text" v-model="cta.ctaSS.cta.backgroundColor.hex"> -->
-                          <!-- <picker style="position: absolute; z-index: 1; margin-top: 8px" v-if="showPicker" v-model="cta.ctaSS.cta.backgroundColor"></picker> -->
-                        </p>
-                      </div>
-                    </div>
-                    <div class="column">
-                      <div class="field">
-                        <label class="label">Border Radius</label>
-                        <input @focus="select($event)" class="borderRadiusSlider" type="range" v-model="cta.ctaSS.cta.borderRadius" min="0" max="32">
-                        <p>{{ cta.ctaSS.cta.borderRadius + 'px' }}</p>
-                      </div>
-                    </div>
+        <b-tabs v-model="activeTab" position="is-centered" expanded>
+          <b-tab-item label="1. Text">
+            <div class="boxWrapper">
+              <div class="box">
+                <div class="columns">
+                  <div class="column is-one-quarter" style="align-self: center">
+                    <p class="title is-5">Add text to your CTA</p>
                   </div>
-                  <div class="columns">
-                    <div class="column">
-                      <b-field label="Font Family" >
-                        <b-select :disabled="ctaFont" v-model="ctaFontFamily" placeholder="Select A Font" expanded>
-                          <option selected disabled>Select A Font</option>
-                          <option value="sans-serif">Sans Serif</option>
-                          <option value="serif">Serif</option>
-                          <option value="monospace">Monospace</option>
-                        </b-select>
-                      </b-field>
-                      <b-checkbox v-model="ctaFont"><b-tooltip label='When you embed this CTA on your website, we will automatically pull in your primary font.' dashed multilined>Automatically use my website's font</b-tooltip></b-checkbox>
-                    </div>
-                    <div class="column">
-                      <div class="field">
-                        <label class="label">Text Color</label>
-                        <p class="control">
-                          <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.cta.color">
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="columns">
-                    <div class="column">
-                      <div class="field">
-                        <label class="label">Button Color</label>
-                        <p class="control">
-                          <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.button.backgroundColor">
-                        </p>
-                      </div>
-                    </div>
-                    <div class="column">
-                      <div class="field">
-                        <label class="label">Button Text Color</label>
-                        <p class="control">
-                          <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.button.color">
-                        </p>
-                      </div>
-                    </div>
+                  <div class="column">
+                    <b-field label="Headline" message="We recommend keeping your description under 100 characters">
+                      <b-input @focus="select($event)" name="headline" type="text" maxlength="120" v-model="cta.headline"></b-input>
+                    </b-field>
+                    <b-field label="Summary" message="We recommend keeping your description under 160 characters">
+                      <b-input @focus="select($event)" name="description" type="text" maxlength="180" v-model="cta.description"></b-input>
+                    </b-field>
+                    <b-field label="Button" message="We recommend keeping your button text under 40 characters">
+                      <b-input @focus="select($event)" name="buttonText" type="text" maxlength="60" v-model="cta.buttonText"></b-input>
+                    </b-field>
                   </div>
                 </div>
               </div>
             </div>
-          </tab>
-          <tab label="3. Link">
-            <div class="box">
-              <div class="columns">
-                <div class="column is-one-quarter" style="align-self: center">
-                  <p class="title is-5">Add a link or connect this CTA to a HubSpot Call-to-action</p>
-                </div>
-                <div class="column">
-                  <div class="columns">
-                    <div class="column">
-                      <div class="field">
-                        <label class="label">URL</label>
-                        <p class="control">
-                          <input @focus="select($event)" class="input" type="url" v-model="cta.buttonUrl">
-                        </p>
-                        <p class="help">
-                          <a target="_blank" :href="cta.buttonUrl">Click here to test your URL</a>
-                        </p>
+          </b-tab-item>
+          <b-tab-item label="2. Style">
+            <div class="boxWrapper">
+              <div class="box">
+                <div class="columns">
+                  <div class="column is-one-quarter" style="align-self: center">
+                    <p class="title is-5">Now customize the look & feel of your CTA</p>
+                  </div>
+                  <div class="column">
+                    <div class="columns">
+                      <div class="column">
+                        <div class="field">
+                          <label class="label">Background Color</label>
+                          <p class="control">
+                            <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.cta.backgroundColor">
+                            <!-- <input @click="showPicker = true" @focus="select($event)" class="input" type="text" v-model="cta.ctaSS.cta.backgroundColor.hex"> -->
+                            <!-- <picker style="position: absolute; z-index: 1; margin-top: 8px" v-if="showPicker" v-model="cta.ctaSS.cta.backgroundColor"></picker> -->
+                          </p>
+                        </div>
                       </div>
+                      <div class="column">
+                        <div class="field">
+                          <label class="label">Border Radius</label>
+                          <input @focus="select($event)" class="borderRadiusSlider" type="range" v-model="cta.ctaSS.cta.borderRadius" min="0" max="32">
+                          <p>{{ cta.ctaSS.cta.borderRadius + 'px' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="columns">
+                      <div class="column">
+                        <b-field label="Font Family" >
+                          <b-select :disabled="ctaFont" v-model="ctaFontFamily" placeholder="Select A Font" expanded>
+                            <option selected disabled>Select A Font</option>
+                            <option value="sans-serif">Sans Serif</option>
+                            <option value="serif">Serif</option>
+                            <option value="monospace">Monospace</option>
+                          </b-select>
+                        </b-field>
+                        <b-checkbox v-model="ctaFont"><b-tooltip label='When you embed this CTA on your website, we will automatically pull in your primary font.' dashed multilined>Automatically use my website's font</b-tooltip></b-checkbox>
+                      </div>
+                      <div class="column">
+                        <div class="field">
+                          <label class="label">Text Color</label>
+                          <p class="control">
+                            <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.cta.color">
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="columns">
+                      <div class="column">
+                        <div class="field">
+                          <label class="label">Button Color</label>
+                          <p class="control">
+                            <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.button.backgroundColor">
+                          </p>
+                        </div>
+                      </div>
+                      <div class="column">
+                        <div class="field">
+                          <label class="label">Button Text Color</label>
+                          <p class="control">
+                            <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.button.color">
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </b-tab-item>
+          <b-tab-item label="3. Link">
+            <div class="boxWrapper">
+              <div class="box">
+                <div class="columns">
+                  <div class="column is-one-quarter" style="align-self: center">
+                    <p class="title is-5">Add a link or connect this CTA to a HubSpot Call-to-action</p>
+                  </div>
+                  <div class="column">
+                    <div class="columns">
+                      <div class="column">
+                        <div class="field">
+                          <label class="label">URL</label>
+                          <p class="control">
+                            <input @focus="select($event)" class="input" type="url" v-model="cta.buttonUrl">
+                          </p>
+                          <p class="help">
+                            <a target="_blank" :href="cta.buttonUrl">Click here to test your URL</a>
+                          </p>
+                        </div>
 
+                      </div>
+                      <!-- <div class="column">
+                        <div class="field">
+                          <label class="label">
+                            <b-tooltip label='After making a HubSpot CTA, open the "Details" view and copy the page URL, then paste the URL below' dashed multilined>HubSpot CTA</b-tooltip>
+                          </label>
+                          <p class="control">
+                            <input @focus="select($event)" class="input" type="url" placeholder="Paste HubSpot CTA URL" v-model="cta.hubspotCtaUrl">
+                          </p>
+                        </div>
+                        <div class="field">
+                          <b-switch v-model="cta.hubspotCta" :disabled="!cta.hubspotCtaUrl">Enable</b-switch>
+                        </div>
+                      </div> -->
                     </div>
-                    <!-- <div class="column">
-                      <div class="field">
-                        <label class="label">
-                          <b-tooltip label='After making a HubSpot CTA, open the "Details" view and copy the page URL, then paste the URL below' dashed multilined>HubSpot CTA</b-tooltip>
-                        </label>
-                        <p class="control">
-                          <input @focus="select($event)" class="input" type="url" placeholder="Paste HubSpot CTA URL" v-model="cta.hubspotCtaUrl">
-                        </p>
-                      </div>
-                      <div class="field">
-                        <b-switch v-model="cta.hubspotCta" :disabled="!cta.hubspotCtaUrl">Enable</b-switch>
-                      </div>
-                    </div> -->
                   </div>
                 </div>
               </div>
             </div>
-          </tab>
-          <tab label="4. Embed">
-            <div class="box">
-              <p class="title is-5">Copy this code and embed it at the end of your blog post</p>
-              <div class="content">
-                <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
-                <!-- <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet into the <code>&lt;head&gt;</code> section of your website</p> -->
+          </b-tab-item>
+          <b-tab-item label="4. Embed">
+            <div class="boxWrapper">
+              <div class="box">
+                <p class="title is-5">Copy this code and embed it at the end of your blog post</p>
+                <div class="content">
+                  <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
+                  <!-- <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet into the <code>&lt;head&gt;</code> section of your website</p> -->
+                </div>
+                <embeder :cta="cta"></embeder>
               </div>
-              <embeder :cta="cta"></embeder>
             </div>
-          </tab>
-        </tabs>
+          </b-tab-item>
+        </b-tabs>
       </div>
 
       <!-- CTA MULTIPLE WIDTH PREVIEW -->
@@ -223,8 +231,6 @@
 
 <script>
   import cta from './components/cta'
-  import tabs from './components/ui/tabs'
-  import tab from './components/ui/tab'
   import embeder from './components/ui/embeder'
   import { Chrome } from 'vue-color'
 
@@ -232,8 +238,8 @@
     name: 'app',
     data: function () {
       return {
+        activeTab: 0,
         showPicker: false,
-        editable: true,
         ctaStyle: 'standard',
         ctaWidth: 1000,
         ctaFont: false,
@@ -279,6 +285,13 @@
         let id = this.cta.hubspotCtaUrl.replace(/https:\/\/app\.hubspot\.com\/cta\/.{6}\//, '')
         let hubl = `{{ cta('` + id + `') }}`
         return hubl
+      },
+      editable: function () {
+        if (this.activeTab === 0) {
+          return true
+        } else {
+          return false
+        }
       }
     },
     mounted () {
@@ -322,19 +335,10 @@
         localStorage.removeItem('id_token')
         localStorage.removeItem('profile')
         this.authenticated = false
-      },
-      onTabActivate (tab, index) {
-        if (index === 0) {
-          this.editable = true
-        } else {
-          this.editable = false
-        }
       }
     },
     components: {
       cta,
-      tabs,
-      tab,
       embeder,
       picker: Chrome
     }
@@ -381,8 +385,20 @@ html
   &.editor
     max-width: $grid - (128px * 1.5)
 
-    .box
-      border-radius: 0 0 5px 5px
+    .b-tabs
+      margin: 0 -5px
+
+      .tabs
+        margin: 0 5px
+
+        &:not(:last-child)
+          margin-bottom: 0
+
+      .boxWrapper
+        padding: 0 5px 5px
+
+        .box
+          border-radius: 0 0 5px 5px
 
     .title
       line-height: 1.3
