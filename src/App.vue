@@ -8,12 +8,18 @@
               <a href="/" class="nav-item is-brand">
                 <img src="./assets/logo.svg" alt="Responsive CTA Builder logo">
               </a>
+              <a href="https://www.responsivectabuilder.com" target="_blank" class="nav-item">Home</a>
+              <a href="https://docs.responsivectabuilder.com" target="_blank" class="nav-item"><s>Documentation</s></a>
+              <a href="https://blog.responsivectabuilder.com" target="_blank" class="nav-item"><s>Blog</s></a>
             </div>
 
             <div class="nav-right">
-              <a href="https://www.responsivectabuilder.com" target="_blank" class="nav-item">Home</a>
-              <!-- <a href="https://docs.responsivectabuilder.com" target="_blank" class="nav-item">Documentation</a> -->
-              <!-- <a href="https://blog.responsivectabuilder.com" target="_blank" class="nav-item">Blog</a> -->
+              <a href="/profile" class="nav-item">
+                <figure class="image profile is-16x16" style="margin-right: 8px;">
+                  <img :src="userProfileImage" alt="Profile Image">
+                </figure>
+                <s>Profile</s>
+              </a>
               <div class="nav-item">
                 <div class="field is-grouped">
                   <p class="control">
@@ -37,26 +43,43 @@
     </section>
 
     <div v-if="authenticated">
+
       <section class="section grey50">
         <div class="container">
-          <b-field>
+          <b-field label="Select CTA Type">
             <b-select v-model="ctaStyle">
               <option value="standard">Standard</option>
-              <option value="standard">Standard (HubSpot)</option>
+              <option value="hubspot">HubSpot</option>
               <option value="backgroundImage">Background Image</option>
             </b-select>
           </b-field>
+
+          <!-- <div v-if="ctaStyle === 'standard'">
+            Use Standard CTA Builder
+          </div>
+          <div v-else-if="ctaStyle === 'hubspot'">
+            Use HubSpot CTA Builder
+          </div>
+          <div v-else-if="ctaStyle === 'backgroundImage'">
+            Use Background Image CTA Builder
+          </div>
+          <div v-else>
+            Yolo
+          </div> -->
         </div>
       </section>
+
+
+
 
       <!-- CTA PREVIEW AND WIDTH SLIDER -->
       <div class="container">
         <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
-          <cta :isEditable="editable" :hubl="hublCta" :cta="cta"></cta>
+          <cta :isEditable="editable" :cta="cta"></cta>
         </div>
         <!-- CTA WIDTH SLIDER -->
         <div class="ctaWidthSlider">
-          <input type="range" v-model="ctaWidth" value="1000" min="250" max="1000">
+          <input type="range" v-model="ctaWidth" min="300" :max="1000">
         </div>
       </div>
 
@@ -116,10 +139,15 @@
                       <div class="column">
                         <b-field label="Font Family" >
                           <b-select :disabled="ctaFont" v-model="ctaFontFamily" placeholder="Select A Font" expanded>
-                            <option selected disabled>Select A Font</option>
-                            <option value="sans-serif">Sans Serif</option>
-                            <option value="serif">Serif</option>
-                            <option value="monospace">Monospace</option>
+                            <optgroup label="Standard">
+                              <!-- <option value="sansSerif">Sans Serif</option> -->
+                              <option value="serif">Serif</option>
+                              <option value="monospace">Monospace</option>
+                            </optgroup>
+                            <optgroup label="Google Fonts">
+                              <option value="roboto">Roboto</option>
+                              <!-- <option value="workSans">Work Sans</option> -->
+                            </optgroup>
                           </b-select>
                         </b-field>
                         <b-checkbox v-model="ctaFont"><b-tooltip label='When you embed this CTA on your website, we will automatically pull in your primary font.' dashed multilined>Automatically use my website's font</b-tooltip></b-checkbox>
@@ -175,19 +203,19 @@
                             <a target="_blank" :href="cta.buttonUrl">Click here to test your URL</a>
                           </p>
                         </div>
-
                       </div>
+                      <!-- TODO: Move this to its own editor component -->
                       <!-- <div class="column">
                         <div class="field">
                           <label class="label">
                             <b-tooltip label='After making a HubSpot CTA, open the "Details" view and copy the page URL, then paste the URL below' dashed multilined>HubSpot CTA</b-tooltip>
                           </label>
                           <p class="control">
-                            <input @focus="select($event)" class="input" type="url" placeholder="Paste HubSpot CTA URL" v-model="cta.hubspotCtaUrl">
+                            <input @focus="select($event)" class="input" type="url" placeholder="Paste HubSpot CTA URL" v-model="hubspotCtaUrl">
                           </p>
                         </div>
                         <div class="field">
-                          <b-switch v-model="cta.hubspotCta" :disabled="!cta.hubspotCtaUrl">Enable</b-switch>
+                          <b-switch v-model="hubspotCta" :disabled="!hubspotCtaUrl">Enable</b-switch>
                         </div>
                       </div> -->
                     </div>
@@ -202,7 +230,6 @@
                 <p class="title is-5">Copy this code and embed it at the end of your blog post</p>
                 <div class="content">
                   <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
-                  <!-- <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet into the <code>&lt;head&gt;</code> section of your website</p> -->
                 </div>
                 <embeder :cta="cta"></embeder>
               </div>
@@ -238,19 +265,20 @@
     name: 'app',
     data: function () {
       return {
+        userProfileImage: 'https://placehold.it/128x128',
         activeTab: 0,
         showPicker: false,
         ctaStyle: 'standard',
         ctaWidth: 1000,
         ctaFont: false,
         ctaFontFamily: '',
+        hubspotCta: false,
+        hubspotCtaUrl: '',
         cta: {
           headline: 'This is a powerful, eye-catching headline',
           description: 'This is your secondary text that might explain why your reader should follow your call-to-action.',
           buttonText: 'click here, reader!',
           buttonUrl: 'https://www.responsivectabuilder.com',
-          hubspotCta: false,
-          hubspotCtaUrl: '',
           ctaSS: {
             cta: {
               borderRadius: 4,
@@ -316,6 +344,9 @@
           console.log('Oh Shit' + error)
         })
       })
+
+      const userProfile = JSON.parse(localStorage.profile)
+      self.userProfileImage = userProfile.picture
     },
     events: {
       'logout': function () {
@@ -381,11 +412,15 @@ html
 .grey50
   background-color: $grey50
 
+.profile
+  img
+    border-radius: 2px
+
 .container
   &.editor
     max-width: $grid - (128px * 1.5)
 
-    .b-tabs
+    .b-tabs // sass-lint:disable-line class-name-format
       margin: 0 -5px
 
       .tabs

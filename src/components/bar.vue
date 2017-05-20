@@ -1,12 +1,11 @@
 <template>
-  <div class="bars"><span v-if="width">{{ value + 'px' }}</span></div>
+  <div class="bars"><span>{{ value + 'px' }}</span></div>
 </template>
 
 <script>
   export default {
     name: 'bar',
     props: {
-      width: Boolean,
       value: [String, Number]
     }
   }
