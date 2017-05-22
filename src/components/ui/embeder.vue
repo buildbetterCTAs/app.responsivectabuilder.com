@@ -1,8 +1,8 @@
 <template>
-  <div class="embedCopy"><pre><code>&lt;link rel="stylesheet" href="https://unpkg.com/responsive-cta-builder-css"&gt;
-  &lt;div class="cta" style="border-radius: {{ cta.ctaSS.cta.borderRadius + 'px' }}; background-color: {{ cta.ctaSS.cta.backgroundColor }};"&gt;
-      &lt;div class="ctaHeadline" style="color: {{ cta.ctaSS.cta.color }};"&gt;{{ cta.headline }}&lt;/div&gt;
-      &lt;div class="ctaDescription" style="color: {{ cta.ctaSS.cta.color }};"&gt;{{ cta.description }}&lt;/div&gt;
+  <div class="embedCopy"><pre><code><span v-if="cta.ctaSS.fontFamily === `'Roboto'`">&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"&gt;<br></span><span v-if="cta.ctaSS.fontFamily === `'Work Sans'`">&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans"&gt;<br></span>&lt;link rel="stylesheet" href="https://unpkg.com/responsive-cta-builder-css"&gt;
+  &lt;div class="cta" style="<span v-if="cta.ctaSS.fontFamily">font-family: {{ cta.ctaSS.fontFamily }} <span v-if="cta.ctaSS.fontFamily === `'Roboto'` || cta.ctaSS.fontFamily === `'Work Sans'`">, sans-serif; </span><span v-else>; </span></span>border-radius: {{ cta.ctaSS.cta.borderRadius + 'px' }}; background-color: {{ cta.ctaSS.cta.backgroundColor.hex }};"&gt;
+      &lt;div class="ctaHeadline" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.headline }}&lt;/div&gt;
+      &lt;div class="ctaDescription" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.description }}&lt;/div&gt;
       &lt;a class="ctaButton" href="{{ cta.buttonUrl }}" target="_blank" style="background-color: {{ cta.ctaSS.button.backgroundColor }}; color: {{ cta.ctaSS.button.color }};"&gt;{{ cta.buttonText }}&lt;/a&gt;
   &lt;/div&gt;</code></pre>
     <a class="embedCopyButton">Copy</a>
@@ -25,6 +25,7 @@
             buttonUrl: '',
             hubspotCta: false,
             ctaSS: {
+              fontFamily: '',
               cta: {
                 borderRadius: '',
                 backgroundColor: '',

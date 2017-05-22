@@ -9,12 +9,12 @@
                 <img src="./assets/logo.svg" alt="Responsive CTA Builder logo">
               </a>
               <a href="https://www.responsivectabuilder.com" target="_blank" class="nav-item">Home</a>
-              <a href="https://docs.responsivectabuilder.com" target="_blank" class="nav-item"><s>Documentation</s></a>
-              <a href="https://blog.responsivectabuilder.com" target="_blank" class="nav-item"><s>Blog</s></a>
+              <a target="_blank" class="nav-item"><s>Documentation</s></a>
+              <a target="_blank" class="nav-item"><s>Blog</s></a>
             </div>
 
             <div class="nav-right">
-              <a href="/profile" class="nav-item">
+              <a class="nav-item">
                 <figure class="image profile is-16x16" style="margin-right: 8px;">
                   <img :src="userProfileImage" alt="Profile Image">
                 </figure>
@@ -69,9 +69,6 @@
         </div>
       </section>
 
-
-
-
       <!-- CTA PREVIEW AND WIDTH SLIDER -->
       <div class="container">
         <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
@@ -85,7 +82,7 @@
 
       <!-- EDITOR -->
       <div class="container editor">
-        <b-tabs v-model="activeTab" position="is-centered" expanded>
+        <b-tabs v-model="activeTab" position="is-centered" :animated="false" expanded>
           <b-tab-item label="1. Text">
             <div class="boxWrapper">
               <div class="box">
@@ -121,9 +118,13 @@
                         <div class="field">
                           <label class="label">Background Color</label>
                           <p class="control">
-                            <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.cta.backgroundColor">
-                            <!-- <input @click="showPicker = true" @focus="select($event)" class="input" type="text" v-model="cta.ctaSS.cta.backgroundColor.hex"> -->
-                            <!-- <picker style="position: absolute; z-index: 1; margin-top: 8px" v-if="showPicker" v-model="cta.ctaSS.cta.backgroundColor"></picker> -->
+                            <input class="input" readonly
+                              @click="showPicker = true"
+                              :style="{ borderColor: cta.ctaSS.cta.backgroundColor.hex }"
+                              v-model="cta.ctaSS.cta.backgroundColor.hex">
+                            <picker class="picker"
+                              v-if="showPicker"
+                              v-model="cta.ctaSS.cta.backgroundColor"></picker>
                           </p>
                         </div>
                       </div>
@@ -138,15 +139,15 @@
                     <div class="columns">
                       <div class="column">
                         <b-field label="Font Family" >
-                          <b-select :disabled="ctaFont" v-model="ctaFontFamily" placeholder="Select A Font" expanded>
+                          <b-select :disabled="ctaFont" v-model="cta.ctaSS.fontFamily" placeholder="Select A Font" expanded>
                             <optgroup label="Standard">
-                              <!-- <option value="sansSerif">Sans Serif</option> -->
                               <option value="serif">Serif</option>
+                              <option value="sans-serif">Sans Serif</option>
                               <option value="monospace">Monospace</option>
                             </optgroup>
                             <optgroup label="Google Fonts">
-                              <option value="roboto">Roboto</option>
-                              <!-- <option value="workSans">Work Sans</option> -->
+                              <option value="'Roboto'">Roboto</option>
+                              <option value="'Work Sans'">Work Sans</option>
                             </optgroup>
                           </b-select>
                         </b-field>
@@ -156,7 +157,13 @@
                         <div class="field">
                           <label class="label">Text Color</label>
                           <p class="control">
-                            <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.cta.color">
+                            <input class="input" readonly
+                              @click="showPicker = true"
+                              :style="{ borderColor: cta.ctaSS.cta.color.hex }"
+                              v-model="cta.ctaSS.cta.color.hex">
+                            <picker class="picker"
+                              v-if="showPicker"
+                              v-model="cta.ctaSS.cta.color"></picker>
                           </p>
                         </div>
                       </div>
@@ -232,6 +239,9 @@
                   <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
                 </div>
                 <embeder :cta="cta"></embeder>
+                <div class="content">
+                  <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet into the <code>&lt;head&gt;</code> section of your website</p>
+                </div>
               </div>
             </div>
           </b-tab-item>
@@ -271,7 +281,6 @@
         ctaStyle: 'standard',
         ctaWidth: 1000,
         ctaFont: false,
-        ctaFontFamily: '',
         hubspotCta: false,
         hubspotCtaUrl: '',
         cta: {
@@ -280,13 +289,15 @@
           buttonText: 'click here, reader!',
           buttonUrl: 'https://www.responsivectabuilder.com',
           ctaSS: {
+            fontFamily: '',
             cta: {
               borderRadius: 4,
-              backgroundColor: '#0E589A',
-              // backgroundColor: {
-              //   hex: '#0E589A'
-              // },
-              color: '#ffffff'
+              backgroundColor: {
+                hex: '#0E589A'
+              },
+              color: {
+                hex: '#ffffff'
+              }
             },
             button: {
               backgroundColor: '#48A7F9',
@@ -306,6 +317,12 @@
             title: 'Responsive CTA Builder'
           }
         })
+      }
+    },
+    watch: {
+      // Reset cta.ctaSS.fontFamily to empty to prevent fonts from being added
+      ctaFont: function (font) {
+        this.cta.ctaSS.fontFamily = ''
       }
     },
     computed: {
@@ -354,6 +371,9 @@
       }
     },
     methods: {
+      clearFont: function (event) {
+        this.cta.ctaSS.fontFamily = 'Apples'
+      },
       select: function (event) {
         event.target.select()
       },
@@ -416,12 +436,20 @@ html
   img
     border-radius: 2px
 
+.picker
+  margin-top: 8px
+  position: absolute
+  z-index: 1
+
 .container
   &.editor
     max-width: $grid - (128px * 1.5)
 
     .b-tabs // sass-lint:disable-line class-name-format
       margin: 0 -5px
+
+      .tab-content // sass-lint:disable-line class-name-format
+        overflow: visible
 
       .tabs
         margin: 0 5px
