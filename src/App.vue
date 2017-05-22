@@ -196,7 +196,7 @@
               <div class="box">
                 <div class="columns">
                   <div class="column is-one-quarter" style="align-self: center">
-                    <p class="title is-5">Add a link or connect this CTA to a HubSpot Call-to-action</p>
+                    <p class="title is-5">Add a link to your CTA</p>
                   </div>
                   <div class="column">
                     <div class="columns">
