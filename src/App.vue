@@ -118,7 +118,7 @@
                         <div class="field">
                           <label class="label">Background Color</label>
                           <p class="control">
-                            <input class="input" readonly
+                            <input class="input inputPicker" readonly
                               @click="showPicker = true"
                               :style="{ borderColor: cta.ctaSS.cta.backgroundColor.hex }"
                               v-model="cta.ctaSS.cta.backgroundColor.hex">
@@ -157,7 +157,7 @@
                         <div class="field">
                           <label class="label">Text Color</label>
                           <p class="control">
-                            <input class="input" readonly
+                            <input class="input inputPicker" readonly
                               @click="showPicker = true"
                               :style="{ borderColor: cta.ctaSS.cta.color.hex }"
                               v-model="cta.ctaSS.cta.color.hex">
@@ -440,6 +440,9 @@ html
   margin-top: 8px
   position: absolute
   z-index: 1
+
+.inputPicker
+  cursor: pointer
 
 .container
   &.editor
