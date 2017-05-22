@@ -14,7 +14,7 @@
             </div>
 
             <div class="nav-right">
-              <a class="nav-item">
+              <a v-show="authenticated" class="nav-item">
                 <figure class="image profile is-16x16" style="margin-right: 8px;">
                   <img :src="userProfileImage" alt="Profile Image">
                 </figure>
