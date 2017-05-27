@@ -146,8 +146,14 @@
                               <option value="monospace">Monospace</option>
                             </optgroup>
                             <optgroup label="Google Fonts">
-                              <option value="'Roboto'">Roboto</option>
-                              <option value="'Work Sans'">Work Sans</option>
+                              <option value="Roboto">Roboto</option>
+                              <option value="Work Sans">Work Sans</option>
+                              <option value="Open Sans">Open Sans</option>
+                              <option value="Lato">Lato</option>
+                              <option value="Indie Flower">Indie Flower</option>
+                              <option value="Hind">Hind</option>
+                              <option value="Crimson Text">Crimson Text</option>
+                              <option value="Roboto Mono">Roboto Mono</option>
                             </optgroup>
                           </b-select>
                         </b-field>

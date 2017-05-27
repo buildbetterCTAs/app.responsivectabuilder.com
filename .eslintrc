@@ -6,8 +6,7 @@
     "html"
   ],
   "globals": {
-    "ga": true,
-    "Intercom": true
+    "ga": true
   },
   "rules": {
     "no-new": "off",

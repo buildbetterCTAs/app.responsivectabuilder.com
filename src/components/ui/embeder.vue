@@ -1,6 +1,6 @@
 <template>
-  <div class="embedCopy"><pre><code><span v-if="cta.ctaSS.fontFamily === `'Roboto'`">&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"&gt;<br></span><span v-if="cta.ctaSS.fontFamily === `'Work Sans'`">&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans"&gt;<br></span>&lt;link rel="stylesheet" href="https://unpkg.com/responsive-cta-builder-css"&gt;
-  &lt;div class="cta" style="<span v-if="cta.ctaSS.fontFamily">font-family: {{ cta.ctaSS.fontFamily }} <span v-if="cta.ctaSS.fontFamily === `'Roboto'` || cta.ctaSS.fontFamily === `'Work Sans'`">, sans-serif; </span><span v-else>; </span></span>border-radius: {{ cta.ctaSS.cta.borderRadius + 'px' }}; background-color: {{ cta.ctaSS.cta.backgroundColor.hex }};"&gt;
+  <div class="embedCopy"><pre><code>{{ fontStylesheet }}&lt;link rel="stylesheet" href="https://unpkg.com/responsive-cta-builder-css"&gt;
+  &lt;div class="cta" style="{{ fontFamily }}border-radius: {{ cta.ctaSS.cta.borderRadius + 'px' }}; background-color: {{ cta.ctaSS.cta.backgroundColor.hex }};"&gt;
       &lt;div class="ctaHeadline" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.headline }}&lt;/div&gt;
       &lt;div class="ctaDescription" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.description }}&lt;/div&gt;
       &lt;a class="ctaButton" href="{{ cta.buttonUrl }}" target="_blank" style="background-color: {{ cta.ctaSS.button.backgroundColor }}; color: {{ cta.ctaSS.button.color }};"&gt;{{ cta.buttonText }}&lt;/a&gt;
@@ -12,6 +12,46 @@
 <script>
   export default {
     name: 'embeder',
+    computed: {
+      fontFamily: function () {
+        let font = this.cta.ctaSS.fontFamily
+        if (font) {
+          if (font === 'Roboto Mono') {
+            return `font-family: '` + font + `', monospace; `
+          } else if (font === 'Crimson Text') {
+            return `font-family: '` + font + `', serif; `
+          } else if (font === 'Indie Flower') {
+            return `font-family: '` + font + `', cursive; `
+          } else if (font === 'serif' || font === 'sans-serif' || font === 'monospace') {
+            return `font-family: '` + font + `'; `
+          } else {
+            return `font-family: '` + font + `', sans-serif; `
+          }
+        }
+      },
+      fontStylesheet: function () {
+        let font = this.cta.ctaSS.fontFamily
+        if (font) {
+          const beginStylesheet = '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family='
+          const endStylesheet = '">\n'
+          const googleFontsArray = [
+            'Open Sans',
+            'Lato',
+            'Indie Flower',
+            'Hind',
+            'Crimson Text',
+            'Roboto Mono',
+            'Roboto',
+            'Work Sans'
+          ]
+          for (let i = 0; i < googleFontsArray.length; i++) {
+            if (font === googleFontsArray[i]) {
+              return beginStylesheet + font.replace(' ', '+') + endStylesheet
+            }
+          }
+        }
+      }
+    },
     props: {
       hubl: String,
       cta: {
