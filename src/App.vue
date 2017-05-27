@@ -72,7 +72,7 @@
       <!-- CTA PREVIEW AND WIDTH SLIDER -->
       <div class="container">
         <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
-          <cta :isEditable="editable" :cta="cta"></cta>
+          <cta :sliderVal="ctaWidth" :isEditable="editable" :cta="cta"></cta>
         </div>
         <!-- CTA WIDTH SLIDER -->
         <div class="ctaWidthSlider">

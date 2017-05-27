@@ -1,6 +1,6 @@
 <template>
   <div>
-    <bar :value="displayElementWidth"></bar>
+    <bar :value="sliderVal || displayElementWidth"></bar>
     <div class="cta"
       :style="{
         borderRadius: cta.ctaSS.cta.borderRadius + 'px',
@@ -56,6 +56,7 @@
       }
     },
     props: {
+      sliderVal: [String, Number],
       isEditable: Boolean,
       cta: {
         type: Object,
