@@ -46,7 +46,7 @@
   import bar from './bar'
 
   export default {
-    name: 'cta',
+    name: 'cta-standard',
     components: {
       bar
     },

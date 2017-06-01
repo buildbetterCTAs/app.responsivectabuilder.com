@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
       <!-- CTA PREVIEW AND WIDTH SLIDER -->
       <div class="container">
         <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
@@ -195,7 +195,7 @@
   import { Chrome } from 'vue-color'
 
   export default {
-    name: 'app',
+    name: 'builder-standard',
     data: function () {
       return {
         activeTab: 0,

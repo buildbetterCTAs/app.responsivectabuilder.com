@@ -23,7 +23,7 @@
   import bar from './bar'
 
   export default {
-    name: 'cta',
+    name: 'cta-hubspot',
     components: {
       bar
     },
