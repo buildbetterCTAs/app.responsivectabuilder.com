@@ -1,26 +1,49 @@
 <template>
   <div>
-    <bar :value="ctaWidth"></bar>
-    <div :style="{ borderRadius: cta.ctaSS.cta.borderRadius + 'px', backgroundColor: cta.ctaSS.cta.backgroundColor }" class="cta">
+    <bar :value="sliderVal || displayElementWidth"></bar>
+    <div class="cta"
+      :style="{
+        borderRadius: cta.ctaSS.cta.borderRadius + 'px',
+        backgroundColor: cta.ctaSS.cta.backgroundColor.hex,
+        fontFamily: cta.ctaSS.fontFamily
+      }"
+    >
       <div>
-        <div @click="focusOnInput('headline')" v-bind:class="{ editable: isEditable }" class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">
+        <div class="ctaHeadline"
+          :class="{ editable: isEditable }"
+          :style="{ color: cta.ctaSS.cta.color.hex }"
+          @click="focusOnInput('headline')"
+        >
           <div class="editOverlay" v-if="isEditable"></div>
           {{ cta.headline }}
         </div>
       </div>
       <div>
-        <div @click="focusOnInput('description')" v-bind:class="{ editable: isEditable }" class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">
+        <div class="ctaDescription"
+          :class="{ editable: isEditable }"
+          :style="{ color: cta.ctaSS.cta.color.hex }"
+          @click="focusOnInput('description')"
+        >
           <div class="editOverlay" v-if="isEditable"></div>
           {{ cta.description }}
         </div>
       </div>
-      <div class="ctaButton hubl" :style="cta.ctaSS.button"><span v-text="hubl"></span></div>
+      <div>
+        <div class="ctaButton"
+          :class="{ editable: isEditable }"
+          :style="cta.ctaSS.button"
+          @click="focusOnInput('buttonText')"
+        >
+          <div class="editOverlay" v-if="isEditable"></div>
+          {{ cta.buttonText }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import bar from '../components/bar'
+  import bar from './bar'
 
   export default {
     name: 'cta',
@@ -29,12 +52,12 @@
     },
     data: function () {
       return {
-        ctaWidth: 0
+        displayElementWidth: 0
       }
     },
     props: {
+      sliderVal: [String, Number],
       isEditable: Boolean,
-      hubl: String,
       cta: {
         type: Object,
         required: true,
@@ -42,8 +65,10 @@
           return {
             headline: '',
             description: '',
-            hubspotCta: false,
+            buttonText: '',
+            buttonUrl: '',
             ctaSS: {
+              fontFamily: '',
               cta: {
                 borderRadius: '',
                 backgroundColor: '',
@@ -72,8 +97,8 @@
 
       let width = this.$el.clientWidth
 
-      // Pass width of CTA to the bars component
-      this.ctaWidth = width
+      // Pass element width of CTA to the bars component
+      this.displayElementWidth = width
 
       if (width <= mediumScreen) {
         classes.add('mediumAndDown')
@@ -253,7 +278,7 @@ $overlay: rgba($white, .54)
 
 .editOverlay
   background-color: $overlay
-  background-image: url("../assets/edit.svg")
+  background-image: url("../../assets/edit.svg")
   background-position: center
   background-repeat: no-repeat
   background-size: auto calc(100% - 8px)
