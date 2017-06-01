@@ -45,7 +45,7 @@
             <b-select v-model="ctaStyle">
               <option value="standard">Standard</option>
               <!-- <option value="hubspot">HubSpot</option> -->
-              <!-- <option value="backgroundImage">Background Image</option> -->
+              <option value="backgroundImage">Background Image</option>
             </b-select>
           </b-field>
         </div>
@@ -59,7 +59,7 @@
         Use HubSpot CTA Builder
       </div>
       <div v-else-if="ctaStyle === 'backgroundImage'">
-        Use Background Image CTA Builder
+        <background-img></background-img>
       </div>
       <div v-else>
         Yolo
@@ -70,6 +70,7 @@
 
 <script>
   import standard from './components/builder/builder-standard'
+  import backgroundImage from './components/builder/builder-background-img'
 
   export default {
     name: 'app',
@@ -129,7 +130,8 @@
       }
     },
     components: {
-      standard
+      standard,
+      'background-img': backgroundImage
     }
   }
 
