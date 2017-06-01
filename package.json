@@ -9,7 +9,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "clipboard": "^1.6.1",
+    "clipboard": "^1.7.0",
     "vue": "^2.2.2",
     "vue-color": "^2.0.9"
   },
