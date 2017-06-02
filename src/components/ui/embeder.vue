@@ -91,6 +91,9 @@ $grey400: #bdbdbd
 $grey500: #9e9e9e
 
 // Embed Section
+pre
+  border-radius: 4px
+
 .embedCopy
   position: relative
 
@@ -99,7 +102,7 @@ $grey500: #9e9e9e
 
   .embedCopyButton
     background-color: $grey400
-    border-radius: 4px 0 0
+    border-radius: 4px 0
     bottom: 0
     color: $white
     cursor: pointer

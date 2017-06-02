@@ -4,14 +4,14 @@
     <div class="cta"
       :style="{
         borderRadius: cta.ctaSS.cta.borderRadius + 'px',
-        backgroundColor: cta.ctaSS.cta.backgroundColor.hex,
+        backgroundColor: cta.ctaSS.cta.backgroundColor,
         fontFamily: cta.ctaSS.fontFamily
       }"
     >
       <div>
         <div class="ctaHeadline"
           :class="{ editable: isEditable }"
-          :style="{ color: cta.ctaSS.cta.color.hex }"
+          :style="{ color: cta.ctaSS.cta.color }"
           @click="focusOnInput('headline')"
         >
           <div class="editOverlay" v-if="isEditable"></div>
@@ -21,7 +21,7 @@
       <div>
         <div class="ctaDescription"
           :class="{ editable: isEditable }"
-          :style="{ color: cta.ctaSS.cta.color.hex }"
+          :style="{ color: cta.ctaSS.cta.color }"
           @click="focusOnInput('description')"
         >
           <div class="editOverlay" v-if="isEditable"></div>

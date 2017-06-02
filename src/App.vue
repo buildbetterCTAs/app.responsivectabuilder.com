@@ -191,9 +191,6 @@ html
     .b-tabs // sass-lint:disable-line class-name-format
       margin: 0 -5px
 
-      .tab-content // sass-lint:disable-line class-name-format
-        overflow: visible
-
       .tabs
         margin: 0 5px
 

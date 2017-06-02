@@ -46,18 +46,13 @@
                   <div class="column">
                     <div class="columns">
                       <div class="column">
-                        <div class="field">
-                          <label class="label">Background Color</label>
+                        <b-field label="Background Color">
+                          <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.cta.backgroundColor" expanded></b-input>
                           <p class="control">
-                            <input class="input inputPicker" readonly
-                              @click="showPicker = true"
-                              :style="{ borderColor: cta.ctaSS.cta.backgroundColor.hex }"
-                              v-model="cta.ctaSS.cta.backgroundColor.hex">
-                            <picker class="picker"
-                              v-if="showPicker"
-                              v-model="cta.ctaSS.cta.backgroundColor"></picker>
+                            <label for="backgroundColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.cta.backgroundColor }" class="button"></label>
+                            <input style="visibility: hidden; position: fixed;" type="color" id="backgroundColor" v-model="cta.ctaSS.cta.backgroundColor">
                           </p>
-                        </div>
+                        </b-field>
                       </div>
                       <div class="column">
                         <div class="field">
@@ -91,36 +86,33 @@
                         <b-checkbox v-model="ctaFont"><b-tooltip label='When you embed this CTA on your website, we will automatically pull in your primary font.' dashed multilined>Automatically use my website's font</b-tooltip></b-checkbox>
                       </div>
                       <div class="column">
-                        <div class="field">
-                          <label class="label">Text Color</label>
+                        <b-field label="Text Color">
+                          <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.cta.color" expanded></b-input>
                           <p class="control">
-                            <input class="input inputPicker" readonly
-                              @click="showPicker = true"
-                              :style="{ borderColor: cta.ctaSS.cta.color.hex }"
-                              v-model="cta.ctaSS.cta.color.hex">
-                            <picker class="picker"
-                              v-if="showPicker"
-                              v-model="cta.ctaSS.cta.color"></picker>
+                            <label for="textColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.cta.color }" class="button"></label>
+                            <input style="visibility: hidden; position: fixed;" type="color" id="textColor" v-model="cta.ctaSS.cta.color">
                           </p>
-                        </div>
+                        </b-field>
                       </div>
                     </div>
                     <div class="columns">
                       <div class="column">
-                        <div class="field">
-                          <label class="label">Button Color</label>
+                        <b-field label="Button Color">
+                          <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.button.backgroundColor" expanded></b-input>
                           <p class="control">
-                            <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.button.backgroundColor">
+                            <label for="buttonBackgroundColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.button.backgroundColor }" class="button"></label>
+                            <input style="visibility: hidden; position: fixed;" type="color" id="buttonBackgroundColor" v-model="cta.ctaSS.button.backgroundColor">
                           </p>
-                        </div>
+                        </b-field>
                       </div>
                       <div class="column">
-                        <div class="field">
-                          <label class="label">Button Text Color</label>
+                        <b-field label="Button Text Color">
+                          <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.button.color" expanded></b-input>
                           <p class="control">
-                            <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.button.color">
+                            <label for="buttonTextColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.button.color }" class="button"></label>
+                            <input style="visibility: hidden; position: fixed;" type="color" id="buttonTextColor" v-model="cta.ctaSS.button.color">
                           </p>
-                        </div>
+                        </b-field>
                       </div>
                     </div>
                   </div>
@@ -136,18 +128,14 @@
                     <p class="title is-5">Add a link to your CTA</p>
                   </div>
                   <div class="column">
-                    <div class="columns">
-                      <div class="column">
-                        <div class="field">
-                          <label class="label">URL</label>
-                          <p class="control">
-                            <input @focus="select($event)" class="input" type="url" v-model="cta.buttonUrl">
-                          </p>
-                          <p class="help">
-                            <a target="_blank" :href="cta.buttonUrl">Click here to test your URL</a>
-                          </p>
-                        </div>
-                      </div>
+                    <div class="field">
+                      <label class="label">URL</label>
+                      <p class="control">
+                        <input @focus="select($event)" class="input" type="url" v-model="cta.buttonUrl">
+                      </p>
+                      <p class="help">
+                        <a target="_blank" :href="cta.buttonUrl">Click here to test your URL</a>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -157,13 +145,17 @@
           <b-tab-item label="4. Embed">
             <div class="boxWrapper">
               <div class="box">
-                <p class="title is-5">Copy this code and embed it at the end of your blog post</p>
-                <div class="content">
-                  <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
-                </div>
-                <embeder :cta="cta"></embeder>
-                <div class="content">
-                  <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet into the <code>&lt;head&gt;</code> section of your website</p>
+                <div class="columns">
+                  <div class="column">
+                    <p class="title is-5">Copy this code and embed it at the end of your blog post</p>
+                    <div class="content">
+                      <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
+                    </div>
+                    <embeder :cta="cta"></embeder>
+                    <div class="content">
+                      <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet into the <code>&lt;head&gt;</code> section of your website</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -208,15 +200,11 @@
           buttonText: 'click here, reader!',
           buttonUrl: 'https://www.responsivectabuilder.com',
           ctaSS: {
-            fontFamily: '',
+            fontFamily: null,
             cta: {
               borderRadius: 4,
-              backgroundColor: {
-                hex: '#0E589A'
-              },
-              color: {
-                hex: '#ffffff'
-              }
+              backgroundColor: '#0E589A',
+              color: '#ffffff'
             },
             button: {
               backgroundColor: '#48A7F9',
@@ -229,7 +217,7 @@
     watch: {
       // Reset cta.ctaSS.fontFamily to empty to prevent fonts from being added
       ctaFont: function (font) {
-        this.cta.ctaSS.fontFamily = ''
+        this.cta.ctaSS.fontFamily = null
       }
     },
     computed: {
@@ -242,9 +230,6 @@
       }
     },
     methods: {
-      clearFont: function (event) {
-        this.cta.ctaSS.fontFamily = 'Apples'
-      },
       select: function (event) {
         event.target.select()
       }
