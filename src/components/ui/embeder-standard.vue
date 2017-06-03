@@ -68,20 +68,20 @@
         required: true,
         default: function () {
           return {
-            headline: '',
-            description: '',
-            buttonText: '',
-            buttonUrl: '',
+            headline: null,
+            description: null,
+            buttonText: null,
+            buttonUrl: null,
             ctaSS: {
-              fontFamily: '',
+              fontFamily: null,
               cta: {
-                borderRadius: '',
-                backgroundColor: '',
-                color: ''
+                borderRadius: null,
+                backgroundColor: null,
+                color: null
               },
               button: {
-                backgroundColor: '',
-                color: ''
+                backgroundColor: null,
+                color: null
               }
             }
           }

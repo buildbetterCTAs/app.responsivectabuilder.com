@@ -71,18 +71,18 @@
         required: true,
         default: function () {
           return {
-            headline: '',
-            description: '',
+            headline: null,
+            description: null,
             ctaSS: {
-              fontFamily: '',
+              fontFamily: null,
               cta: {
-                borderRadius: '',
-                backgroundColor: '',
-                color: ''
+                borderRadius: null,
+                backgroundColor: null,
+                color: null
               },
               button: {
-                backgroundColor: '',
-                color: ''
+                backgroundColor: null,
+                color: null
               }
             }
           }
