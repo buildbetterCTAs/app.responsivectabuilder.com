@@ -190,7 +190,7 @@
 
 <script>
   import cta from '../cta/cta-standard'
-  import embeder from '../ui/embeder'
+  import embeder from '../ui/embeder-standard'
   // import { Chrome } from 'vue-color'
 
   export default {

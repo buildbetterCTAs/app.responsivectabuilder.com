@@ -43,7 +43,7 @@
 </template>
 
 <script>
-  import bar from './bar'
+  import bar from '../ui/bar'
 
   export default {
     name: 'cta-standard',

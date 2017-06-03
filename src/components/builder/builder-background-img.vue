@@ -245,7 +245,7 @@
 
 <script>
   import cta from '../cta/cta-background-img'
-  import embeder from '../ui/embeder'
+  import embeder from '../ui/embeder-background-img'
   import { Chrome } from 'vue-color'
   import { mixin as clickaway } from 'vue-clickaway'
 

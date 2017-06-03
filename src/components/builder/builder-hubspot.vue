@@ -181,7 +181,7 @@
 
 <script>
   import cta from '../cta/cta-hubspot'
-  import embeder from '../ui/embeder'
+  import embeder from '../ui/embeder-standard'
   import { Chrome } from 'vue-color'
 
   export default {
