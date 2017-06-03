@@ -47,12 +47,26 @@
                     <div class="columns">
                       <div class="column">
                         <b-field label="Background Color">
-                          <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.cta.backgroundColor" expanded></b-input>
-                          <p class="control">
-                            <label for="backgroundColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.cta.backgroundColor }" class="button"></label>
-                            <input style="visibility: hidden; position: fixed;" type="color" id="backgroundColor" v-model="cta.ctaSS.cta.backgroundColor">
-                          </p>
+                          <b-field>
+                            <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.cta.backgroundColor" expanded></b-input>
+                            <p class="control">
+                              <label for="backgroundColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.cta.backgroundColor }" class="button"></label>
+                              <input style="visibility: hidden; position: fixed;" type="color" id="backgroundColor" v-model="cta.ctaSS.cta.backgroundColor">
+                            </p>
+                          </b-field>
                         </b-field>
+                        <!-- <div class="field">
+                          <label class="label">Background Color</label>
+                          <p class="control">
+                            <input class="input inputPicker" readonly
+                              @click="showPicker = true"
+                              :style="{ borderColor: cta.ctaSS.cta.backgroundColor.hex }"
+                              v-model="cta.ctaSS.cta.backgroundColor.hex">
+                            <picker class="picker"
+                              v-if="showPicker"
+                              v-model="cta.ctaSS.cta.backgroundColor"></picker>
+                          </p>
+                        </div> -->
                       </div>
                       <div class="column">
                         <div class="field">
@@ -87,31 +101,37 @@
                       </div>
                       <div class="column">
                         <b-field label="Text Color">
-                          <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.cta.color" expanded></b-input>
-                          <p class="control">
-                            <label for="textColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.cta.color }" class="button"></label>
-                            <input style="visibility: hidden; position: fixed;" type="color" id="textColor" v-model="cta.ctaSS.cta.color">
-                          </p>
+                          <b-field>
+                            <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.cta.color" expanded></b-input>
+                            <p class="control">
+                              <label for="textColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.cta.color }" class="button"></label>
+                              <input style="visibility: hidden; position: fixed;" type="color" id="textColor" v-model="cta.ctaSS.cta.color">
+                            </p>
+                          </b-field>
                         </b-field>
                       </div>
                     </div>
                     <div class="columns">
                       <div class="column">
                         <b-field label="Button Color">
-                          <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.button.backgroundColor" expanded></b-input>
-                          <p class="control">
-                            <label for="buttonBackgroundColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.button.backgroundColor }" class="button"></label>
-                            <input style="visibility: hidden; position: fixed;" type="color" id="buttonBackgroundColor" v-model="cta.ctaSS.button.backgroundColor">
-                          </p>
+                          <b-field>
+                            <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.button.backgroundColor" expanded></b-input>
+                            <p class="control">
+                              <label for="buttonBackgroundColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.button.backgroundColor }" class="button"></label>
+                              <input style="visibility: hidden; position: fixed;" type="color" id="buttonBackgroundColor" v-model="cta.ctaSS.button.backgroundColor">
+                            </p>
+                          </b-field>
                         </b-field>
                       </div>
                       <div class="column">
                         <b-field label="Button Text Color">
-                          <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.button.color" expanded></b-input>
-                          <p class="control">
-                            <label for="buttonTextColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.button.color }" class="button"></label>
-                            <input style="visibility: hidden; position: fixed;" type="color" id="buttonTextColor" v-model="cta.ctaSS.button.color">
-                          </p>
+                          <b-field>
+                            <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.button.color" expanded></b-input>
+                            <p class="control">
+                              <label for="buttonTextColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.button.color }" class="button"></label>
+                              <input style="visibility: hidden; position: fixed;" type="color" id="buttonTextColor" v-model="cta.ctaSS.button.color">
+                            </p>
+                          </b-field>
                         </b-field>
                       </div>
                     </div>
