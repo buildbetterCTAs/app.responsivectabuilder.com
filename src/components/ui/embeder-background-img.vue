@@ -68,39 +68,38 @@
         required: true,
         default: function () {
           return {
-            headline: '',
-            description: '',
-            buttonText: '',
-            buttonUrl: '',
-            hubspotCta: false,
+            headline: null,
+            description: null,
+            buttonText: null,
+            buttonUrl: null,
             ctaSS: {
               fontFamily: null,
               cta: {
                 borderRadius: 4,
-                backgroundImage: '',
+                backgroundImage: null,
                 imageOverlay: {
-                  hex: '',
+                  hex: null,
                   rgba: {
-                    r: '',
-                    g: '',
-                    b: '',
-                    a: ''
+                    r: null,
+                    g: null,
+                    b: null,
+                    a: null
                   },
-                  a: ''
+                  a: null
                 },
                 backgroundColor: {
-                  hex: ''
+                  hex: null
                 },
                 color: {
-                  hex: ''
+                  hex: null
                 }
               },
               button: {
                 backgroundColor: {
-                  hex: ''
+                  hex: null
                 },
                 color: {
-                  hex: ''
+                  hex: null
                 }
               }
             }
@@ -110,36 +109,3 @@
     }
   }
 </script>
-
-<style lang="sass" scoped>
-$white: #fff
-$black: #000
-$grey300: #e0e0e0
-$grey400: #bdbdbd
-$grey500: #9e9e9e
-
-// Embed Section
-pre
-  border-radius: 4px
-
-.embedCopy
-  position: relative
-
-  &:not(:last-child)
-    margin-bottom: 16px
-
-  .embedCopyButton
-    background-color: $grey400
-    border-radius: 4px 0
-    bottom: 0
-    color: $white
-    cursor: pointer
-    font-size: 14px
-    font-weight: bold
-    padding: 2px 10px
-    position: absolute
-    right: 0
-
-    &:hover
-      background-color: $grey500
-</style>
