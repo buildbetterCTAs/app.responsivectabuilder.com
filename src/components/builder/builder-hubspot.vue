@@ -155,16 +155,7 @@
           </b-tab-item>
           <b-tab-item label="4. Embed">
             <div class="boxWrapper">
-              <div class="box">
-                <p class="title is-5">Copy this code and embed it at the end of your blog post</p>
-                <div class="content">
-                  <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
-                </div>
-                <embeder :cta="cta"></embeder>
-                <div class="content">
-                  <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet into the <code>&lt;head&gt;</code> section of your website</p>
-                </div>
-              </div>
+              <embeder :cta="cta"></embeder>
             </div>
           </b-tab-item>
         </b-tabs>

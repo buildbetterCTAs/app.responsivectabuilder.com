@@ -56,7 +56,7 @@
         <standard></standard>
       </div>
       <div v-else-if="ctaStyle === 'hubspot'">
-        Use HubSpot CTA Builder
+        <div>Use HubSpot CTA Builder</div>
       </div>
       <div v-else-if="ctaStyle === 'backgroundImage'">
         <background-img></background-img>
@@ -127,6 +127,7 @@
         localStorage.removeItem('id_token')
         localStorage.removeItem('profile')
         this.authenticated = false
+        this.$toast.open('Logged Out')
       }
     },
     components: {
@@ -179,7 +180,7 @@ html
 .picker
   margin-top: 8px
   position: absolute
-  z-index: 1
+  z-index: 3
 
 .inputPicker
   cursor: pointer

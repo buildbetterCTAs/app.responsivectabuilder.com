@@ -4,17 +4,25 @@
     <div class="cta"
       :style="{
         borderRadius: cta.ctaSS.cta.borderRadius + 'px',
-        backgroundColor: cta.ctaSS.cta.backgroundColor.hex,
-        backgroundImage: 'url(' + cta.ctaSS.cta.backgroundImage + ')',
+        backgroundColor: cta.ctaSS.cta.backgroundColor,
+        background: 'linear-gradient(rgba(' +
+                      cta.ctaSS.cta.imageOverlay.rgba.r + ', ' +
+                      cta.ctaSS.cta.imageOverlay.rgba.g + ', ' +
+                      cta.ctaSS.cta.imageOverlay.rgba.b + ', ' +
+                      cta.ctaSS.cta.imageOverlay.a +
+                    '), rgba('+
+                      cta.ctaSS.cta.imageOverlay.rgba.r + ', ' +
+                      cta.ctaSS.cta.imageOverlay.rgba.g + ', ' +
+                      cta.ctaSS.cta.imageOverlay.rgba.b + ', ' +
+                      cta.ctaSS.cta.imageOverlay.a +
+                    ')), url(' + cta.ctaSS.cta.backgroundImage + ')',
         fontFamily: cta.ctaSS.fontFamily
-      }"
-    >
+      }">
       <div>
         <div class="ctaHeadline"
           :class="{ editable: isEditable }"
           :style="{ color: cta.ctaSS.cta.color.hex }"
-          @click="focusOnInput('headline')"
-        >
+          @click="focusOnInput('headline')">
           <div class="editOverlay" v-if="isEditable"></div>
           {{ cta.headline }}
         </div>
@@ -23,8 +31,7 @@
         <div class="ctaDescription"
           :class="{ editable: isEditable }"
           :style="{ color: cta.ctaSS.cta.color.hex }"
-          @click="focusOnInput('description')"
-        >
+          @click="focusOnInput('description')">
           <div class="editOverlay" v-if="isEditable"></div>
           {{ cta.description }}
         </div>
@@ -32,9 +39,11 @@
       <div>
         <div class="ctaButton"
           :class="{ editable: isEditable }"
-          :style="cta.ctaSS.button"
-          @click="focusOnInput('buttonText')"
-        >
+          :style="{
+            color: cta.ctaSS.button.color.hex,
+            backgroundColor: cta.ctaSS.button.backgroundColor.hex
+          }"
+          @click="focusOnInput('buttonText')">
           <div class="editOverlay" v-if="isEditable"></div>
           {{ cta.buttonText }}
         </div>
@@ -73,6 +82,7 @@
               cta: {
                 borderRadius: '',
                 backgroundImage: '',
+                imageOverlay: '',
                 backgroundColor: '',
                 color: ''
               },

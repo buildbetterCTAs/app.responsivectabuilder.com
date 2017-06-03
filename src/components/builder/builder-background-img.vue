@@ -46,12 +46,29 @@
                   <div class="column">
                     <div class="columns">
                       <div class="column">
-                        <b-field label="Background Image" message="Provide a URL for the direct image">
+                        <b-field label="Background Image URL">
                           <b-input @focus="select($event)" name="backgroundImage" type="url" v-model="cta.ctaSS.cta.backgroundImage"></b-input>
                         </b-field>
                       </div>
                       <div class="column">
-                        TODO: Add Background Image Overlay Color
+                        <div class="field">
+                          <label class="label">Image Overlay</label>
+                          <p class="control">
+                            <input
+                              readonly
+                              class="input inputPicker"
+                              @click="showPicker = true"
+                              :style="{ borderColor: cta.ctaSS.cta.imageOverlay.hex }"
+                              v-model="cta.ctaSS.cta.imageOverlay.hex"
+                            />
+                            <picker
+                              class="picker"
+                              v-on-clickaway="hidePicker"
+                              v-if="showPicker"
+                              v-model="cta.ctaSS.cta.imageOverlay">
+                            </picker>
+                          </p>
+                        </div>
                       </div>
                     </div>
                     <div class="columns">
@@ -59,20 +76,26 @@
                         <div class="field">
                           <label class="label">Fallback Background Color</label>
                           <p class="control">
-                            <input class="input inputPicker" readonly
+                            <input
+                              readonly
+                              class="input inputPicker"
                               @click="showPicker = true"
                               :style="{ borderColor: cta.ctaSS.cta.backgroundColor.hex }"
-                              v-model="cta.ctaSS.cta.backgroundColor.hex">
-                            <picker class="picker"
+                              v-model="cta.ctaSS.cta.backgroundColor.hex"
+                            />
+                            <picker
+                              class="picker"
+                              v-on-clickaway="hidePicker"
                               v-if="showPicker"
-                              v-model="cta.ctaSS.cta.backgroundColor"></picker>
+                              v-model="cta.ctaSS.cta.backgroundColor">
+                            </picker>
                           </p>
                         </div>
                       </div>
                       <div class="column">
                         <div class="field">
                           <label class="label">Border Radius</label>
-                          <input @focus="select($event)" class="borderRadiusSlider" type="range" v-model="cta.ctaSS.cta.borderRadius" min="0" max="32">
+                          <input class="borderRadiusSlider" type="range" v-model="cta.ctaSS.cta.borderRadius" min="0" max="32">
                           <p>{{ cta.ctaSS.cta.borderRadius + 'px' }}</p>
                         </div>
                       </div>
@@ -104,13 +127,19 @@
                         <div class="field">
                           <label class="label">Text Color</label>
                           <p class="control">
-                            <input class="input inputPicker" readonly
+                            <input
+                              readonly
+                              class="input inputPicker"
                               @click="showPicker = true"
                               :style="{ borderColor: cta.ctaSS.cta.color.hex }"
-                              v-model="cta.ctaSS.cta.color.hex">
-                            <picker class="picker"
+                              v-model="cta.ctaSS.cta.color.hex"
+                            />
+                            <picker
+                              class="picker"
+                              v-on-clickaway="hidePicker"
                               v-if="showPicker"
-                              v-model="cta.ctaSS.cta.color"></picker>
+                              v-model="cta.ctaSS.cta.color">
+                            </picker>
                           </p>
                         </div>
                       </div>
@@ -120,7 +149,19 @@
                         <div class="field">
                           <label class="label">Button Color</label>
                           <p class="control">
-                            <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.button.backgroundColor">
+                            <input
+                              readonly
+                              class="input inputPicker"
+                              @click="showPicker = true"
+                              :style="{ borderColor: cta.ctaSS.button.backgroundColor.hex }"
+                              v-model="cta.ctaSS.button.backgroundColor.hex"
+                            />
+                            <picker
+                              class="picker"
+                              v-on-clickaway="hidePicker"
+                              v-if="showPicker"
+                              v-model="cta.ctaSS.button.backgroundColor">
+                            </picker>
                           </p>
                         </div>
                       </div>
@@ -128,7 +169,19 @@
                         <div class="field">
                           <label class="label">Button Text Color</label>
                           <p class="control">
-                            <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.button.color">
+                            <input
+                              readonly
+                              class="input inputPicker"
+                              @click="showPicker = true"
+                              :style="{ borderColor: cta.ctaSS.button.color.hex }"
+                              v-model="cta.ctaSS.button.color.hex"
+                            />
+                            <picker
+                              class="picker"
+                              v-on-clickaway="hidePicker"
+                              v-if="showPicker"
+                              v-model="cta.ctaSS.button.color">
+                            </picker>
                           </p>
                         </div>
                       </div>
@@ -166,16 +219,7 @@
           </b-tab-item>
           <b-tab-item label="4. Embed">
             <div class="boxWrapper">
-              <div class="box">
-                <p class="title is-5">Copy this code and embed it at the end of your blog post</p>
-                <div class="content">
-                  <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
-                </div>
-                <embeder :cta="cta"></embeder>
-                <div class="content">
-                  <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet into the <code>&lt;head&gt;</code> section of your website</p>
-                </div>
-              </div>
+              <embeder :cta="cta"></embeder>
             </div>
           </b-tab-item>
         </b-tabs>
@@ -203,9 +247,11 @@
   import cta from '../cta/cta-background-img'
   import embeder from '../ui/embeder'
   import { Chrome } from 'vue-color'
+  import { mixin as clickaway } from 'vue-clickaway'
 
   export default {
     name: 'builder-background-img',
+    mixins: [ clickaway ],
     data: function () {
       return {
         activeTab: 0,
@@ -218,10 +264,20 @@
           buttonText: 'click here, reader!',
           buttonUrl: 'https://www.responsivectabuilder.com',
           ctaSS: {
-            fontFamily: '',
+            fontFamily: null,
             cta: {
               borderRadius: 4,
               backgroundImage: 'https://unsplash.it/1280/720',
+              imageOverlay: {
+                hex: '#48A7F9',
+                rgba: {
+                  r: 72,
+                  g: 167,
+                  b: 249,
+                  a: 0.5
+                },
+                a: 0.5
+              },
               backgroundColor: {
                 hex: '#0E589A'
               },
@@ -230,8 +286,12 @@
               }
             },
             button: {
-              backgroundColor: '#48A7F9',
-              color: '#ffffff'
+              backgroundColor: {
+                hex: '#48A7F9'
+              },
+              color: {
+                hex: '#ffffff'
+              }
             }
           }
         }
@@ -240,7 +300,7 @@
     watch: {
       // Reset cta.ctaSS.fontFamily to empty to prevent fonts from being added
       ctaFont: function (font) {
-        this.cta.ctaSS.fontFamily = ''
+        this.cta.ctaSS.fontFamily = null
       }
     },
     computed: {
@@ -253,8 +313,8 @@
       }
     },
     methods: {
-      clearFont: function (event) {
-        this.cta.ctaSS.fontFamily = 'Apples'
+      hidePicker: function () {
+        this.showPicker = false
       },
       select: function (event) {
         event.target.select()

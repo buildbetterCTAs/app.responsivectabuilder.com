@@ -1,11 +1,20 @@
 <template>
-  <div class="embedCopy"><pre><code>{{ fontStylesheet }}&lt;link rel="stylesheet" href="https://unpkg.com/responsive-cta-builder-css"&gt;
-  &lt;div class="cta" style="{{ fontFamily }}border-radius: {{ cta.ctaSS.cta.borderRadius + 'px' }}; background-color: {{ cta.ctaSS.cta.backgroundColor.hex }};"&gt;
-      &lt;div class="ctaHeadline" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.headline }}&lt;/div&gt;
-      &lt;div class="ctaDescription" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.description }}&lt;/div&gt;
-      &lt;a class="ctaButton" href="{{ cta.buttonUrl }}" target="_blank" style="background-color: {{ cta.ctaSS.button.backgroundColor }}; color: {{ cta.ctaSS.button.color }};"&gt;{{ cta.buttonText }}&lt;/a&gt;
-  &lt;/div&gt;</code></pre>
-    <a class="embedCopyButton">Copy</a>
+  <div class="box">
+    <p class="title is-5">Copy this code and embed it at the end of your blog post</p>
+    <div class="content">
+      <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
+    </div>
+<div class="embedCopy"><pre><code>{{ fontStylesheet }}&lt;link rel="stylesheet" href="https://unpkg.com/responsive-cta-builder-css"&gt;
+&lt;div class="cta" style="{{ fontFamily }}border-radius: {{ cta.ctaSS.cta.borderRadius + 'px' }}; background-color: {{ cta.ctaSS.cta.backgroundColor.hex }};"&gt;
+    &lt;div class="ctaHeadline" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.headline }}&lt;/div&gt;
+    &lt;div class="ctaDescription" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.description }}&lt;/div&gt;
+    &lt;a class="ctaButton" href="{{ cta.buttonUrl }}" target="_blank" style="background-color: {{ cta.ctaSS.button.backgroundColor }}; color: {{ cta.ctaSS.button.color }};"&gt;{{ cta.buttonText }}&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+<a class="embedCopyButton">Copy</a>
+</div>
+    <div class="content">
+      <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet(s) into the <code>&lt;head&gt;</code> section of your website</p>
+    </div>
   </div>
 </template>
 
