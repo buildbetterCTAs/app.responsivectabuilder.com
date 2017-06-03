@@ -229,8 +229,8 @@ html
       width: 100%
 
 // AUTH0 Lock Customizations
-.auth0-lock-header-bg
-  .auth0-lock-blur-support
+.auth0-lock-header-bg // sass-lint:disable-line class-name-format
+  .auth0-lock-blur-support // sass-lint:disable-line class-name-format
     display: none
 </style>
 
