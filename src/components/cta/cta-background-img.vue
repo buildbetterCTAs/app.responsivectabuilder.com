@@ -5,7 +5,7 @@
       :style="{
         borderRadius: cta.ctaSS.cta.borderRadius + 'px',
         backgroundColor: cta.ctaSS.cta.backgroundColor,
-        background: 'linear-gradient(rgba(' +
+        backgroundImage: 'linear-gradient(rgba(' +
                       cta.ctaSS.cta.imageOverlay.rgba.r + ', ' +
                       cta.ctaSS.cta.imageOverlay.rgba.g + ', ' +
                       cta.ctaSS.cta.imageOverlay.rgba.b + ', ' +
@@ -153,6 +153,7 @@ $tinyAndDown: "only screen and (max-width : #{$tinyScreen})" !default
   background-repeat: no-repeat
   background-size: cover
   border-radius: 4px
+  box-sizing: border-box
   margin-bottom: 1rem
   margin-top: 1rem
   padding: 48px

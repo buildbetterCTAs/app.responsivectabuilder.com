@@ -4,8 +4,8 @@
     <div class="content">
       <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
     </div>
-<div class="embedCopy"><pre><code>{{ fontStylesheet }}&lt;link rel="stylesheet" href="https://unpkg.com/responsive-cta-builder-css"&gt;
-&lt;div class="cta" style="{{ fontFamily }}border-radius: {{ cta.ctaSS.cta.borderRadius + 'px' }}; background: linear-gradient(rgba({{ cta.ctaSS.cta.imageOverlay.rgba.r }}, {{ cta.ctaSS.cta.imageOverlay.rgba.g }}, {{ cta.ctaSS.cta.imageOverlay.rgba.b }}, {{ cta.ctaSS.cta.imageOverlay.a }}), rgba({{ cta.ctaSS.cta.imageOverlay.rgba.r }}, {{ cta.ctaSS.cta.imageOverlay.rgba.g }}, {{ cta.ctaSS.cta.imageOverlay.rgba.b }}, {{ cta.ctaSS.cta.imageOverlay.a }})), url('{{ cta.ctaSS.cta.backgroundImage }}'); background-color: {{ cta.ctaSS.cta.backgroundColor.hex }};"&gt;
+<div class="embedCopy"><pre><code>{{ fontStylesheet }}&lt;link rel="stylesheet" href="https://unpkg.com/cta-css"&gt;
+&lt;div class="cta" style="{{ fontFamily }}border-radius: {{ cta.ctaSS.cta.borderRadius + 'px' }}; background-image: linear-gradient(rgba({{ cta.ctaSS.cta.imageOverlay.rgba.r }}, {{ cta.ctaSS.cta.imageOverlay.rgba.g }}, {{ cta.ctaSS.cta.imageOverlay.rgba.b }}, {{ cta.ctaSS.cta.imageOverlay.a }}), rgba({{ cta.ctaSS.cta.imageOverlay.rgba.r }}, {{ cta.ctaSS.cta.imageOverlay.rgba.g }}, {{ cta.ctaSS.cta.imageOverlay.rgba.b }}, {{ cta.ctaSS.cta.imageOverlay.a }})), url('{{ cta.ctaSS.cta.backgroundImage }}'); background-color: {{ cta.ctaSS.cta.backgroundColor.hex }};"&gt;
     &lt;div class="ctaHeadline" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.headline }}&lt;/div&gt;
     &lt;div class="ctaDescription" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.description }}&lt;/div&gt;
     &lt;a class="ctaButton" href="{{ cta.buttonUrl }}" target="_blank" style="background-color: {{ cta.ctaSS.button.backgroundColor.hex }}; color: {{ cta.ctaSS.button.color.hex }};"&gt;{{ cta.buttonText }}&lt;/a&gt;
