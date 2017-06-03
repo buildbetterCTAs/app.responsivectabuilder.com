@@ -19,10 +19,10 @@
                 <div class="field is-grouped">
                   <p class="control">
                     <a class="button is-primary" @click="login()" v-show="!authenticated">Login</a>
-                    <a class="button is-primary is-outlined" @click="logout()" v-show="authenticated">Logout</a>
                   </p>
                 </div>
               </div>
+              <a class="nav-item" @click="logout()" v-show="authenticated">Logout</a>
             </div>
           </div>
         </header>
@@ -86,7 +86,7 @@
             'primaryColor': '#1385e8'
           },
           languageDictionary: {
-            title: 'Responsive CTA Builder'
+            title: ''
           }
         })
       }
@@ -167,6 +167,7 @@ $fullhd: $grid
 
 
 // STYLES
+
 html
   background-color: $grey50
 
@@ -226,9 +227,15 @@ html
   input
     &[type="range"]
       width: 100%
+
+  // AUTH0 Lock Customizations
+
+  .auth0-lock-header-bg.auth0-lock-blur-support
+    display: none
 </style>
 
 <!-- EMBEDER STYLES -->
+
 <style lang="sass">
 $white: #fff
 $black: #000
