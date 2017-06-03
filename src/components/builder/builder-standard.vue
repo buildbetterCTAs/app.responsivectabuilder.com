@@ -46,27 +46,24 @@
                   <div class="column">
                     <div class="columns">
                       <div class="column">
-                        <b-field label="Background Color">
-                          <b-field>
-                            <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.cta.backgroundColor" expanded></b-input>
-                            <p class="control">
-                              <label for="backgroundColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.cta.backgroundColor }" class="button"></label>
-                              <input style="visibility: hidden; position: fixed;" type="color" id="backgroundColor" v-model="cta.ctaSS.cta.backgroundColor">
-                            </p>
-                          </b-field>
-                        </b-field>
-                        <!-- <div class="field">
+                        <div class="field">
                           <label class="label">Background Color</label>
                           <p class="control">
-                            <input class="input inputPicker" readonly
+                            <input
+                              readonly
+                              class="input inputPicker"
                               @click="showPicker = true"
                               :style="{ borderColor: cta.ctaSS.cta.backgroundColor.hex }"
-                              v-model="cta.ctaSS.cta.backgroundColor.hex">
-                            <picker class="picker"
+                              v-model="cta.ctaSS.cta.backgroundColor.hex"
+                            />
+                            <picker
+                              class="picker"
+                              v-on-clickaway="hidePicker"
                               v-if="showPicker"
-                              v-model="cta.ctaSS.cta.backgroundColor"></picker>
+                              v-model="cta.ctaSS.cta.backgroundColor">
+                            </picker>
                           </p>
-                        </div> -->
+                        </div>
                       </div>
                       <div class="column">
                         <div class="field">
@@ -100,39 +97,66 @@
                         <b-checkbox v-model="ctaFont"><b-tooltip label='When you embed this CTA on your website, we will automatically pull in your primary font.' dashed multilined>Automatically use my website's font</b-tooltip></b-checkbox>
                       </div>
                       <div class="column">
-                        <b-field label="Text Color">
-                          <b-field>
-                            <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.cta.color" expanded></b-input>
-                            <p class="control">
-                              <label for="textColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.cta.color }" class="button"></label>
-                              <input style="visibility: hidden; position: fixed;" type="color" id="textColor" v-model="cta.ctaSS.cta.color">
-                            </p>
-                          </b-field>
-                        </b-field>
+                        <div class="field">
+                          <label class="label">Text Color</label>
+                          <p class="control">
+                            <input
+                              readonly
+                              class="input inputPicker"
+                              @click="showPicker = true"
+                              :style="{ borderColor: cta.ctaSS.cta.color.hex }"
+                              v-model="cta.ctaSS.cta.color.hex"
+                            />
+                            <picker
+                              class="picker"
+                              v-on-clickaway="hidePicker"
+                              v-if="showPicker"
+                              v-model="cta.ctaSS.cta.color">
+                            </picker>
+                          </p>
+                        </div>
                       </div>
                     </div>
                     <div class="columns">
                       <div class="column">
-                        <b-field label="Button Color">
-                          <b-field>
-                            <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.button.backgroundColor" expanded></b-input>
-                            <p class="control">
-                              <label for="buttonBackgroundColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.button.backgroundColor }" class="button"></label>
-                              <input style="visibility: hidden; position: fixed;" type="color" id="buttonBackgroundColor" v-model="cta.ctaSS.button.backgroundColor">
-                            </p>
-                          </b-field>
-                        </b-field>
+                        <div class="field">
+                          <label class="label">Button Color</label>
+                          <p class="control">
+                            <input
+                              readonly
+                              class="input inputPicker"
+                              @click="showPicker = true"
+                              :style="{ borderColor: cta.ctaSS.button.backgroundColor.hex }"
+                              v-model="cta.ctaSS.button.backgroundColor.hex"
+                            />
+                            <picker
+                              class="picker"
+                              v-on-clickaway="hidePicker"
+                              v-if="showPicker"
+                              v-model="cta.ctaSS.button.backgroundColor">
+                            </picker>
+                          </p>
+                        </div>
                       </div>
                       <div class="column">
-                        <b-field label="Button Text Color">
-                          <b-field>
-                            <b-input @focus="select($event)" type="text" v-model="cta.ctaSS.button.color" expanded></b-input>
-                            <p class="control">
-                              <label for="buttonTextColor" style="width: 36px;" :style="{ backgroundColor: cta.ctaSS.button.color }" class="button"></label>
-                              <input style="visibility: hidden; position: fixed;" type="color" id="buttonTextColor" v-model="cta.ctaSS.button.color">
-                            </p>
-                          </b-field>
-                        </b-field>
+                        <div class="field">
+                          <label class="label">Button Text Color</label>
+                          <p class="control">
+                            <input
+                              readonly
+                              class="input inputPicker"
+                              @click="showPicker = true"
+                              :style="{ borderColor: cta.ctaSS.button.color.hex }"
+                              v-model="cta.ctaSS.button.color.hex"
+                            />
+                            <picker
+                              class="picker"
+                              v-on-clickaway="hidePicker"
+                              v-if="showPicker"
+                              v-model="cta.ctaSS.button.color">
+                            </picker>
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -191,10 +215,12 @@
 <script>
   import cta from '../cta/cta-standard'
   import embeder from '../ui/embeder-standard'
-  // import { Chrome } from 'vue-color'
+  import { Chrome } from 'vue-color'
+  import { mixin as clickaway } from 'vue-clickaway'
 
   export default {
     name: 'builder-standard',
+    mixins: [ clickaway ],
     data: function () {
       return {
         activeTab: 0,
@@ -210,12 +236,20 @@
             fontFamily: null,
             cta: {
               borderRadius: 4,
-              backgroundColor: '#0E589A',
-              color: '#ffffff'
+              backgroundColor: {
+                hex: '#0E589A'
+              },
+              color: {
+                hex: '#ffffff'
+              }
             },
             button: {
-              backgroundColor: '#48A7F9',
-              color: '#ffffff'
+              backgroundColor: {
+                hex: '#48A7F9'
+              },
+              color: {
+                hex: '#ffffff'
+              }
             }
           }
         }
@@ -237,14 +271,17 @@
       }
     },
     methods: {
+      hidePicker: function () {
+        this.showPicker = false
+      },
       select: function (event) {
         event.target.select()
       }
     },
     components: {
       cta,
-      embeder
-      // picker: Chrome
+      embeder,
+      picker: Chrome
     }
   }
 </script>
