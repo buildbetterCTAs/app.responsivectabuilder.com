@@ -228,9 +228,9 @@ html
     &[type="range"]
       width: 100%
 
-  // AUTH0 Lock Customizations
-
-  .auth0-lock-header-bg.auth0-lock-blur-support
+// AUTH0 Lock Customizations
+.auth0-lock-header-bg
+  .auth0-lock-blur-support
     display: none
 </style>
 
