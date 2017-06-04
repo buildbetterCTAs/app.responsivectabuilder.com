@@ -3,6 +3,7 @@
     <label class="label">{{label}}</label>
     <div class="control">
       <input
+        :disabled="enabled"
         readonly
         type="text"
         class="input inputPicker"
@@ -27,7 +28,8 @@
   export default {
     props: {
       value: Object,
-      label: String
+      label: String,
+      enabled: Boolean
     },
     data () {
       return {

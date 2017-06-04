@@ -47,11 +47,12 @@
                     <div class="columns">
                       <div class="column">
                         <b-field label="Background Image URL">
-                          <b-input @focus="select($event)" name="backgroundImage" type="url" v-model="cta.ctaSS.cta.backgroundImage"></b-input>
+                          <b-input :disabled="!addBackgroundImage" @focus="select($event)" name="backgroundImage" type="url" v-model="cta.ctaSS.cta.backgroundImage"></b-input>
                         </b-field>
+                        <b-switch v-model="addBackgroundImage">Enable Background Image</b-switch>
                       </div>
                       <div class="column">
-                        <colorInput label="Image Overlay" v-model="cta.ctaSS.cta.imageOverlay"></colorInput>
+                        <colorInput :enabled="!addBackgroundImage" label="Image Overlay" v-model="cta.ctaSS.cta.imageOverlay"></colorInput>
                       </div>
                     </div>
                     <div class="columns">
@@ -160,6 +161,7 @@
         activeTab: 0,
         ctaWidth: 1000,
         ctaFont: false,
+        addBackgroundImage: false,
         cta: {
           headline: 'This is a powerful, eye-catching headline',
           description: 'This is your secondary text that might explain why your reader should follow your call-to-action.',
