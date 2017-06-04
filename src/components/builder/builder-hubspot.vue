@@ -3,7 +3,7 @@
       <!-- CTA PREVIEW AND WIDTH SLIDER -->
       <div class="container">
         <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
-          <cta :sliderVal="ctaWidth" :hubl="hublCta" :isEditable="editable" :cta="cta"></cta>
+          <cta :sliderVal="ctaWidth" :isEditable="editable" :hubl="hublCta" :hasBackgroundImage="addBackgroundImage" :cta="cta"></cta>
         </div>
         <!-- CTA WIDTH SLIDER -->
         <div class="ctaWidthSlider">
@@ -129,7 +129,7 @@
           </b-tab-item>
           <b-tab-item label="4. Embed">
             <div class="boxWrapper">
-              <embeder :hubl="hublCta" :cta="cta"></embeder>
+              <embeder :hasBackgroundImage="addBackgroundImage" :hubl="hublCta" :cta="cta"></embeder>
             </div>
           </b-tab-item>
         </b-tabs>
@@ -207,7 +207,7 @@
     watch: {
       // Reset cta.ctaSS.fontFamily to empty to prevent fonts from being added
       ctaFont: function (font) {
-        this.cta.ctaSS.fontFamily = ''
+        this.cta.ctaSS.fontFamily = null
       }
     },
     computed: {

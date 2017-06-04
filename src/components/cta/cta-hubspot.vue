@@ -1,10 +1,9 @@
 <template>
   <div>
     <bar :value="sliderVal || displayElementWidth"></bar>
-    <div class="cta"
+    <div v-if="hasBackgroundImage" class="cta"
       :style="{
         borderRadius: cta.ctaSS.cta.borderRadius + 'px',
-        backgroundColor: cta.ctaSS.cta.backgroundColor,
         backgroundImage: 'linear-gradient(rgba(' +
                           cta.ctaSS.cta.imageOverlay.rgba.r + ', ' +
                           cta.ctaSS.cta.imageOverlay.rgba.g + ', ' +
@@ -16,6 +15,46 @@
                           cta.ctaSS.cta.imageOverlay.rgba.b + ', ' +
                           cta.ctaSS.cta.imageOverlay.a +
                         ')), url(' + cta.ctaSS.cta.backgroundImage + ')',
+        backgroundColor: cta.ctaSS.cta.backgroundColor.hex,
+        fontFamily: cta.ctaSS.fontFamily
+      }"
+    >
+      <div>
+        <div class="ctaHeadline"
+          :class="{ editable: isEditable }"
+          :style="{ color: cta.ctaSS.cta.color.hex }"
+          @click="focusOnInput('headline')"
+        >
+          <div class="editOverlay" v-if="isEditable"></div>
+          {{ cta.headline }}
+        </div>
+      </div>
+      <div>
+        <div class="ctaDescription"
+          :class="{ editable: isEditable }"
+          :style="{ color: cta.ctaSS.cta.color.hex }"
+          @click="focusOnInput('description')"
+        >
+          <div class="editOverlay" v-if="isEditable"></div>
+          {{ cta.description }}
+        </div>
+      </div>
+      <div>
+        <div class="ctaButton hubl"
+          :style="{
+            color: cta.ctaSS.button.color.hex,
+            backgroundColor: cta.ctaSS.button.backgroundColor.hex
+          }"
+        >
+          <span v-text="hubl"></span>
+        </div>
+      </div>
+    </div>
+
+    <div v-else class="cta"
+      :style="{
+        borderRadius: cta.ctaSS.cta.borderRadius + 'px',
+        backgroundColor: cta.ctaSS.cta.backgroundColor.hex,
         fontFamily: cta.ctaSS.fontFamily
       }"
     >
@@ -69,6 +108,7 @@
     props: {
       sliderVal: [String, Number],
       isEditable: Boolean,
+      hasBackgroundImage: Boolean,
       hubl: String,
       cta: {
         type: Object,

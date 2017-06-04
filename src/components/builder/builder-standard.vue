@@ -3,7 +3,7 @@
       <!-- CTA PREVIEW AND WIDTH SLIDER -->
       <div class="container">
         <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
-          <cta :sliderVal="ctaWidth" :isEditable="editable" :cta="cta"></cta>
+          <cta :sliderVal="ctaWidth" :isEditable="editable" :hasBackgroundImage="addBackgroundImage" :cta="cta"></cta>
         </div>
         <!-- CTA WIDTH SLIDER -->
         <div class="ctaWidthSlider">
@@ -125,7 +125,7 @@
           </b-tab-item>
           <b-tab-item label="4. Embed">
             <div class="boxWrapper">
-              <embeder :cta="cta"></embeder>
+              <embeder :hasBackgroundImage="addBackgroundImage" :cta="cta"></embeder>
             </div>
           </b-tab-item>
         </b-tabs>
