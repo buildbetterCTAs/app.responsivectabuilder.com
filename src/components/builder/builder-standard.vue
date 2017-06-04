@@ -46,7 +46,7 @@
                   <div class="column">
                     <div class="columns">
                       <div class="column">
-                        <ColorInput label="Background Color" v-model="cta.ctaSS.cta.backgroundColor"></ColorInput>
+                        <colorInput label="Background Color" v-model="cta.ctaSS.cta.backgroundColor"></colorInput>
                       </div>
                       <div class="column">
                         <div class="field">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="columns">
                       <div class="column">
-                        <b-field label="Font Family" >
+                        <b-field label="Font Family">
                           <b-select :disabled="ctaFont" v-model="cta.ctaSS.fontFamily" placeholder="Select A Font" expanded>
                             <optgroup label="Standard">
                               <option value="serif">Serif</option>
@@ -80,15 +80,15 @@
                         <b-checkbox v-model="ctaFont"><b-tooltip label='When you embed this CTA on your website, we will automatically pull in your primary font.' dashed multilined>Automatically use my website's font</b-tooltip></b-checkbox>
                       </div>
                       <div class="column">
-                        <ColorInput label="Text Color" v-model="cta.ctaSS.cta.color"></ColorInput>
+                        <colorInput label="Text Color" v-model="cta.ctaSS.cta.color"></colorInput>
                       </div>
                     </div>
                     <div class="columns">
                       <div class="column">
-                        <ColorInput label="Button Color" v-model="cta.ctaSS.button.backgroundColor"></ColorInput>
+                        <colorInput label="Button Color" v-model="cta.ctaSS.button.backgroundColor"></colorInput>
                       </div>
                       <div class="column">
-                        <ColorInput label="Button Text Color" v-model="cta.ctaSS.button.color"></ColorInput>
+                        <colorInput label="Button Text Color" v-model="cta.ctaSS.button.color"></colorInput>
                       </div>
                     </div>
                   </div>
@@ -147,13 +147,10 @@
 <script>
   import cta from '../cta/cta-standard'
   import embeder from '../ui/embeder-standard'
-  import ColorInput from './color-input'
-  import { Chrome } from 'vue-color'
-  import { mixin as clickaway } from 'vue-clickaway'
+  import colorInput from './color-input'
 
   export default {
     name: 'builder-standard',
-    mixins: [ clickaway ],
     data: function () {
       return {
         activeTab: 0,
@@ -210,7 +207,7 @@
     components: {
       cta,
       embeder,
-      ColorInput
+      colorInput
     }
   }
 </script>

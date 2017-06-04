@@ -21,46 +21,48 @@
 </template>
 
 <script>
-import { mixin as clickaway } from 'vue-clickaway'
-import { Chrome } from 'vue-color'
+  import { mixin as clickaway } from 'vue-clickaway'
+  import { Chrome } from 'vue-color'
 
-export default {
-  props: {
-    value: Object,
-    label: String
-  },
-  data() {
-    return {
-      pickerVisible: false
-    }
-  },
-  methods: {
-    showPicker() {
-      this.pickerVisible = true;
+  export default {
+    props: {
+      value: Object,
+      label: String
     },
-    hidePicker() {
-      this.pickerVisible = false;
-    }
-  },
-  components: {
-    picker: Chrome
-  },
-  mixins: [ clickaway ]
-}
+    data () {
+      return {
+        pickerVisible: false
+      }
+    },
+    methods: {
+      showPicker () {
+        this.pickerVisible = true
+      },
+      hidePicker () {
+        this.pickerVisible = false
+      }
+    },
+    components: {
+      picker: Chrome
+    },
+    mixins: [ clickaway ]
+  }
 </script>
 
 <style lang="sass">
+$swatchBorder: rgba(0, 0, 0, .1)
+
 .swatch
-  display: block
-  width: 1.5em
-  height: 1.5em
+  border: 1px solid $swatchBorder
   border-radius: 3px
-  margin: .35em
-  position: absolute
+  display: block
+  height: 1.5em
   left: 0
-  top: 0
-  border: 1px solid rgba(0,0,0,.1)
+  margin: .35em
   pointer-events: none
+  position: absolute
+  top: 0
+  width: 1.5em
 
 .picker
   margin-top: 8px
