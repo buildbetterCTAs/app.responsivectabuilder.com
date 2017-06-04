@@ -118,7 +118,7 @@
           </b-tab-item>
           <b-tab-item label="4. Embed">
             <div class="boxWrapper">
-              <embeder :cta="cta"></embeder>
+              <embeder :hubl="hublCta" :cta="cta"></embeder>
             </div>
           </b-tab-item>
         </b-tabs>
