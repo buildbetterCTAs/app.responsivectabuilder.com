@@ -46,24 +46,7 @@
                   <div class="column">
                     <div class="columns">
                       <div class="column">
-                        <div class="field">
-                          <label class="label">Background Color</label>
-                          <p class="control">
-                            <input
-                              readonly
-                              class="input inputPicker"
-                              @click="showPicker = true"
-                              :style="{ borderColor: cta.ctaSS.cta.backgroundColor.hex }"
-                              v-model="cta.ctaSS.cta.backgroundColor.hex"
-                            />
-                            <picker
-                              class="picker"
-                              v-on-clickaway="hidePicker"
-                              v-if="showPicker"
-                              v-model="cta.ctaSS.cta.backgroundColor">
-                            </picker>
-                          </p>
-                        </div>
+                        <colorInput label="Background Color" v-model="cta.ctaSS.cta.backgroundColor"></colorInput>
                       </div>
                       <div class="column">
                         <div class="field">
@@ -75,7 +58,7 @@
                     </div>
                     <div class="columns">
                       <div class="column">
-                        <b-field label="Font Family" >
+                        <b-field label="Font Family">
                           <b-select :disabled="ctaFont" v-model="cta.ctaSS.fontFamily" placeholder="Select A Font" expanded>
                             <optgroup label="Standard">
                               <option value="serif">Serif</option>
@@ -97,66 +80,15 @@
                         <b-checkbox v-model="ctaFont"><b-tooltip label='When you embed this CTA on your website, we will automatically pull in your primary font.' dashed multilined>Automatically use my website's font</b-tooltip></b-checkbox>
                       </div>
                       <div class="column">
-                        <div class="field">
-                          <label class="label">Text Color</label>
-                          <p class="control">
-                            <input
-                              readonly
-                              class="input inputPicker"
-                              @click="showPicker = true"
-                              :style="{ borderColor: cta.ctaSS.cta.color.hex }"
-                              v-model="cta.ctaSS.cta.color.hex"
-                            />
-                            <picker
-                              class="picker"
-                              v-on-clickaway="hidePicker"
-                              v-if="showPicker"
-                              v-model="cta.ctaSS.cta.color">
-                            </picker>
-                          </p>
-                        </div>
+                        <colorInput label="Text Color" v-model="cta.ctaSS.cta.color"></colorInput>
                       </div>
                     </div>
                     <div class="columns">
                       <div class="column">
-                        <div class="field">
-                          <label class="label">Button Color</label>
-                          <p class="control">
-                            <input
-                              readonly
-                              class="input inputPicker"
-                              @click="showPicker = true"
-                              :style="{ borderColor: cta.ctaSS.button.backgroundColor.hex }"
-                              v-model="cta.ctaSS.button.backgroundColor.hex"
-                            />
-                            <picker
-                              class="picker"
-                              v-on-clickaway="hidePicker"
-                              v-if="showPicker"
-                              v-model="cta.ctaSS.button.backgroundColor">
-                            </picker>
-                          </p>
-                        </div>
+                        <colorInput label="Button Color" v-model="cta.ctaSS.button.backgroundColor"></colorInput>
                       </div>
                       <div class="column">
-                        <div class="field">
-                          <label class="label">Button Text Color</label>
-                          <p class="control">
-                            <input
-                              readonly
-                              class="input inputPicker"
-                              @click="showPicker = true"
-                              :style="{ borderColor: cta.ctaSS.button.color.hex }"
-                              v-model="cta.ctaSS.button.color.hex"
-                            />
-                            <picker
-                              class="picker"
-                              v-on-clickaway="hidePicker"
-                              v-if="showPicker"
-                              v-model="cta.ctaSS.button.color">
-                            </picker>
-                          </p>
-                        </div>
+                        <colorInput label="Button Text Color" v-model="cta.ctaSS.button.color"></colorInput>
                       </div>
                     </div>
                   </div>
@@ -215,16 +147,13 @@
 <script>
   import cta from '../cta/cta-standard'
   import embeder from '../ui/embeder-standard'
-  import { Chrome } from 'vue-color'
-  import { mixin as clickaway } from 'vue-clickaway'
+  import colorInput from './color-input'
 
   export default {
     name: 'builder-standard',
-    mixins: [ clickaway ],
     data: function () {
       return {
         activeTab: 0,
-        showPicker: false,
         ctaWidth: 1000,
         ctaFont: false,
         cta: {
@@ -240,7 +169,7 @@
                 hex: '#0E589A'
               },
               color: {
-                hex: '#ffffff'
+                hex: '#FFFFFF'
               }
             },
             button: {
@@ -248,7 +177,7 @@
                 hex: '#48A7F9'
               },
               color: {
-                hex: '#ffffff'
+                hex: '#FFFFFF'
               }
             }
           }
@@ -271,9 +200,6 @@
       }
     },
     methods: {
-      hidePicker: function () {
-        this.showPicker = false
-      },
       select: function (event) {
         event.target.select()
       }
@@ -281,7 +207,7 @@
     components: {
       cta,
       embeder,
-      picker: Chrome
+      colorInput
     }
   }
 </script>

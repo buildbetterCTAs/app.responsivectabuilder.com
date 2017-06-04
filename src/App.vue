@@ -178,14 +178,6 @@ html
   img
     border-radius: 2px
 
-.picker
-  margin-top: 8px
-  position: absolute
-  z-index: 3
-
-.inputPicker
-  cursor: pointer
-
 .container
   &.editor
     max-width: $grid - (128px * 1.5)
