@@ -9,16 +9,16 @@
               <a href="/" class="nav-item is-brand">
                 <img src="./assets/logo.svg" alt="Responsive CTA Builder logo">
               </a>
-              <a href="https://www.responsivectabuilder.com" target="_blank" class="nav-item">Home</a>
-              <a target="_blank" class="nav-item"><s>Documentation</s></a>
-              <a target="_blank" class="nav-item"><s>Blog</s></a>
+              <!-- <a href="https://www.responsivectabuilder.com" target="_blank" class="nav-item">Home</a> -->
+              <!-- <a target="_blank" class="nav-item">Blog</a> -->
+              <a class="nav-item" href="https://docs.responsivectabuilder.com">Documentation</a>
             </div>
             <div class="nav-right">
-              <!-- <a v-show="authenticated" class="nav-item"><s>Profile</s></a> -->
-              <div class="nav-item">
+              <!-- <a v-show="authenticated" class="nav-item">Profile</a> -->
+              <div class="nav-item" v-show="!authenticated">
                 <div class="field is-grouped">
                   <p class="control">
-                    <a class="button is-primary" @click="login()" v-show="!authenticated">Login</a>
+                    <a class="button is-primary" @click="login()">Login</a>
                   </p>
                 </div>
               </div>
@@ -27,7 +27,7 @@
           </div>
         </header>
       </div>
-      <div v-show="!authenticated" class="hero-body">
+      <div v-show="!authenticated" class="hero-body grey50">
         <div class="container has-text-centered">
           <p class="title is-4">Log in to begin building your Call-to-Actions</p>
           <div>
@@ -65,6 +65,31 @@
         Yolo
       </div>
     </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>Made with ❤️ by <a href="https://www.reiner.io">Jeff Reiner</a> and <a href="https://twitter.com/_danieljmurphy">Daniel Murphy</a>.</p>
+          <div class="nav-center">
+            <!-- <a class="nav-item" href="https://docs.responsivectabuilder.com" target="_blank">
+              <span class="icon">
+                <i class="fa fa-book"></i>
+              </span>
+            </a> -->
+            <a class="nav-item" href="https://github.com/buildBetterCTAs/" target="_blank">
+              <span class="icon">
+                <i class="fa fa-github"></i>
+              </span>
+            </a>
+            <a class="nav-item" href="https://twitter.com/buildBetterCTAs" target="_blank">
+              <span class="icon">
+                <i class="fa fa-twitter"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -171,6 +196,9 @@ $fullhd: $grid
 // STYLES
 
 html
+  background-color: $grey50
+
+.footer
   background-color: $grey50
 
 .grey50
