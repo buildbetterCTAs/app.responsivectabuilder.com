@@ -3,7 +3,7 @@
       <!-- CTA PREVIEW AND WIDTH SLIDER -->
       <div class="container">
         <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
-          <cta :sliderVal="ctaWidth" :isEditable="editable" :cta="cta"></cta>
+          <cta :sliderVal="ctaWidth" :hubl="hublCta" :isEditable="editable" :cta="cta"></cta>
         </div>
         <!-- CTA WIDTH SLIDER -->
         <div class="ctaWidthSlider">
@@ -43,18 +43,7 @@
                   <div class="column">
                     <div class="columns">
                       <div class="column">
-                        <div class="field">
-                          <label class="label">Background Color</label>
-                          <p class="control">
-                            <input class="input inputPicker" readonly
-                              @click="showPicker = true"
-                              :style="{ borderColor: cta.ctaSS.cta.backgroundColor.hex }"
-                              v-model="cta.ctaSS.cta.backgroundColor.hex">
-                            <picker class="picker"
-                              v-if="showPicker"
-                              v-model="cta.ctaSS.cta.backgroundColor"></picker>
-                          </p>
-                        </div>
+                        <colorInput label="Background Color" v-model="cta.ctaSS.cta.backgroundColor"></colorInput>
                       </div>
                       <div class="column">
                         <div class="field">
@@ -88,36 +77,15 @@
                         <b-checkbox v-model="ctaFont"><b-tooltip label='When you embed this CTA on your website, we will automatically pull in your primary font.' dashed multilined>Automatically use my website's font</b-tooltip></b-checkbox>
                       </div>
                       <div class="column">
-                        <div class="field">
-                          <label class="label">Text Color</label>
-                          <p class="control">
-                            <input class="input inputPicker" readonly
-                              @click="showPicker = true"
-                              :style="{ borderColor: cta.ctaSS.cta.color.hex }"
-                              v-model="cta.ctaSS.cta.color.hex">
-                            <picker class="picker"
-                              v-if="showPicker"
-                              v-model="cta.ctaSS.cta.color"></picker>
-                          </p>
-                        </div>
+                        <colorInput label="Text Color" v-model="cta.ctaSS.cta.color"></colorInput>
                       </div>
                     </div>
                     <div class="columns">
                       <div class="column">
-                        <div class="field">
-                          <label class="label">Button Color</label>
-                          <p class="control">
-                            <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.button.backgroundColor">
-                          </p>
-                        </div>
+                        <colorInput label="Button Color" v-model="cta.ctaSS.button.backgroundColor"></colorInput>
                       </div>
                       <div class="column">
-                        <div class="field">
-                          <label class="label">Button Text Color</label>
-                          <p class="control">
-                            <input @focus="select($event)" class="input" type="color" v-model="cta.ctaSS.button.color">
-                          </p>
-                        </div>
+                        <colorInput label="Button Text Color" v-model="cta.ctaSS.button.color"></colorInput>
                       </div>
                     </div>
                   </div>
@@ -135,17 +103,12 @@
                   <div class="column">
                     <div class="columns">
                       <div class="column">
-                        <div class="field">
-                          <label class="label">
-                            <b-tooltip label='After making a HubSpot CTA, open the "Details" view and copy the page URL, then paste the URL below' dashed multilined>HubSpot CTA</b-tooltip>
-                          </label>
-                          <p class="control">
-                            <input @focus="select($event)" class="input" type="url" placeholder="Paste HubSpot CTA URL" v-model="hubspotCtaUrl">
-                          </p>
-                        </div>
-                        <div class="field">
-                          <b-switch v-model="hubspotCta" :disabled="!hubspotCtaUrl">Enable</b-switch>
-                        </div>
+                        <b-field>
+                          <p>1. Build a "Link (No Style)" CTA in HubSpot<br>2. Open "Details" view and copy the page's URL<br>3. Paste the URL below</p>
+                        </b-field>
+                        <b-field label="HubSpot CTA">
+                          <b-input @focus="select($event)" name="hubspotCta" type="url" placeholder="Paste HubSpot CTA URL" v-model="hubspotCtaUrl"></b-input>
+                        </b-field>
                       </div>
                     </div>
                   </div>
@@ -168,10 +131,10 @@
         </div>
         <div class="columns">
           <div class="column is-two-thirds">
-            <cta :cta="cta"></cta>
+            <cta :hubl="hublCta" :cta="cta"></cta>
           </div>
           <div class="column">
-            <cta :cta="cta"></cta>
+            <cta :hubl="hublCta" :cta="cta"></cta>
           </div>
         </div>
       </div>
@@ -181,36 +144,38 @@
 
 <script>
   import cta from '../cta/cta-hubspot'
-  import embeder from '../ui/embeder-standard'
-  import { Chrome } from 'vue-color'
+  import embeder from '../ui/embeder-hubspot'
+  import colorInput from './color-input'
 
   export default {
     name: 'builder-hubspot',
     data: function () {
       return {
         activeTab: 0,
-        showPicker: false,
         ctaWidth: 1000,
         ctaFont: false,
-        hubspotCta: false,
         hubspotCtaUrl: '',
         cta: {
           headline: 'This is a powerful, eye-catching headline',
           description: 'This is your secondary text that might explain why your reader should follow your call-to-action.',
           ctaSS: {
-            fontFamily: '',
+            fontFamily: null,
             cta: {
               borderRadius: 4,
               backgroundColor: {
                 hex: '#0E589A'
               },
               color: {
-                hex: '#ffffff'
+                hex: '#FFFFFF'
               }
             },
             button: {
-              backgroundColor: '#48A7F9',
-              color: '#ffffff'
+              backgroundColor: {
+                hex: '#48A7F9'
+              },
+              color: {
+                hex: '#FFFFFF'
+              }
             }
           }
         }
@@ -224,9 +189,9 @@
     },
     computed: {
       hublCta: function () {
-        let id = this.cta.hubspotCtaUrl.replace(/https:\/\/app\.hubspot\.com\/cta\/.{6}\//, '')
-        let hubl = `{{ cta('` + id + `') }}`
-        return hubl
+        let ctaID = this.hubspotCtaUrl.replace(/https:\/\/app\.hubspot\.com\/cta\/.{6}\//, '')
+        let embed = `{{ cta('` + ctaID + `') }}`
+        return embed
       },
       editable: function () {
         if (this.activeTab === 0) {
@@ -237,9 +202,6 @@
       }
     },
     methods: {
-      clearFont: function (event) {
-        this.cta.ctaSS.fontFamily = 'Apples'
-      },
       select: function (event) {
         event.target.select()
       }
@@ -247,7 +209,7 @@
     components: {
       cta,
       embeder,
-      picker: Chrome
+      colorInput
     }
   }
 </script>

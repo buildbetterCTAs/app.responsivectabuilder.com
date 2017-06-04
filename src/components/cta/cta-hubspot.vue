@@ -1,20 +1,43 @@
 <template>
   <div>
-    <bar :value="ctaWidth"></bar>
-    <div :style="{ borderRadius: cta.ctaSS.cta.borderRadius + 'px', backgroundColor: cta.ctaSS.cta.backgroundColor }" class="cta">
+    <bar :value="sliderVal || displayElementWidth"></bar>
+    <div class="cta"
+      :style="{
+        borderRadius: cta.ctaSS.cta.borderRadius + 'px',
+        backgroundColor: cta.ctaSS.cta.backgroundColor.hex,
+        fontFamily: cta.ctaSS.fontFamily
+      }"
+    >
       <div>
-        <div @click="focusOnInput('headline')" v-bind:class="{ editable: isEditable }" class="ctaHeadline" :style="{ color: cta.ctaSS.cta.color }">
+        <div class="ctaHeadline"
+          :class="{ editable: isEditable }"
+          :style="{ color: cta.ctaSS.cta.color.hex }"
+          @click="focusOnInput('headline')"
+        >
           <div class="editOverlay" v-if="isEditable"></div>
           {{ cta.headline }}
         </div>
       </div>
       <div>
-        <div @click="focusOnInput('description')" v-bind:class="{ editable: isEditable }" class="ctaDescription" :style="{ color: cta.ctaSS.cta.color }">
+        <div class="ctaDescription"
+          :class="{ editable: isEditable }"
+          :style="{ color: cta.ctaSS.cta.color.hex }"
+          @click="focusOnInput('description')"
+        >
           <div class="editOverlay" v-if="isEditable"></div>
           {{ cta.description }}
         </div>
       </div>
-      <div class="ctaButton hubl" :style="cta.ctaSS.button"><span v-text="hubl"></span></div>
+      <div>
+        <div class="ctaButton hubl"
+          :style="{
+            color: cta.ctaSS.button.color.hex,
+            backgroundColor: cta.ctaSS.button.backgroundColor.hex
+          }"
+        >
+          <span v-text="hubl"></span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -29,10 +52,11 @@
     },
     data: function () {
       return {
-        ctaWidth: 0
+        displayElementWidth: 0
       }
     },
     props: {
+      sliderVal: [String, Number],
       isEditable: Boolean,
       hubl: String,
       cta: {
@@ -40,18 +64,17 @@
         required: true,
         default: function () {
           return {
-            headline: '',
-            description: '',
-            hubspotCta: false,
+            headline: null,
+            description: null,
             ctaSS: {
               cta: {
-                borderRadius: '',
-                backgroundColor: '',
-                color: ''
+                borderRadius: null,
+                backgroundColor: null,
+                color: null
               },
               button: {
-                backgroundColor: '',
-                color: ''
+                backgroundColor: null,
+                color: null
               }
             }
           }
@@ -253,7 +276,7 @@ $overlay: rgba($white, .54)
 
 .editOverlay
   background-color: $overlay
-  background-image: url("../assets/edit.svg")
+  background-image: url("../../assets/edit.svg")
   background-position: center
   background-repeat: no-repeat
   background-size: auto calc(100% - 8px)

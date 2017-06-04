@@ -44,7 +44,7 @@
           <b-field label="Select CTA Type">
             <b-select v-model="ctaStyle">
               <option value="standard">Standard</option>
-              <!-- <option value="hubspot">HubSpot</option> -->
+              <option value="hubspot">HubSpot</option>
               <option value="backgroundImage">Background Image</option>
             </b-select>
           </b-field>
@@ -56,7 +56,7 @@
         <standard></standard>
       </div>
       <div v-else-if="ctaStyle === 'hubspot'">
-        <div>Use HubSpot CTA Builder</div>
+        <hubspot></hubspot>
       </div>
       <div v-else-if="ctaStyle === 'backgroundImage'">
         <background-img></background-img>
@@ -71,6 +71,7 @@
 <script>
   import standard from './components/builder/builder-standard'
   import backgroundImage from './components/builder/builder-background-img'
+  import hubspot from './components/builder/builder-hubspot'
 
   export default {
     name: 'app',
@@ -132,7 +133,8 @@
     },
     components: {
       standard,
-      'background-img': backgroundImage
+      'background-img': backgroundImage,
+      hubspot
     }
   }
 

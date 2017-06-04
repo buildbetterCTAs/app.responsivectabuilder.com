@@ -104,15 +104,9 @@
                     <p class="title is-5">Add a link to your CTA</p>
                   </div>
                   <div class="column">
-                    <div class="field">
-                      <label class="label">URL</label>
-                      <p class="control">
-                        <input @focus="select($event)" class="input" type="url" v-model="cta.buttonUrl">
-                      </p>
-                      <p class="help">
-                        <a target="_blank" :href="cta.buttonUrl">Click here to test your URL</a>
-                      </p>
-                    </div>
+                    <b-field label="URL">
+                      <b-input @focus="select($event)" name="url" type="url" v-model="cta.buttonUrl"></b-input>
+                    </b-field>
                   </div>
                 </div>
               </div>
