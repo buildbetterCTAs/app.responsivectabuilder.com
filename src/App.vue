@@ -9,12 +9,9 @@
               <a href="/" class="nav-item is-brand">
                 <img src="./assets/logo.svg" alt="Responsive CTA Builder logo">
               </a>
-              <!-- <a href="https://www.responsivectabuilder.com" target="_blank" class="nav-item">Home</a> -->
-              <!-- <a target="_blank" class="nav-item">Blog</a> -->
               <a class="nav-item" href="https://docs.responsivectabuilder.com">Documentation</a>
             </div>
             <div class="nav-right">
-              <!-- <a v-show="authenticated" class="nav-item">Profile</a> -->
               <div class="nav-item" v-show="!authenticated">
                 <div class="field is-grouped">
                   <p class="control">
@@ -45,7 +42,6 @@
             <b-select v-model="ctaStyle">
               <option value="standard">Standard</option>
               <option value="hubspot">HubSpot</option>
-              <option value="backgroundImage">Background Image</option>
             </b-select>
           </b-field>
         </div>
@@ -58,11 +54,8 @@
       <div v-else-if="ctaStyle === 'hubspot'">
         <hubspot></hubspot>
       </div>
-      <div v-else-if="ctaStyle === 'backgroundImage'">
-        <background-img></background-img>
-      </div>
       <div v-else>
-        Yolo
+        🚀
       </div>
     </div>
 
@@ -71,11 +64,6 @@
         <div class="content has-text-centered">
           <p>Made with ❤️ by <a href="https://www.reiner.io">Jeff Reiner</a> and <a href="https://twitter.com/_danieljmurphy">Daniel Murphy</a>.</p>
           <div class="nav-center">
-            <!-- <a class="nav-item" href="https://docs.responsivectabuilder.com" target="_blank">
-              <span class="icon">
-                <i class="fa fa-book"></i>
-              </span>
-            </a> -->
             <a class="nav-item" href="https://github.com/buildBetterCTAs/" target="_blank">
               <span class="icon">
                 <i class="fa fa-github"></i>
@@ -95,7 +83,6 @@
 
 <script>
   import standard from './components/builder/builder-standard'
-  import backgroundImage from './components/builder/builder-background-img'
   import hubspot from './components/builder/builder-hubspot'
 
   export default {
@@ -158,7 +145,6 @@
     },
     components: {
       standard,
-      'background-img': backgroundImage,
       hubspot
     }
   }

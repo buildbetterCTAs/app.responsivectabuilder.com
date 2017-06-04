@@ -46,12 +46,22 @@
                   <div class="column">
                     <div class="columns">
                       <div class="column">
+                        <b-field label="Background Image URL">
+                          <b-input @focus="select($event)" name="backgroundImage" type="url" v-model="cta.ctaSS.cta.backgroundImage"></b-input>
+                        </b-field>
+                      </div>
+                      <div class="column">
+                        <colorInput label="Image Overlay" v-model="cta.ctaSS.cta.imageOverlay"></colorInput>
+                      </div>
+                    </div>
+                    <div class="columns">
+                      <div class="column">
                         <colorInput label="Background Color" v-model="cta.ctaSS.cta.backgroundColor"></colorInput>
                       </div>
                       <div class="column">
                         <div class="field">
                           <label class="label">Border Radius</label>
-                          <input @focus="select($event)" class="borderRadiusSlider" type="range" v-model="cta.ctaSS.cta.borderRadius" min="0" max="32">
+                          <input class="borderRadiusSlider" type="range" v-model="cta.ctaSS.cta.borderRadius" min="0" max="32">
                           <p>{{ cta.ctaSS.cta.borderRadius + 'px' }}</p>
                         </div>
                       </div>
@@ -159,11 +169,22 @@
             fontFamily: null,
             cta: {
               borderRadius: 4,
+              backgroundImage: 'https://unsplash.it/1280/720',
+              imageOverlay: {
+                hex: '#48A7F9',
+                rgba: {
+                  r: 72,
+                  g: 167,
+                  b: 249,
+                  a: 0.5
+                },
+                a: 0.5
+              },
               backgroundColor: {
                 hex: '#0E589A'
               },
               color: {
-                hex: '#FFFFFF'
+                hex: '#ffffff'
               }
             },
             button: {
@@ -171,7 +192,7 @@
                 hex: '#48A7F9'
               },
               color: {
-                hex: '#FFFFFF'
+                hex: '#ffffff'
               }
             }
           }

@@ -4,7 +4,18 @@
     <div class="cta"
       :style="{
         borderRadius: cta.ctaSS.cta.borderRadius + 'px',
-        backgroundColor: cta.ctaSS.cta.backgroundColor.hex,
+        backgroundColor: cta.ctaSS.cta.backgroundColor,
+        backgroundImage: 'linear-gradient(rgba(' +
+                          cta.ctaSS.cta.imageOverlay.rgba.r + ', ' +
+                          cta.ctaSS.cta.imageOverlay.rgba.g + ', ' +
+                          cta.ctaSS.cta.imageOverlay.rgba.b + ', ' +
+                          cta.ctaSS.cta.imageOverlay.a +
+                        '), rgba('+
+                          cta.ctaSS.cta.imageOverlay.rgba.r + ', ' +
+                          cta.ctaSS.cta.imageOverlay.rgba.g + ', ' +
+                          cta.ctaSS.cta.imageOverlay.rgba.b + ', ' +
+                          cta.ctaSS.cta.imageOverlay.a +
+                        ')), url(' + cta.ctaSS.cta.backgroundImage + ')',
         fontFamily: cta.ctaSS.fontFamily
       }"
     >
@@ -67,8 +78,11 @@
             headline: null,
             description: null,
             ctaSS: {
+              fontFamily: null,
               cta: {
                 borderRadius: null,
+                backgroundImage: null,
+                imageOverlay: null,
                 backgroundColor: null,
                 color: null
               },
