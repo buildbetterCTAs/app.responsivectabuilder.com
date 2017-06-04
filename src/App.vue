@@ -202,6 +202,7 @@ html
       margin: 0 -5px
 
       .tab-content // sass-lint:disable-line class-name-format
+        flex-direction: column
         overflow: visible
 
       .tabs
@@ -271,7 +272,7 @@ pre
 
 .embedCopy
   position: relative
-  width: 640px
+  width: 100%
 
   &:not(:last-child)
     margin-bottom: 16px
