@@ -20,38 +20,32 @@
         fontFamily: cta.ctaSS.fontFamily
       }"
     >
-      <div>
-        <div class="ctaHeadline"
-          :class="{ editable: isEditable }"
-          :style="{ color: cta.ctaSS.cta.color.hex }"
-          @click="focusOnInput('headline')"
-        >
-          <div class="editOverlay" v-if="isEditable"></div>
-          {{ cta.headline }}
-        </div>
+      <div class="ctaHeadline"
+        :class="{ editable: isEditable }"
+        :style="{ color: cta.ctaSS.cta.color.hex }"
+        @click="focusOnInput('headline')"
+      >
+        <div class="editOverlay" v-if="isEditable"></div>
+        {{ cta.headline }}
       </div>
-      <div>
-        <div class="ctaDescription"
-          :class="{ editable: isEditable }"
-          :style="{ color: cta.ctaSS.cta.color.hex }"
-          @click="focusOnInput('description')"
-        >
-          <div class="editOverlay" v-if="isEditable"></div>
-          {{ cta.description }}
-        </div>
+      <div class="ctaDescription"
+        :class="{ editable: isEditable }"
+        :style="{ color: cta.ctaSS.cta.color.hex }"
+        @click="focusOnInput('description')"
+      >
+        <div class="editOverlay" v-if="isEditable"></div>
+        {{ cta.description }}
       </div>
-      <div>
-        <div class="ctaButton"
-          :class="{ editable: isEditable }"
-          :style="{
-            color: cta.ctaSS.button.color.hex,
-            backgroundColor: cta.ctaSS.button.backgroundColor.hex
-          }"
-          @click="focusOnInput('buttonText')"
-        >
-          <div class="editOverlay" v-if="isEditable"></div>
-          {{ cta.buttonText }}
-        </div>
+      <div class="ctaButton"
+        :class="{ editable: isEditable }"
+        :style="{
+          color: cta.ctaSS.button.color.hex,
+          backgroundColor: cta.ctaSS.button.backgroundColor.hex
+        }"
+        @click="focusOnInput('buttonText')"
+      >
+        <div class="editOverlay" v-if="isEditable"></div>
+        {{ cta.buttonText }}
       </div>
     </div>
 
@@ -62,38 +56,32 @@
         fontFamily: cta.ctaSS.fontFamily
       }"
     >
-      <div>
-        <div class="ctaHeadline"
-          :class="{ editable: isEditable }"
-          :style="{ color: cta.ctaSS.cta.color.hex }"
-          @click="focusOnInput('headline')"
-        >
-          <div class="editOverlay" v-if="isEditable"></div>
-          {{ cta.headline }}
-        </div>
+      <div class="ctaHeadline"
+        :class="{ editable: isEditable }"
+        :style="{ color: cta.ctaSS.cta.color.hex }"
+        @click="focusOnInput('headline')"
+      >
+        <div class="editOverlay" v-if="isEditable"></div>
+        {{ cta.headline }}
       </div>
-      <div>
-        <div class="ctaDescription"
-          :class="{ editable: isEditable }"
-          :style="{ color: cta.ctaSS.cta.color.hex }"
-          @click="focusOnInput('description')"
-        >
-          <div class="editOverlay" v-if="isEditable"></div>
-          {{ cta.description }}
-        </div>
+      <div class="ctaDescription"
+        :class="{ editable: isEditable }"
+        :style="{ color: cta.ctaSS.cta.color.hex }"
+        @click="focusOnInput('description')"
+      >
+        <div class="editOverlay" v-if="isEditable"></div>
+        {{ cta.description }}
       </div>
-      <div>
-        <div class="ctaButton"
-          :class="{ editable: isEditable }"
-          :style="{
-            color: cta.ctaSS.button.color.hex,
-            backgroundColor: cta.ctaSS.button.backgroundColor.hex
-          }"
-          @click="focusOnInput('buttonText')"
-        >
-          <div class="editOverlay" v-if="isEditable"></div>
-          {{ cta.buttonText }}
-        </div>
+      <div class="ctaButton"
+        :class="{ editable: isEditable }"
+        :style="{
+          color: cta.ctaSS.button.color.hex,
+          backgroundColor: cta.ctaSS.button.backgroundColor.hex
+        }"
+        @click="focusOnInput('buttonText')"
+      >
+        <div class="editOverlay" v-if="isEditable"></div>
+        {{ cta.buttonText }}
       </div>
     </div>
   </div>
@@ -342,7 +330,7 @@ $overlay: rgba($white, .54)
   background-image: url("../../assets/edit.svg")
   background-position: center
   background-repeat: no-repeat
-  background-size: auto calc(100% - 8px)
+  background-size: 32px
   bottom: 0
   cursor: pointer
   left: 0
