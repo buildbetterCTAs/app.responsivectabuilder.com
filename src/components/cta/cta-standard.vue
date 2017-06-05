@@ -135,7 +135,7 @@
       focusOnInput: function (name) {
         document.getElementsByName(name)[0].focus()
       },
-      calcWidth: function() {
+      calcWidth: function () {
         const mediumScreen = 768
         const smallScreen = 600
         const smallerScreen = 425
@@ -147,29 +147,44 @@
         // Pass element width of CTA to the bars component
         this.displayElementWidth = width
 
+        // Medium And Down
         if (width <= mediumScreen) {
           classes.add('mediumAndDown')
+        } else if (width > mediumScreen) {
+          classes.remove('mediumAndDown')
         }
+
+        // Small And Down
         if (width <= smallScreen) {
           classes.add('smallAndDown')
+        } else if (width > smallScreen) {
+          classes.remove('smallAndDown')
         }
+
+        // Smaller And Down
         if (width <= smallerScreen) {
           classes.add('smallerAndDown')
+        } else if (width > smallerScreen) {
+          classes.remove('smallerAndDown')
         }
+
+        // Tiny And Down
         if (width <= tinyScreen) {
           classes.add('tinyAndDown')
+        } else if (width > tinyScreen) {
+          classes.remove('tinyAndDown')
         }
       }
     },
-    mounted() {
-      this.calcWidth();
+    mounted () {
+      this.calcWidth()
       window.addEventListener('resize', () => {
-        this.calcWidth();
+        this.calcWidth()
       })
     },
     watch: {
-      sliderVal: function() {
-        this.calcWidth();
+      sliderVal: function () {
+        this.calcWidth()
       }
     }
   }
