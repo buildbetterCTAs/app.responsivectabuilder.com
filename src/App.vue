@@ -9,7 +9,7 @@
               <a href="/" class="nav-item is-brand">
                 <img src="./assets/logo.svg" alt="Responsive CTA Builder logo">
               </a>
-              <a class="nav-item" href="https://docs.responsivectabuilder.com">Documentation</a>
+              <!-- <a class="nav-item" href="https://docs.responsivectabuilder.com">Documentation</a> -->
             </div>
             <div class="nav-right">
               <div class="nav-item" v-show="!authenticated">
