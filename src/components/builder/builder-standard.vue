@@ -138,10 +138,10 @@
         </div>
         <div class="columns">
           <div class="column is-two-thirds">
-            <cta :cta="cta"></cta>
+            <cta :hasBackgroundImage="addBackgroundImage" :cta="cta"></cta>
           </div>
           <div class="column">
-            <cta :cta="cta"></cta>
+            <cta :hasBackgroundImage="addBackgroundImage" :cta="cta"></cta>
           </div>
         </div>
       </div>
