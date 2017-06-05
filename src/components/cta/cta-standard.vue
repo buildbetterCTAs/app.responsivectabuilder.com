@@ -1,6 +1,6 @@
 <template>
   <div>
-    <bar :value="sliderVal || displayElementWidth"></bar>
+    <bar :value="displayElementWidth"></bar>
 
     <div v-if="hasBackgroundImage" class="cta"
       :style="{
@@ -134,31 +134,57 @@
     methods: {
       focusOnInput: function (name) {
         document.getElementsByName(name)[0].focus()
+      },
+      calcWidth: function () {
+        const mediumScreen = 768
+        const smallScreen = 600
+        const smallerScreen = 425
+        const tinyScreen = 320
+        const classes = this.$el.classList
+
+        let width = this.$el.clientWidth
+
+        // Pass element width of CTA to the bars component
+        this.displayElementWidth = width
+
+        // Medium And Down
+        if (width <= mediumScreen) {
+          classes.add('mediumAndDown')
+        } else if (width > mediumScreen) {
+          classes.remove('mediumAndDown')
+        }
+
+        // Small And Down
+        if (width <= smallScreen) {
+          classes.add('smallAndDown')
+        } else if (width > smallScreen) {
+          classes.remove('smallAndDown')
+        }
+
+        // Smaller And Down
+        if (width <= smallerScreen) {
+          classes.add('smallerAndDown')
+        } else if (width > smallerScreen) {
+          classes.remove('smallerAndDown')
+        }
+
+        // Tiny And Down
+        if (width <= tinyScreen) {
+          classes.add('tinyAndDown')
+        } else if (width > tinyScreen) {
+          classes.remove('tinyAndDown')
+        }
       }
     },
-    mounted: function () {
-      const mediumScreen = 768
-      const smallScreen = 600
-      const smallerScreen = 425
-      const tinyScreen = 320
-      const classes = this.$el.classList
-
-      let width = this.$el.clientWidth
-
-      // Pass element width of CTA to the bars component
-      this.displayElementWidth = width
-
-      if (width <= mediumScreen) {
-        classes.add('mediumAndDown')
-      }
-      if (width <= smallScreen) {
-        classes.add('smallAndDown')
-      }
-      if (width <= smallerScreen) {
-        classes.add('smallerAndDown')
-      }
-      if (width <= tinyScreen) {
-        classes.add('tinyAndDown')
+    mounted () {
+      this.calcWidth()
+      window.addEventListener('resize', () => {
+        this.calcWidth()
+      })
+    },
+    watch: {
+      sliderVal: function () {
+        this.calcWidth()
       }
     }
   }
