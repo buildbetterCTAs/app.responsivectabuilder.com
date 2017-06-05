@@ -7,7 +7,7 @@
         </div>
         <!-- CTA WIDTH SLIDER -->
         <div class="ctaWidthSlider">
-          <input type="range" v-model="ctaWidth" min="300" :max="1000">
+          <input type="range" v-model="ctaWidth" @input="onSliderInput" min="300" max="1000">
         </div>
       </div>
 
@@ -219,6 +219,9 @@
     methods: {
       select: function (event) {
         event.target.select()
+      },
+      onSliderInput: function(event) {
+
       }
     },
     components: {
