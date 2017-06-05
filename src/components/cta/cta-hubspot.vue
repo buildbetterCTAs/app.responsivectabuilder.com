@@ -188,99 +188,7 @@
 // CTA EMBED STYLES
 //******************
 
-// VARS
-$buttonHeight: 40px
-$buttonHeightLarge: 54px
-
-$mediumScreen: 768px
-$smallScreen: 600px
-$smallerScreen: 425px
-$tinyScreen: 320px
-
-$mediumAndDown: "only screen and (max-width : #{$mediumScreen})" !default
-$smallAndDown: "only screen and (max-width : #{$smallScreen})" !default
-$smallerAndDown: "only screen and (max-width : #{$smallerScreen})" !default
-$tinyAndDown: "only screen and (max-width : #{$tinyScreen})" !default
-
-// STYLES
-.cta
-  background-position: center
-  background-repeat: no-repeat
-  background-size: cover
-  border-radius: 4px
-  box-sizing: border-box
-  margin-bottom: 1rem
-  margin-top: 1rem
-  padding: 48px
-  width: 100%
-
-  @media #{$mediumAndDown}
-    padding: 40px
-  @media #{$smallAndDown}
-    padding: 32px
-  @media #{$smallerAndDown}
-    padding: 24px
-  @media #{$tinyAndDown}
-    padding: 18px
-
-
-.ctaHeadline
-  display: block
-  font-size: 40px
-  font-weight: bold
-  line-height: 1.3
-  margin-bottom: 16px
-  margin-top: 0
-
-  @media #{$mediumAndDown}
-    font-size: 36px
-  @media #{$smallAndDown}
-    font-size: 32px
-  @media #{$smallerAndDown}
-    font-size: 28px
-  @media #{$tinyAndDown}
-    font-size: 24px
-
-
-.ctaDescription
-  display: block
-  font-size: 20px
-  font-weight: normal
-  margin-bottom: 16px
-
-  @media #{$smallerAndDown}
-    font-size: 18px
-
-
-.ctaButton
-  border-radius: 2px
-  display: inline-block
-  font-size: 16px
-  font-weight: bold
-  height: $buttonHeight
-  letter-spacing: .5px
-  line-height: $buttonHeight
-  padding: 0 32px
-  text-decoration: none
-  text-transform: uppercase
-
-  &.hubl
-    span
-      font-size: 16px
-      line-height: $buttonHeight
-      text-transform: initial
-
-  @media #{$mediumAndDown}
-    height: $buttonHeightLarge
-    line-height: $buttonHeightLarge
-    margin-top: 8px
-
-  @media #{$smallAndDown}
-    height: auto
-    line-height: 2
-    padding: 8px
-    text-align: center
-    width: 100%
+@import "~cta.css"
 
 //******************
 // JS MEDIA QUERIES
@@ -295,8 +203,8 @@ $tinyAndDown: "only screen and (max-width : #{$tinyScreen})" !default
     font-size: 36px
 
   .ctaButton
-    height: $buttonHeightLarge
-    line-height: $buttonHeightLarge
+    height: 54px
+    line-height: 54px
     margin-top: 8px
 
 // Small & Down

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "clipboard": "^1.7.1",
+    "cta.css": "^1.0.0",
     "vue": "^2.2.2",
     "vue-clickaway": "^2.1.0",
     "vue-color": "^2.2.0"
