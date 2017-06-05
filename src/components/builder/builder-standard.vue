@@ -23,13 +23,13 @@
                   </div>
                   <div class="column">
                     <b-field label="Headline" message="We recommend keeping your description under 100 characters">
-                      <b-input @focus="select($event)" name="headline" type="text" maxlength="120" v-model="cta.headline"></b-input>
+                      <b-input @focus="select($event)" name="headline" type="text" maxlength="110" v-model="cta.headline"></b-input>
                     </b-field>
                     <b-field label="Summary" message="We recommend keeping your description under 160 characters">
-                      <b-input @focus="select($event)" name="description" type="text" maxlength="180" v-model="cta.description"></b-input>
+                      <b-input @focus="select($event)" name="description" type="text" maxlength="170" v-model="cta.description"></b-input>
                     </b-field>
                     <b-field label="Button" message="We recommend keeping your button text under 40 characters">
-                      <b-input @focus="select($event)" name="buttonText" type="text" maxlength="60" v-model="cta.buttonText"></b-input>
+                      <b-input @focus="select($event)" name="buttonText" type="text" maxlength="50" v-model="cta.buttonText"></b-input>
                     </b-field>
                   </div>
                 </div>

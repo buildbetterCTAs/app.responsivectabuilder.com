@@ -278,7 +278,7 @@ $tinyAndDown: "only screen and (max-width : #{$tinyScreen})" !default
   @media #{$smallAndDown}
     height: auto
     line-height: 2
-    padding: 8px 0
+    padding: 8px
     text-align: center
     width: 100%
 
@@ -310,7 +310,7 @@ $tinyAndDown: "only screen and (max-width : #{$tinyScreen})" !default
   .ctaButton
     height: auto
     line-height: 2
-    padding: 8px 0
+    padding: 8px
     text-align: center
     width: 100%
 
