@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="responsiveClass">
     <bar :value="displayElementWidth"></bar>
 
     <div v-if="hasBackgroundImage" class="cta"
@@ -140,49 +140,34 @@
         }
       }
     },
+    computed: {
+      responsiveClass () {
+        const mediumScreen = 768
+        const smallScreen = 600
+        const smallerScreen = 425
+        const tinyScreen = 320
+
+        const width = this.displayElementWidth
+
+        if (width > mediumScreen) {
+          return ''
+        } else if (width <= tinyScreen) {
+          return 'tiny'
+        } else if (width <= smallerScreen) {
+          return 'smaller'
+        } else if (width <= smallScreen) {
+          return 'small'
+        } else if (width <= mediumScreen) {
+          return 'medium'
+        }
+      }
+    },
     methods: {
       focusOnInput: function (name) {
         document.getElementsByName(name)[0].focus()
       },
       calcWidth: function () {
-        const mediumScreen = 768
-        const smallScreen = 600
-        const smallerScreen = 425
-        const tinyScreen = 320
-        const classes = this.$el.classList
-
-        let width = this.$el.clientWidth
-
-        // Pass element width of CTA to the bars component
-        this.displayElementWidth = width
-
-        // Medium And Down
-        if (width <= mediumScreen) {
-          classes.add('mediumAndDown')
-        } else if (width > mediumScreen) {
-          classes.remove('mediumAndDown')
-        }
-
-        // Small And Down
-        if (width <= smallScreen) {
-          classes.add('smallAndDown')
-        } else if (width > smallScreen) {
-          classes.remove('smallAndDown')
-        }
-
-        // Smaller And Down
-        if (width <= smallerScreen) {
-          classes.add('smallerAndDown')
-        } else if (width > smallerScreen) {
-          classes.remove('smallerAndDown')
-        }
-
-        // Tiny And Down
-        if (width <= tinyScreen) {
-          classes.add('tinyAndDown')
-        } else if (width > tinyScreen) {
-          classes.remove('tinyAndDown')
-        }
+        this.displayElementWidth = this.$el.clientWidth
       }
     },
     mounted () {
@@ -211,7 +196,10 @@
 //******************
 
 // Medium & Down
-.mediumAndDown
+.medium,
+.small,
+.smaller,
+.tiny
   .cta
     padding: 40px
 
@@ -224,7 +212,9 @@
     margin-top: 8px
 
 // Small & Down
-.smallAndDown
+.small,
+.smaller,
+.tiny
   .cta
     padding: 32px
 
@@ -239,7 +229,8 @@
     width: 100%
 
 // Smaller & Down
-.smallerAndDown
+.smaller,
+.tiny
   .cta
     padding: 24px
 
@@ -250,7 +241,7 @@
     font-size: 18px
 
 // Tiny & Down
-.tinyAndDown
+.tiny
   .cta
     padding: 16px
 
