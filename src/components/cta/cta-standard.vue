@@ -158,14 +158,14 @@
 
         if (width > mediumScreen) {
           return ''
-        } else if (width <= tinyScreen) {
-          return 'tiny'
-        } else if (width <= smallerScreen) {
-          return 'smaller'
-        } else if (width <= smallScreen) {
-          return 'small'
-        } else if (width <= mediumScreen) {
+        } else if (width > smallScreen) {
           return 'medium'
+        } else if (width > smallerScreen) {
+          return 'small'
+        } else if (width > tinyScreen) {
+          return 'smaller'
+        } else {
+          return 'tiny'
         }
       }
     },
