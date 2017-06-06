@@ -20,32 +20,40 @@
         fontFamily: cta.ctaSS.fontFamily
       }"
     >
-      <div class="ctaHeadline"
-        :class="{ editable: isEditable }"
-        :style="{ color: cta.ctaSS.cta.color.hex }"
-        @click="focusOnInput('headline')"
-      >
-        <div class="editOverlay" v-if="isEditable"></div>
-        {{ cta.headline }}
+      <div>
+        <div class="ctaHeadline"
+          :class="{ editable: isEditable }"
+          :style="{ color: cta.ctaSS.cta.color.hex }"
+          @click="focusOnInput('headline')"
+        >
+          <div class="editOverlay" v-if="isEditable"></div>
+          {{ cta.headline }}
+        </div>
       </div>
-      <div class="ctaDescription"
-        :class="{ editable: isEditable }"
-        :style="{ color: cta.ctaSS.cta.color.hex }"
-        @click="focusOnInput('description')"
-      >
-        <div class="editOverlay" v-if="isEditable"></div>
-        {{ cta.description }}
+
+      <div>
+        <div class="ctaDescription"
+          :class="{ editable: isEditable }"
+          :style="{ color: cta.ctaSS.cta.color.hex }"
+          @click="focusOnInput('description')"
+        >
+          <div class="editOverlay" v-if="isEditable"></div>
+          {{ cta.description }}
+        </div>
       </div>
-      <div class="ctaButton"
-        :class="{ editable: isEditable }"
-        :style="{
-          color: cta.ctaSS.button.color.hex,
-          backgroundColor: cta.ctaSS.button.backgroundColor.hex
-        }"
-        @click="focusOnInput('buttonText')"
-      >
-        <div class="editOverlay" v-if="isEditable"></div>
-        {{ cta.buttonText }}
+
+      <div>
+        <div class="ctaButton"
+          :class="{ editable: isEditable }"
+          :style="{
+            color: cta.ctaSS.button.color.hex,
+            backgroundColor: cta.ctaSS.button.backgroundColor.hex
+          }"
+          @click="focusOnInput('buttonText')"
+        >
+          <div class="editOverlay" v-if="isEditable"></div>
+          {{ cta.buttonText }}
+        </div>
       </div>
     </div>
 
@@ -56,32 +64,40 @@
         fontFamily: cta.ctaSS.fontFamily
       }"
     >
-      <div class="ctaHeadline"
-        :class="{ editable: isEditable }"
-        :style="{ color: cta.ctaSS.cta.color.hex }"
-        @click="focusOnInput('headline')"
-      >
-        <div class="editOverlay" v-if="isEditable"></div>
-        {{ cta.headline }}
+      <div>
+        <div class="ctaHeadline"
+          :class="{ editable: isEditable }"
+          :style="{ color: cta.ctaSS.cta.color.hex }"
+          @click="focusOnInput('headline')"
+        >
+          <div class="editOverlay" v-if="isEditable"></div>
+          {{ cta.headline }}
+        </div>
       </div>
-      <div class="ctaDescription"
-        :class="{ editable: isEditable }"
-        :style="{ color: cta.ctaSS.cta.color.hex }"
-        @click="focusOnInput('description')"
-      >
-        <div class="editOverlay" v-if="isEditable"></div>
-        {{ cta.description }}
+
+      <div>
+        <div class="ctaDescription"
+          :class="{ editable: isEditable }"
+          :style="{ color: cta.ctaSS.cta.color.hex }"
+          @click="focusOnInput('description')"
+        >
+          <div class="editOverlay" v-if="isEditable"></div>
+          {{ cta.description }}
+        </div>
       </div>
-      <div class="ctaButton"
-        :class="{ editable: isEditable }"
-        :style="{
-          color: cta.ctaSS.button.color.hex,
-          backgroundColor: cta.ctaSS.button.backgroundColor.hex
-        }"
-        @click="focusOnInput('buttonText')"
-      >
-        <div class="editOverlay" v-if="isEditable"></div>
-        {{ cta.buttonText }}
+
+      <div>
+        <div class="ctaButton"
+          :class="{ editable: isEditable }"
+          :style="{
+            color: cta.ctaSS.button.color.hex,
+            backgroundColor: cta.ctaSS.button.backgroundColor.hex
+          }"
+          @click="focusOnInput('buttonText')"
+        >
+          <div class="editOverlay" v-if="isEditable"></div>
+          {{ cta.buttonText }}
+        </div>
       </div>
     </div>
   </div>
