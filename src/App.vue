@@ -63,6 +63,7 @@
       <div class="container">
         <div class="content has-text-centered">
           <p>Made with ❤️ by <a href="https://www.reiner.io">Jeff Reiner</a> and <a href="https://twitter.com/_danieljmurphy">Daniel Murphy</a>.</p>
+          <p><small>© 2017 Daniel J. Murphy and Jeff Reiner</small></p>
           <div class="nav-center">
             <a class="nav-item" href="https://github.com/buildBetterCTAs/" target="_blank">
               <span class="icon">
