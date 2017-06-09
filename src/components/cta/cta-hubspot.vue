@@ -43,14 +43,28 @@
       </div>
 
       <div>
-        <div class="ctaButton hubl"
-          :style="{
-            color: cta.ctaSS.button.color.hex,
-            backgroundColor: cta.ctaSS.button.backgroundColor.hex
-          }"
-        >
-          <span v-text="hubl"></span>
-        </div>
+        <span v-if="hubl">
+          <div class="ctaButton hubl"
+            :style="{
+              color: cta.ctaSS.button.color.hex,
+              backgroundColor: cta.ctaSS.button.backgroundColor.hex
+            }"
+          >
+            <span v-text="hubl"></span>
+          </div>
+        </span><span v-else>
+          <div class="ctaButton"
+            :class="{ editable: isEditable }"
+            :style="{
+              color: cta.ctaSS.button.color.hex,
+              backgroundColor: cta.ctaSS.button.backgroundColor.hex
+            }"
+            @click="focusOnInput('buttonText')"
+          >
+            <div class="editOverlay" v-if="isEditable"></div>
+            {{ cta.buttonText }}
+          </div>
+        </span>
       </div>
     </div>
 
@@ -84,14 +98,28 @@
       </div>
 
       <div>
-        <div class="ctaButton hubl"
-          :style="{
-            color: cta.ctaSS.button.color.hex,
-            backgroundColor: cta.ctaSS.button.backgroundColor.hex
-          }"
-        >
-          <span v-text="hubl"></span>
-        </div>
+        <span v-if="hubl">
+          <div class="ctaButton hubl"
+            :style="{
+              color: cta.ctaSS.button.color.hex,
+              backgroundColor: cta.ctaSS.button.backgroundColor.hex
+            }"
+          >
+            <span v-text="hubl"></span>
+          </div>
+        </span><span v-else>
+          <div class="ctaButton"
+            :class="{ editable: isEditable }"
+            :style="{
+              color: cta.ctaSS.button.color.hex,
+              backgroundColor: cta.ctaSS.button.backgroundColor.hex
+            }"
+            @click="focusOnInput('buttonText')"
+          >
+            <div class="editOverlay" v-if="isEditable"></div>
+            {{ cta.buttonText }}
+          </div>
+        </span>
       </div>
     </div>
   </div>
@@ -101,7 +129,7 @@
   import bar from '../ui/bar'
 
   export default {
-    name: 'cta-hubspot',
+    name: 'cta',
     components: {
       bar
     },
@@ -122,6 +150,8 @@
           return {
             headline: null,
             description: null,
+            buttonText: null,
+            buttonUrl: null,
             ctaSS: {
               fontFamily: null,
               cta: {
