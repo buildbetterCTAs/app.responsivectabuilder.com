@@ -53,8 +53,8 @@
       fontStylesheet: function () {
         let font = this.cta.ctaSS.fontFamily
         if (font) {
-          const beginStylesheet = '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family='
-          const endStylesheet = '">\n'
+          const beginStylesheet = `load('https://fonts.googleapis.com/css?family=`
+          const endStylesheet = `');`
           const googleFontsArray = [
             'Open Sans',
             'Lato',
