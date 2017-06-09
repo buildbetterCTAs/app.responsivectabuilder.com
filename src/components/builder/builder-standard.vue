@@ -152,7 +152,7 @@
 <script>
   import cta from '../cta/cta'
   import embeder from '../ui/embeder'
-  import colorInput from './color-input'
+  import colorInput from '../ui/color-input'
 
   export default {
     name: 'builder-standard',
