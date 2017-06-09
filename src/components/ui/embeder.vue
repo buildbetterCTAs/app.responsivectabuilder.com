@@ -8,7 +8,9 @@
 &lt;div class="cta" style="{{ fontFamily }}border-radius: {{ cta.ctaSS.cta.borderRadius + 'px' }}; <span v-if="hasBackgroundImage">{{ backgroundImageAndOverlay }} </span>background-color: {{ cta.ctaSS.cta.backgroundColor.hex }};"&gt;
     &lt;div class="ctaHeadline" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.headline }}&lt;/div&gt;
     &lt;div class="ctaDescription" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.description }}&lt;/div&gt;
-    &lt;a class="ctaButton" href="{{ cta.buttonUrl }}" target="_blank" style="background-color: {{ cta.ctaSS.button.backgroundColor.hex }}; color: {{ cta.ctaSS.button.color.hex }};"&gt;{{ cta.buttonText }}&lt;/a&gt;
+    <span v-if="hubl">&lt;div class="ctaButton hubl" style="background-color: {{ cta.ctaSS.button.backgroundColor.hex }}; color: {{ cta.ctaSS.button.color.hex }};"&gt;
+        {{ hubl }}
+    &lt;/div&gt;</span><span v-else>&lt;a class="ctaButton" href="{{ cta.buttonUrl }}" target="_blank" style="background-color: {{ cta.ctaSS.button.backgroundColor.hex }}; color: {{ cta.ctaSS.button.color.hex }};"&gt;{{ cta.buttonText }}&lt;/a&gt;</span>
 &lt;/div&gt;</code></pre>
 <a class="embedCopyButton">Copy</a>
 </div>
@@ -72,6 +74,7 @@
       }
     },
     props: {
+      hubl: String,
       hasBackgroundImage: Boolean,
       cta: {
         type: Object,
