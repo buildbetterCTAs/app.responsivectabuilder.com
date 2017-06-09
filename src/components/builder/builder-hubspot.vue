@@ -154,7 +154,7 @@
 </template>
 
 <script>
-  import cta from '../cta/cta-hubspot'
+  import cta from '../cta/cta'
   import embeder from '../ui/embeder'
   import colorInput from './color-input'
 
