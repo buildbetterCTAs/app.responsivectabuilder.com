@@ -14,9 +14,9 @@
 &lt;/div&gt;</code></pre>
 <a class="embedCopyButton">Copy</a>
 </div>
-    <div class="content">
+    <!-- <div class="content">
       <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet(s) into the <code>&lt;head&gt;</code> section of your website</p>
-    </div>
+    </div> -->
   </div>
 </template>
 
