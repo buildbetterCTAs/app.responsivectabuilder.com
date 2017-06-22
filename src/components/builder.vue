@@ -3,7 +3,7 @@
       <!-- CTA PREVIEW AND WIDTH SLIDER -->
       <div class="container">
         <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
-          <cta :sliderVal="ctaWidth" :isEditable="editable" :hubl="hublCta" :hasBackgroundImage="addBackgroundImage" :cta="cta"></cta>
+          <cta :sliderVal="ctaWidth" :isEditable="editable" :hasBackgroundImage="addBackgroundImage" :ctaStyle="ctaStyleToChild" :hubl="hubl" :cta="cta"></cta>
         </div>
         <!-- CTA WIDTH SLIDER -->
         <div class="ctaWidthSlider">
@@ -27,6 +27,9 @@
                     </b-field>
                     <b-field label="Summary" message="We recommend keeping your description under 160 characters">
                       <b-input @focus="select($event)" name="description" type="text" maxlength="170" v-model="cta.description"></b-input>
+                    </b-field>
+                    <b-field v-if="ctaStyle !== 'hubspot'" label="Button" message="We recommend keeping your button text under 40 characters">
+                      <b-input @focus="select($event)" name="buttonText" type="text" maxlength="50" v-model="cta.buttonText"></b-input>
                     </b-field>
                   </div>
                 </div>
@@ -66,7 +69,7 @@
                     </div>
                     <div class="columns">
                       <div class="column">
-                        <b-field label="Font Family" >
+                        <b-field label="Font Family">
                           <b-select :disabled="ctaFont" v-model="cta.ctaSS.fontFamily" placeholder="Select A Font" expanded>
                             <optgroup label="Standard">
                               <option value="serif">Serif</option>
@@ -106,7 +109,7 @@
           </b-tab-item>
           <b-tab-item label="3. Link">
             <div class="boxWrapper">
-              <div class="box">
+              <div class="box" v-if="ctaStyle === 'hubspot'">
                 <div class="columns">
                   <div class="column is-one-quarter" style="align-self: center">
                     <p class="title is-5">Add a HubSpot CTA to your Responsive CTA</p>
@@ -125,11 +128,23 @@
                   </div>
                 </div>
               </div>
+              <div class="box" v-else>
+                <div class="columns">
+                  <div class="column is-one-quarter" style="align-self: center">
+                    <p class="title is-5">Add a link to your CTA</p>
+                  </div>
+                  <div class="column">
+                    <b-field label="URL">
+                      <b-input @focus="select($event)" name="url" type="url" v-model="cta.buttonUrl"></b-input>
+                    </b-field>
+                  </div>
+                </div>
+              </div>
             </div>
           </b-tab-item>
           <b-tab-item label="4. Embed">
             <div class="boxWrapper">
-              <embeder :hasBackgroundImage="addBackgroundImage" :hubl="hublCta" :cta="cta"></embeder>
+              <embeder :hasBackgroundImage="addBackgroundImage" :ctaStyle="ctaStyleToChild" :hubl="hubl" :cta="cta"></embeder>
             </div>
           </b-tab-item>
         </b-tabs>
@@ -142,10 +157,10 @@
         </div>
         <div class="columns">
           <div class="column is-two-thirds">
-            <cta :hasBackgroundImage="addBackgroundImage" :hubl="hublCta" :cta="cta"></cta>
+            <cta :hasBackgroundImage="addBackgroundImage" :ctaStyle="ctaStyleToChild" :hubl="hubl" :cta="cta"></cta>
           </div>
           <div class="column">
-            <cta :hasBackgroundImage="addBackgroundImage" :hubl="hublCta" :cta="cta"></cta>
+            <cta :hasBackgroundImage="addBackgroundImage" :ctaStyle="ctaStyleToChild" :hubl="hubl" :cta="cta"></cta>
           </div>
         </div>
       </div>
@@ -154,12 +169,12 @@
 </template>
 
 <script>
-  import cta from '../cta/cta'
-  import embeder from '../ui/embeder'
-  import colorInput from '../ui/color-input'
+  import cta from './cta'
+  import embeder from './ui/embeder'
+  import colorInput from './ui/color-input'
 
   export default {
-    name: 'builder-hubspot',
+    name: 'builder',
     data: function () {
       return {
         activeTab: 0,
@@ -170,6 +185,8 @@
         cta: {
           headline: 'This is a powerful, eye-catching headline',
           description: 'This is your secondary text that might explain why your reader should follow your call-to-action.',
+          buttonText: 'click here, reader!',
+          buttonUrl: 'https://www.responsivectabuilder.com',
           ctaSS: {
             fontFamily: null,
             cta: {
@@ -204,6 +221,9 @@
         }
       }
     },
+    props: {
+      ctaStyle: String
+    },
     watch: {
       // Reset cta.ctaSS.fontFamily to empty to prevent fonts from being added
       ctaFont: function (font) {
@@ -211,7 +231,10 @@
       }
     },
     computed: {
-      hublCta: function () {
+      ctaStyleToChild: function () {
+        return this.ctaStyle
+      },
+      hubl: function () {
         let ctaID = this.hubspotCtaUrl.replace(/https:\/\/app\.hubspot\.com\/cta\/.{6}\//, '')
         let embed = `{{ cta('` + ctaID + `') }}`
         return embed
