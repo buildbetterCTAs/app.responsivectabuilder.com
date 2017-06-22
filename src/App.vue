@@ -9,7 +9,6 @@
               <a href="/" class="nav-item is-brand">
                 <img src="./assets/logo.svg" alt="Responsive CTA Builder logo">
               </a>
-              <!-- <a class="nav-item" href="https://docs.responsivectabuilder.com">Documentation</a> -->
             </div>
             <div class="nav-right">
               <div class="nav-item" v-show="!authenticated">
@@ -47,16 +46,7 @@
         </div>
       </section>
 
-      <!-- LOGIC TO SHOW CTA BUILDER TYPE BASED ON SELECTED TYPE -->
-      <div v-if="ctaStyle === 'standard'">
-        <standard></standard>
-      </div>
-      <div v-else-if="ctaStyle === 'hubspot'">
-        <hubspot></hubspot>
-      </div>
-      <div v-else>
-        🚀
-      </div>
+      <builder :ctaStyle="ctaStyle"></builder>
     </div>
 
     <footer class="footer">
@@ -83,8 +73,7 @@
 </template>
 
 <script>
-  import standard from './components/builder/builder-standard'
-  import hubspot from './components/builder/builder-hubspot'
+  import builder from './components/builder'
 
   export default {
     name: 'app',
@@ -145,8 +134,9 @@
       }
     },
     components: {
-      standard,
-      hubspot
+      // standard,
+      // hubspot,
+      builder
     }
   }
 

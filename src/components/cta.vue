@@ -43,7 +43,7 @@
       </div>
 
       <div>
-        <span v-if="hubl">
+        <span v-if="ctaStyle === 'hubspot'">
           <div class="ctaButton hubl"
             :style="{
               color: cta.ctaSS.button.color.hex,
@@ -98,7 +98,7 @@
       </div>
 
       <div>
-        <span v-if="hubl">
+        <span v-if="ctaStyle === 'hubspot'">
           <div class="ctaButton hubl"
             :style="{
               color: cta.ctaSS.button.color.hex,
@@ -126,7 +126,7 @@
 </template>
 
 <script>
-  import bar from '../ui/bar'
+  import bar from './ui/bar'
 
   export default {
     name: 'cta',
@@ -143,6 +143,7 @@
       isEditable: Boolean,
       hasBackgroundImage: Boolean,
       hubl: String,
+      ctaStyle: String,
       cta: {
         type: Object,
         required: true,
@@ -291,7 +292,7 @@ $overlay: rgba($white, .54)
 
 .editOverlay
   background-color: $overlay
-  background-image: url("../../assets/edit.svg")
+  background-image: url("../assets/edit.svg")
   background-position: center
   background-repeat: no-repeat
   background-size: 32px
