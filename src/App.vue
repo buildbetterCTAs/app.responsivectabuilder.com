@@ -134,8 +134,6 @@
       }
     },
     components: {
-      // standard,
-      // hubspot,
       builder
     }
   }

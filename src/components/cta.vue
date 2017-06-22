@@ -1,21 +1,11 @@
 <template>
   <div :class="responsiveClass">
     <bar :value="displayElementWidth"></bar>
-
-    <div v-if="hasBackgroundImage" class="cta"
+    <div class="cta"
       :style="{
         borderRadius: cta.ctaSS.cta.borderRadius + 'px',
-        backgroundImage: 'linear-gradient(rgba(' +
-                          cta.ctaSS.cta.imageOverlay.rgba.r + ', ' +
-                          cta.ctaSS.cta.imageOverlay.rgba.g + ', ' +
-                          cta.ctaSS.cta.imageOverlay.rgba.b + ', ' +
-                          cta.ctaSS.cta.imageOverlay.a +
-                        '), rgba('+
-                          cta.ctaSS.cta.imageOverlay.rgba.r + ', ' +
-                          cta.ctaSS.cta.imageOverlay.rgba.g + ', ' +
-                          cta.ctaSS.cta.imageOverlay.rgba.b + ', ' +
-                          cta.ctaSS.cta.imageOverlay.a +
-                        ')), url(' + cta.ctaSS.cta.backgroundImage + ')',
+        /* @TODO: MERGE THESE */
+        backgroundImage: backgroundImageWithGradient,
         backgroundColor: cta.ctaSS.cta.backgroundColor.hex,
         fontFamily: cta.ctaSS.fontFamily
       }"
@@ -30,7 +20,6 @@
           {{ cta.headline }}
         </div>
       </div>
-
       <div>
         <div class="ctaDescription"
           :class="{ editable: isEditable }"
@@ -41,62 +30,6 @@
           {{ cta.description }}
         </div>
       </div>
-
-      <div>
-        <span v-if="ctaStyle === 'hubspot'">
-          <div class="ctaButton hubl"
-            :style="{
-              color: cta.ctaSS.button.color.hex,
-              backgroundColor: cta.ctaSS.button.backgroundColor.hex
-            }"
-          >
-            <span v-text="hubl"></span>
-          </div>
-        </span><span v-else>
-          <div class="ctaButton"
-            :class="{ editable: isEditable }"
-            :style="{
-              color: cta.ctaSS.button.color.hex,
-              backgroundColor: cta.ctaSS.button.backgroundColor.hex
-            }"
-            @click="focusOnInput('buttonText')"
-          >
-            <div class="editOverlay" v-if="isEditable"></div>
-            {{ cta.buttonText }}
-          </div>
-        </span>
-      </div>
-    </div>
-
-    <div v-else class="cta"
-      :style="{
-        borderRadius: cta.ctaSS.cta.borderRadius + 'px',
-        backgroundColor: cta.ctaSS.cta.backgroundColor.hex,
-        fontFamily: cta.ctaSS.fontFamily
-      }"
-    >
-      <div>
-        <div class="ctaHeadline"
-          :class="{ editable: isEditable }"
-          :style="{ color: cta.ctaSS.cta.color.hex }"
-          @click="focusOnInput('headline')"
-        >
-          <div class="editOverlay" v-if="isEditable"></div>
-          {{ cta.headline }}
-        </div>
-      </div>
-
-      <div>
-        <div class="ctaDescription"
-          :class="{ editable: isEditable }"
-          :style="{ color: cta.ctaSS.cta.color.hex }"
-          @click="focusOnInput('description')"
-        >
-          <div class="editOverlay" v-if="isEditable"></div>
-          {{ cta.description }}
-        </div>
-      </div>
-
       <div>
         <span v-if="ctaStyle === 'hubspot'">
           <div class="ctaButton hubl"
@@ -172,6 +105,17 @@
       }
     },
     computed: {
+      backgroundImageWithGradient () {
+        if (this.hasBackgroundImage === true) {
+          const {r, g, b} = this.cta.ctaSS.cta.imageOverlay.rgba
+          const a = this.cta.ctaSS.cta.imageOverlay.a
+          const img = this.cta.ctaSS.cta.backgroundImage
+
+          return `linear-gradient(rgba(${r}, ${g}, ${b}, ${a}), rgba(${r}, ${g}, ${b}, ${a})), url('${img}')`
+        } else {
+          return null
+        }
+      },
       responsiveClass () {
         const mediumScreen = 768
         const smallScreen = 600
