@@ -207,7 +207,7 @@
 
 <script>
   import cta from './cta'
-  import embeder from './ui/embeder'
+  import embeder from './embeder'
   import colorInput from './ui/color-input'
 
   export default {
