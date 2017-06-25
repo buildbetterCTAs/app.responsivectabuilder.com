@@ -4,19 +4,11 @@
     <div class="content">
       <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
     </div>
-<div class="embedCopy"><pre><code>&lt;script&gt;function load(e){var t=document.getElementsByTagName("head")[0],n=document.createElement("link");return n.type="text/css",n.rel="stylesheet",n.href=e,t.appendChild(n),n}load('https://unpkg.com/cta.css');{{ fontStylesheet }}&lt;/script&gt;
-&lt;div class="cta" style="{{ fontFamily }}border-radius: {{ cta.ctaSS.cta.borderRadius + 'px' }}; <span v-if="hasBackgroundImage">{{ backgroundImageAndOverlay }} </span>background-color: {{ cta.ctaSS.cta.backgroundColor.hex }};"&gt;
-    &lt;div class="ctaHeadline" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.headline }}&lt;/div&gt;
-    &lt;div class="ctaDescription" style="color: {{ cta.ctaSS.cta.color.hex }};"&gt;{{ cta.description }}&lt;/div&gt;
-    <span v-if="ctaStyle === 'hubspot'">&lt;div class="ctaButton hubl" style="background-color: {{ cta.ctaSS.button.backgroundColor.hex }}; color: {{ cta.ctaSS.button.color.hex }};"&gt;
-        {{ hubl }}
-    &lt;/div&gt;</span><span v-else>&lt;a class="ctaButton" href="{{ cta.buttonUrl }}" target="_blank" style="background-color: {{ cta.ctaSS.button.backgroundColor.hex }}; color: {{ cta.ctaSS.button.color.hex }};"&gt;{{ cta.buttonText }}&lt;/a&gt;</span>
-&lt;/div&gt;</code></pre>
-<a class="embedCopyButton">Copy</a>
-</div>
-    <!-- <div class="content">
-      <p>Alternatively if you plan on using many CTAs on your website or blog, add the stylesheet(s) into the <code>&lt;head&gt;</code> section of your website</p>
-    </div> -->
+    <!-- EMBED CODE -->
+    <div class="embedCopy">
+      <pre><code v-text="embedCode"></code></pre>
+      <a class="embedCopyButton">Copy</a>
+    </div>
   </div>
 </template>
 
@@ -24,18 +16,68 @@
   export default {
     name: 'embeder',
     computed: {
-      backgroundImageAndOverlay: function () {
-        let url = this.cta.ctaSS.cta.backgroundImage
-        let r = this.cta.ctaSS.cta.imageOverlay.rgba.r
-        let g = this.cta.ctaSS.cta.imageOverlay.rgba.g
-        let b = this.cta.ctaSS.cta.imageOverlay.rgba.b
-        let a = this.cta.ctaSS.cta.imageOverlay.a
+      embedCode: function () {
+        const headline = this.cta.headline
+        const description = this.cta.description
+        const hasImage = this.hasImage
+        const radius = this.cta.ctaSS.cta.borderRadius
+        const color = this.cta.ctaSS.cta.color.hex
+        const bgColor = this.cta.ctaSS.cta.backgroundColor.hex
 
-        let bg = `background-image: linear-gradient(rgba(${r}, ${g}, ${b}, ${a}), rgba(${r}, ${g}, ${b}, ${a})), url('${url}');`
-        return bg
+        const imageUrl = this.cta.imageUrl
+        const imageAlt = this.cta.imageAlt
+
+        let ctaBody = ''
+        if (hasImage) {
+          ctaBody = `    <div class="ctaColumns">\n` +
+                    `        <div class="ctaColumn ctaImage">\n` +
+                    `            <img src="${imageUrl}" alt="${imageAlt}">\n` +
+                    `        </div>\n` +
+                    `        <div class="ctaColumn">\n` +
+                    `            <div class="ctaHeadline" style="color: ${color};">${headline}</div>\n` +
+                    `            <div class="ctaDescription" style="color: ${color};">${description}</div>\n` +
+                    `            ${this.buttonEmbedCode}\n` +
+                    `        </div>\n` +
+                    `    </div>\n`
+        } else {
+          ctaBody = `    <div class="ctaHeadline" style="color: ${color};">${headline}</div>\n` +
+                    `    <div class="ctaDescription" style="color: ${color};">${description}</div>\n` +
+                    `    ${this.buttonEmbedCode}\n`
+        }
+
+        return `<script>function load(e){var t=document.getElementsByTagName("head")[0],n=document.createElement("link");return n.type="text/css",n.rel="stylesheet",n.href=e,t.appendChild(n),n}load('https://unpkg.com/cta.css');${this.fontStylesheet}<\/script>\n` + // eslint-disable-line no-useless-escape
+               `<div class="cta" style="${this.fontFamily}border-radius: ${radius}px; ${this.backgroundImageAndOverlay}background-color: ${bgColor};">\n` +
+               `${ctaBody}` +
+               `</div`
+      },
+      buttonEmbedCode: function () {
+        const style = this.ctaStyle
+
+        const hubl = this.hubl
+        const url = this.cta.buttonUrl
+        const text = this.cta.buttonText
+        const color = this.cta.ctaSS.button.color.hex
+        const bgColor = this.cta.ctaSS.button.backgroundColor.hex
+
+        if (style === 'hubspot') {
+          return `<div class="ctaButton hubl" style="background-color: ${bgColor}; color: ${color}">${hubl}</div>`
+        } else {
+          return `<a class="ctaButton" href="${url}" target="_blank" style="background-color: ${bgColor}; color: ${color}">${text}</a>`
+        }
+      },
+      backgroundImageAndOverlay: function () {
+        if (this.hasBackgroundImage) {
+          const {r, g, b} = this.cta.ctaSS.cta.imageOverlay.rgba
+          const a = this.cta.ctaSS.cta.imageOverlay.a
+          const img = this.cta.ctaSS.cta.backgroundImage
+
+          return `background-image: linear-gradient(rgba(${r}, ${g}, ${b}, ${a}), rgba(${r}, ${g}, ${b}, ${a})), url('${img}'); `
+        } else {
+          return ''
+        }
       },
       fontFamily: function () {
-        let font = this.cta.ctaSS.fontFamily
+        const font = this.cta.ctaSS.fontFamily
         if (font) {
           if (font === 'Roboto Mono') {
             return `font-family: '${font}', monospace; `
@@ -48,10 +90,12 @@
           } else {
             return `font-family: '${font}', sans-serif; `
           }
+        } else {
+          return ''
         }
       },
       fontStylesheet: function () {
-        let font = this.cta.ctaSS.fontFamily
+        const font = this.cta.ctaSS.fontFamily
         if (font) {
           const beginStylesheet = `load('https://fonts.googleapis.com/css?family=`
           const endStylesheet = `');`
@@ -70,6 +114,8 @@
               return beginStylesheet + font.replace(' ', '+') + endStylesheet
             }
           }
+        } else {
+          return ''
         }
       }
     },
@@ -77,6 +123,7 @@
       ctaStyle: String,
       hubl: String,
       hasBackgroundImage: Boolean,
+      hasImage: Boolean,
       cta: {
         type: Object,
         required: true,
@@ -86,6 +133,8 @@
             description: null,
             buttonText: null,
             buttonUrl: null,
+            imageUrl: null,
+            imageAlt: null,
             ctaSS: {
               fontFamily: null,
               cta: {

@@ -3,7 +3,15 @@
       <!-- CTA PREVIEW AND WIDTH SLIDER -->
       <div class="container">
         <div :style="{ maxWidth: ctaWidth + 'px' }" style="margin: 0 auto;">
-          <cta :sliderVal="ctaWidth" :isEditable="editable" :hasBackgroundImage="addBackgroundImage" :ctaStyle="ctaStyleToChild" :hubl="hubl" :cta="cta"></cta>
+          <cta
+            :sliderVal="ctaWidth"
+            :isEditable="editable"
+            :hasImage="addImageToCta"
+            :hasBackgroundImage="addBackgroundImage"
+            :ctaStyle="ctaStyleToChild"
+            :hubl="hubl"
+            :cta="cta">
+          </cta>
         </div>
         <!-- CTA WIDTH SLIDER -->
         <div class="ctaWidthSlider">
@@ -14,12 +22,12 @@
       <!-- EDITOR -->
       <div class="container editor">
         <b-tabs v-model="activeTab" position="is-centered" :animated="false" expanded>
-          <b-tab-item label="1. Text">
+          <b-tab-item label="1. Content">
             <div class="boxWrapper">
               <div class="box">
                 <div class="columns">
                   <div class="column is-one-quarter" style="align-self: center">
-                    <p class="title is-5">Add text to your CTA</p>
+                    <p class="title is-5">Add text and/or an image to your CTA</p>
                   </div>
                   <div class="column">
                     <b-field label="Headline" message="We recommend keeping your description under 100 characters">
@@ -31,6 +39,19 @@
                     <b-field v-if="ctaStyle !== 'hubspot'" label="Button" message="We recommend keeping your button text under 40 characters">
                       <b-input @focus="select($event)" name="buttonText" type="text" maxlength="50" v-model="cta.buttonText"></b-input>
                     </b-field>
+                    <b-switch v-model="addImageToCta"><b-tooltip label='The image will be displayed at full CTA width and hidden on smaller devices.' dashed multilined>Add An Image Next To The Text?</b-tooltip></b-switch>
+                    <div class="columns" v-if="addImageToCta !== false">
+                      <div class="column">
+                        <b-field label="Image URL" message="Add the URL of the image you want to use">
+                          <b-input @focus="select($event)" name="imageUrl" type="url" v-model="cta.imageUrl"></b-input>
+                        </b-field>
+                      </div>
+                      <div class="column">
+                        <b-field label="Image Alt Text" message="Add a description of the image you want to use">
+                          <b-input @focus="select($event)" name="imageAlt" type="text" v-model="cta.imageAlt"></b-input>
+                        </b-field>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -144,7 +165,13 @@
           </b-tab-item>
           <b-tab-item label="4. Embed">
             <div class="boxWrapper">
-              <embeder :hasBackgroundImage="addBackgroundImage" :ctaStyle="ctaStyleToChild" :hubl="hubl" :cta="cta"></embeder>
+              <embeder
+                :hasBackgroundImage="addBackgroundImage"
+                :hasImage="addImageToCta"
+                :ctaStyle="ctaStyleToChild"
+                :hubl="hubl"
+                :cta="cta">
+              </embeder>
             </div>
           </b-tab-item>
         </b-tabs>
@@ -157,10 +184,20 @@
         </div>
         <div class="columns">
           <div class="column is-two-thirds">
-            <cta :hasBackgroundImage="addBackgroundImage" :ctaStyle="ctaStyleToChild" :hubl="hubl" :cta="cta"></cta>
+            <cta
+              :hasBackgroundImage="addBackgroundImage"
+              :ctaStyle="ctaStyleToChild"
+              :hubl="hubl"
+              :cta="cta">
+            </cta>
           </div>
           <div class="column">
-            <cta :hasBackgroundImage="addBackgroundImage" :ctaStyle="ctaStyleToChild" :hubl="hubl" :cta="cta"></cta>
+            <cta
+              :hasBackgroundImage="addBackgroundImage"
+              :ctaStyle="ctaStyleToChild"
+              :hubl="hubl"
+              :cta="cta">
+            </cta>
           </div>
         </div>
       </div>
@@ -181,12 +218,15 @@
         ctaWidth: 1000,
         ctaFont: false,
         addBackgroundImage: false,
+        addImageToCta: false,
         hubspotCtaUrl: '',
         cta: {
           headline: 'This is a powerful, eye-catching headline',
           description: 'This is your secondary text that might explain why your reader should follow your call-to-action.',
           buttonText: 'click here, reader!',
           buttonUrl: 'https://www.responsivectabuilder.com',
+          imageUrl: 'http://placehold.it/240x240',
+          imageAlt: 'I am a placeholder image',
           ctaSS: {
             fontFamily: null,
             cta: {

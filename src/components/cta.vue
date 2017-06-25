@@ -4,55 +4,62 @@
     <div class="cta"
       :style="{
         borderRadius: cta.ctaSS.cta.borderRadius + 'px',
-        /* @TODO: MERGE THESE */
+        /* @TODO: MERGE THESE (backgroundColor & backgroundImage) */
         backgroundImage: backgroundImageWithGradient,
         backgroundColor: cta.ctaSS.cta.backgroundColor.hex,
         fontFamily: cta.ctaSS.fontFamily
       }"
     >
-      <div>
-        <div class="ctaHeadline"
-          :class="{ editable: isEditable }"
-          :style="{ color: cta.ctaSS.cta.color.hex }"
-          @click="focusOnInput('headline')"
-        >
-          <div class="editOverlay" v-if="isEditable"></div>
-          {{ cta.headline }}
+      <div class="ctaColumns">
+        <div v-if="hasImage" class="ctaColumn ctaImage">
+          <img :src="cta.imageUrl" :alt="cta.imageAlt" @click="focusOnInput('imageUrl')">
         </div>
-      </div>
-      <div>
-        <div class="ctaDescription"
-          :class="{ editable: isEditable }"
-          :style="{ color: cta.ctaSS.cta.color.hex }"
-          @click="focusOnInput('description')"
-        >
-          <div class="editOverlay" v-if="isEditable"></div>
-          {{ cta.description }}
+        <div class="ctaColumn">
+          <div>
+            <div class="ctaHeadline"
+              :class="{ editable: isEditable }"
+              :style="{ color: cta.ctaSS.cta.color.hex }"
+              @click="focusOnInput('headline')"
+            >
+              <div class="editOverlay" v-if="isEditable"></div>
+              {{ cta.headline }}
+            </div>
+          </div>
+          <div>
+            <div class="ctaDescription"
+              :class="{ editable: isEditable }"
+              :style="{ color: cta.ctaSS.cta.color.hex }"
+              @click="focusOnInput('description')"
+            >
+              <div class="editOverlay" v-if="isEditable"></div>
+              {{ cta.description }}
+            </div>
+          </div>
+          <div>
+            <span v-if="ctaStyle === 'hubspot'">
+              <div class="ctaButton hubl"
+                :style="{
+                  color: cta.ctaSS.button.color.hex,
+                  backgroundColor: cta.ctaSS.button.backgroundColor.hex
+                }"
+              >
+                <span v-text="hubl"></span>
+              </div>
+            </span><span v-else>
+              <div class="ctaButton"
+                :class="{ editable: isEditable }"
+                :style="{
+                  color: cta.ctaSS.button.color.hex,
+                  backgroundColor: cta.ctaSS.button.backgroundColor.hex
+                }"
+                @click="focusOnInput('buttonText')"
+              >
+                <div class="editOverlay" v-if="isEditable"></div>
+                {{ cta.buttonText }}
+              </div>
+            </span>
+          </div>
         </div>
-      </div>
-      <div>
-        <span v-if="ctaStyle === 'hubspot'">
-          <div class="ctaButton hubl"
-            :style="{
-              color: cta.ctaSS.button.color.hex,
-              backgroundColor: cta.ctaSS.button.backgroundColor.hex
-            }"
-          >
-            <span v-text="hubl"></span>
-          </div>
-        </span><span v-else>
-          <div class="ctaButton"
-            :class="{ editable: isEditable }"
-            :style="{
-              color: cta.ctaSS.button.color.hex,
-              backgroundColor: cta.ctaSS.button.backgroundColor.hex
-            }"
-            @click="focusOnInput('buttonText')"
-          >
-            <div class="editOverlay" v-if="isEditable"></div>
-            {{ cta.buttonText }}
-          </div>
-        </span>
       </div>
     </div>
   </div>
@@ -75,6 +82,7 @@
       sliderVal: [String, Number],
       isEditable: Boolean,
       hasBackgroundImage: Boolean,
+      hasImage: Boolean,
       hubl: String,
       ctaStyle: String,
       cta: {
@@ -86,6 +94,8 @@
             description: null,
             buttonText: null,
             buttonUrl: null,
+            imageUrl: null,
+            imageAlt: null,
             ctaSS: {
               fontFamily: null,
               cta: {
@@ -117,6 +127,7 @@
         }
       },
       responsiveClass () {
+        const mediumLargeScreen = 800
         const mediumScreen = 768
         const smallScreen = 600
         const smallerScreen = 425
@@ -124,8 +135,10 @@
 
         const width = this.displayElementWidth
 
-        if (width > mediumScreen) {
+        if (width > mediumLargeScreen) {
           return ''
+        } else if (width > mediumScreen) {
+          return 'mediumLarge'
         } else if (width > smallScreen) {
           return 'medium'
         } else if (width > smallerScreen) {
@@ -169,6 +182,15 @@
 //******************
 // JS MEDIA QUERIES
 //******************
+
+// Medium-Large & Down
+.mediumLarge,
+.medium,
+.small,
+.smaller,
+.tiny
+  .ctaImage
+    display: none
 
 // Medium & Down
 .medium,
