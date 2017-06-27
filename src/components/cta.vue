@@ -37,14 +37,14 @@
           </div>
           <div>
             <span v-if="ctaStyle === 'hubspot'">
-              <div class="ctaButton hubl"
+              <b-tooltip label="Your button will not look like this. To customize the text of your button edit the button text within your HubSpot portal." multilined size="is-large"><div class="ctaButton hubl"
                 :style="{
                   color: cta.ctaSS.button.color.hex,
                   backgroundColor: cta.ctaSS.button.backgroundColor.hex
                 }"
               >
                 <span v-text="hubl"></span>
-              </div>
+              </div></b-tooltip>
             </span><span v-else>
               <div class="ctaButton"
                 :class="{ editable: isEditable }"
