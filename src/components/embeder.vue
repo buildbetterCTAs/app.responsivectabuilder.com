@@ -48,7 +48,7 @@
         return `<script>function load(e){var t=document.getElementsByTagName("head")[0],n=document.createElement("link");return n.type="text/css",n.rel="stylesheet",n.href=e,t.appendChild(n),n}load('https://unpkg.com/cta.css');${this.fontStylesheet}<\/script>\n` + // eslint-disable-line no-useless-escape
                `<div class="cta" style="${this.fontFamily}border-radius: ${radius}px; ${this.backgroundImageAndOverlay}background-color: ${bgColor};">\n` +
                `${ctaBody}` +
-               `</div`
+               `</div>`
       },
       buttonEmbedCode: function () {
         const style = this.ctaStyle
