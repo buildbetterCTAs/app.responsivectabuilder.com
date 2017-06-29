@@ -55,11 +55,6 @@
           <p>Made with ❤️ by <a href="https://www.reiner.io">Jeff Reiner</a> and <a href="https://twitter.com/_danieljmurphy">Daniel Murphy</a>.</p>
           <p><small>© 2017 Daniel J. Murphy and Jeff Reiner</small></p>
           <div class="nav-center">
-            <a class="nav-item" href="https://github.com/buildBetterCTAs/" target="_blank">
-              <span class="icon">
-                <i class="fa fa-github"></i>
-              </span>
-            </a>
             <a class="nav-item" href="https://twitter.com/buildBetterCTAs" target="_blank">
               <span class="icon">
                 <i class="fa fa-twitter"></i>
