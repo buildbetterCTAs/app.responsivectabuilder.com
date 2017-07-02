@@ -60,6 +60,11 @@
                 <i class="fa fa-twitter"></i>
               </span>
             </a>
+            <a class="nav-item" href="https://www.facebook.com/BuildBetterCTAs" target="_blank">
+              <span class="icon">
+                <i class="fa fa-facebook"></i>
+              </span>
+            </a>
           </div>
         </div>
       </div>
