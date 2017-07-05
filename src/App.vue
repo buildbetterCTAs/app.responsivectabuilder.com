@@ -222,9 +222,30 @@ html
   margin: 0 auto
   max-width: 1000px
 
-  input
-    &[type="range"]
-      width: 100%
+//******************
+// VUE-RANGE-SLIDER
+//******************
+
+// sass-lint:disable-all
+$slider-height: 48px
+$slider-width: 100%
+$rail-height: 12px
+$knob-size: 28px
+$rail-color: #e2e2e2
+$rail-fill-color: $primary
+$knob-color: #fff
+$knob-border: 4px solid $primary
+$knob-shadow: 0 4px 6px rgba(50, 50, 93, .11),  0 1px 3px rgba(0, 0, 0, .08)
+$knob-shadow-hover: 0 7px 14px rgba(50, 50, 93, .1),  0 3px 6px rgba(0, 0, 0, .08)
+
+.range-slider-knob
+  transition: box-shadow .2s ease
+
+  &:hover
+    box-shadow: $knob-shadow-hover
+// sass-lint:enable-all
+
+@import "~vue-range-slider/dist/vue-range-slider.scss"
 
 // AUTH0 Lock Customizations
 

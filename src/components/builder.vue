@@ -15,7 +15,7 @@
         </div>
         <!-- CTA WIDTH SLIDER -->
         <div class="ctaWidthSlider">
-          <input type="range" v-model="ctaWidth" min="300" max="1000">
+          <slider v-model="ctaWidth" min="300" max="1000"></slider>
         </div>
       </div>
 
@@ -209,6 +209,7 @@
   import cta from './cta'
   import embeder from './embeder'
   import colorInput from './ui/color-input'
+  import slider from 'vue-range-slider'
 
   export default {
     name: 'builder',
@@ -295,7 +296,8 @@
     components: {
       cta,
       embeder,
-      colorInput
+      colorInput,
+      slider
     }
   }
 </script>
