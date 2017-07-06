@@ -13,6 +13,8 @@
 </template>
 
 <script>
+  const namespace = 'rcta'
+
   export default {
     name: 'embeder',
     computed: {
@@ -29,24 +31,24 @@
 
         let ctaBody = ''
         if (hasImage) {
-          ctaBody = `    <div class="ctaColumns">\n` +
-                    `        <div class="ctaColumn ctaImage">\n` +
+          ctaBody = `    <div class="${namespace}_columns">\n` +
+                    `        <div class="${namespace}_column ${namespace}_image">\n` +
                     `            <img src="${imageUrl}" alt="${imageAlt}">\n` +
                     `        </div>\n` +
-                    `        <div class="ctaColumn">\n` +
-                    `            <div class="ctaHeadline" style="color: ${color};">${headline}</div>\n` +
-                    `            <div class="ctaDescription" style="color: ${color};">${description}</div>\n` +
+                    `        <div class="${namespace}_column">\n` +
+                    `            <div class="${namespace}_headline" style="color: ${color};">${headline}</div>\n` +
+                    `            <div class="${namespace}_description" style="color: ${color};">${description}</div>\n` +
                     `            ${this.buttonEmbedCode}\n` +
                     `        </div>\n` +
                     `    </div>\n`
         } else {
-          ctaBody = `    <div class="ctaHeadline" style="color: ${color};">${headline}</div>\n` +
-                    `    <div class="ctaDescription" style="color: ${color};">${description}</div>\n` +
+          ctaBody = `    <div class="${namespace}_headline" style="color: ${color};">${headline}</div>\n` +
+                    `    <div class="${namespace}_description" style="color: ${color};">${description}</div>\n` +
                     `    ${this.buttonEmbedCode}\n`
         }
 
         return `<script>function load(e){var t=document.getElementsByTagName("head")[0],n=document.createElement("link");return n.type="text/css",n.rel="stylesheet",n.href=e,t.appendChild(n),n}load('https://unpkg.com/cta.css');${this.fontStylesheet}<\/script>\n` + // eslint-disable-line no-useless-escape
-               `<div class="cta" style="${this.fontFamily}border-radius: ${radius}px; ${this.backgroundImageAndOverlay}background-color: ${bgColor};">\n` +
+               `<div class="${namespace}_embed" style="${this.fontFamily}border-radius: ${radius}px; ${this.backgroundImageAndOverlay}background-color: ${bgColor};">\n` +
                `${ctaBody}` +
                `</div>`
       },
@@ -60,9 +62,9 @@
         const bgColor = this.cta.ctaSS.button.backgroundColor.hex
 
         if (style === 'hubspot') {
-          return `<div class="ctaButton hubl" style="background-color: ${bgColor}; color: ${color}">${hubl}</div>`
+          return `<div class="${namespace}_button ${namespace}_button-hubl" style="background-color: ${bgColor}; color: ${color}">${hubl}</div>`
         } else {
-          return `<a class="ctaButton" href="${url}" target="_blank" style="background-color: ${bgColor}; color: ${color}">${text}</a>`
+          return `<a class="${namespace}_button" href="${url}" target="_blank" style="background-color: ${bgColor}; color: ${color}">${text}</a>`
         }
       },
       backgroundImageAndOverlay: function () {

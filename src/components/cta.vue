@@ -1,7 +1,7 @@
 <template>
   <div :class="responsiveClass">
     <bar :value="displayElementWidth"></bar>
-    <div class="cta"
+    <div class="rcta_embed"
       :style="{
         borderRadius: cta.ctaSS.cta.borderRadius + 'px',
         /* @TODO: MERGE THESE (backgroundColor & backgroundImage) */
@@ -10,13 +10,13 @@
         fontFamily: cta.ctaSS.fontFamily
       }"
     >
-      <div class="ctaColumns">
-        <div v-if="hasImage" class="ctaColumn ctaImage">
+      <div class="rcta_columns">
+        <div v-if="hasImage" class="rcta_column rcta_image">
           <img :src="cta.imageUrl" :alt="cta.imageAlt" @click="focusOnInput('imageUrl')">
         </div>
-        <div class="ctaColumn">
+        <div class="rcta_column">
           <div>
-            <div class="ctaHeadline"
+            <div class="rcta_headline"
               :class="{ editable: isEditable }"
               :style="{ color: cta.ctaSS.cta.color.hex }"
               @click="focusOnInput('headline')"
@@ -26,7 +26,7 @@
             </div>
           </div>
           <div>
-            <div class="ctaDescription"
+            <div class="rcta_description"
               :class="{ editable: isEditable }"
               :style="{ color: cta.ctaSS.cta.color.hex }"
               @click="focusOnInput('description')"
@@ -37,7 +37,7 @@
           </div>
           <div>
             <span v-if="ctaStyle === 'hubspot'">
-              <b-tooltip label="Your button will not look like this. To customize the text of your button edit the button text within your HubSpot portal." multilined size="is-large"><div class="ctaButton hubl"
+              <b-tooltip label="Your button will not look like this. To customize the text of your button edit the button text within your HubSpot portal." multilined size="is-large"><div class="rcta_button rcta_button-hubl"
                 :style="{
                   color: cta.ctaSS.button.color.hex,
                   backgroundColor: cta.ctaSS.button.backgroundColor.hex
@@ -46,7 +46,7 @@
                 <span v-text="hubl"></span>
               </div></b-tooltip>
             </span><span v-else>
-              <div class="ctaButton"
+              <div class="rcta_button"
                 :class="{ editable: isEditable }"
                 :style="{
                   color: cta.ctaSS.button.color.hex,
@@ -186,13 +186,15 @@
 // JS MEDIA QUERIES
 //******************
 
+$namespace: "rcta"
+
 // Medium-Large & Down
 .mediumLarge,
 .medium,
 .small,
 .smaller,
 .tiny
-  .ctaImage
+  .#{namespace}_image
     display: none
 
 // Medium & Down
@@ -200,13 +202,13 @@
 .small,
 .smaller,
 .tiny
-  .cta
+  .#{namespace}_embed
     padding: 40px
 
-  .ctaHeadline
+  .#{namespace}_headline
     font-size: 36px
 
-  .ctaButton
+  .#{namespace}_button
     height: 54px
     line-height: 54px
     margin-top: 8px
@@ -215,13 +217,13 @@
 .small,
 .smaller,
 .tiny
-  .cta
+  .#{namespace}_embed
     padding: 32px
 
-  .ctaHeadline
+  .#{namespace}_headline
     font-size: 30px
 
-  .ctaButton
+  .#{namespace}_button
     height: auto
     line-height: 2
     padding: 8px
@@ -231,21 +233,21 @@
 // Smaller & Down
 .smaller,
 .tiny
-  .cta
+  .#{namespace}_embed
     padding: 24px
 
-  .ctaHeadline
+  .#{namespace}_headline
     font-size: 28px
 
-  .ctaDescription
+  .#{namespace}_description
     font-size: 18px
 
 // Tiny & Down
 .tiny
-  .cta
+  .#{namespace}_embed
     padding: 16px
 
-  .ctaHeadline
+  .#{namespace}_headline
     font-size: 24px
 
 //*****************
