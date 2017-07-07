@@ -186,29 +186,29 @@
 // JS MEDIA QUERIES
 //******************
 
-$namespace: "rcta"
-
+// sass-lint:disable class-name-format
 // Medium-Large & Down
 .mediumLarge,
 .medium,
 .small,
 .smaller,
 .tiny
-  .#{namespace}_image
-    display: none
+  .rcta_column
+    &.rcta_image
+      display: none
 
 // Medium & Down
 .medium,
 .small,
 .smaller,
 .tiny
-  .#{namespace}_embed
+  .rcta_embed
     padding: 40px
 
-  .#{namespace}_headline
+  .rcta_headline
     font-size: 36px
 
-  .#{namespace}_button
+  .rcta_button
     height: 54px
     line-height: 54px
     margin-top: 8px
@@ -217,13 +217,13 @@ $namespace: "rcta"
 .small,
 .smaller,
 .tiny
-  .#{namespace}_embed
+  .rcta_embed
     padding: 32px
 
-  .#{namespace}_headline
+  .rcta_headline
     font-size: 30px
 
-  .#{namespace}_button
+  .rcta_button
     height: auto
     line-height: 2
     padding: 8px
@@ -233,22 +233,23 @@ $namespace: "rcta"
 // Smaller & Down
 .smaller,
 .tiny
-  .#{namespace}_embed
+  .rcta_embed
     padding: 24px
 
-  .#{namespace}_headline
+  .rcta_headline
     font-size: 28px
 
-  .#{namespace}_description
+  .rcta_description
     font-size: 18px
 
 // Tiny & Down
 .tiny
-  .#{namespace}_embed
+  .rcta_embed
     padding: 16px
 
-  .#{namespace}_headline
+  .rcta_headline
     font-size: 24px
+// sass-lint:enable class-name-format
 
 //*****************
 // EDITABLE STYLES
