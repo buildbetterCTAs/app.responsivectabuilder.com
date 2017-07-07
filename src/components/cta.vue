@@ -177,7 +177,7 @@
 // CTA EMBED STYLES
 //******************
 
-.cta
+.rcta_embed // sass-lint:disable-line class-name-format
   transition: all .2s ease // sass-lint:disable-line no-transition-all
 
 @import "~cta.css"
