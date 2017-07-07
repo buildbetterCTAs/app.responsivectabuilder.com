@@ -1457,9 +1457,9 @@ csso@~2.3.1:
     clap "^1.0.9"
     source-map "^0.5.3"
 
-cta.css@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/cta.css/-/cta.css-1.0.3.tgz#03479df569ccfe213d2d1e8a836a9c0fe7259668"
+cta.css@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/cta.css/-/cta.css-2.0.0.tgz#93524989e6dab2be39a584c2e82a18367a223aec"
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
