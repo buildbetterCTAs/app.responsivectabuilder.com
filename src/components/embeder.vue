@@ -62,7 +62,7 @@
         if (style === 'hubspot') {
           return `<div class="rcta_button rcta_button-hubl" style="background-color: ${bgColor}; color: ${color}">${hubl}</div>`
         } else {
-          return `<a class="rcta_button" href="${url}" target="_blank" style="background-color: ${bgColor}; color: ${color}">${text}</a>`
+          return `<div><a class="rcta_button" href="${url}" target="_blank" style="background-color: ${bgColor}; color: ${color}">${text}</a></div>`
         }
       },
       backgroundImageAndOverlay: function () {
