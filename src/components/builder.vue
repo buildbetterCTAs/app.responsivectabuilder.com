@@ -276,7 +276,7 @@
         return this.ctaStyle
       },
       hubl: function () {
-        let ctaID = this.hubspotCtaUrl.replace(/https:\/\/app\.hubspot\.com\/cta\/.{6}\//, '')
+        let ctaID = this.hubspotCtaUrl.replace(/.*hubspot.+((\/cta\/)|(\/ctas-beta\/)).*\//, '')
         let embed = `{{ cta('` + ctaID + `') }}`
         return embed
       },
