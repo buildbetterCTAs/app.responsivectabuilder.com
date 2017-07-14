@@ -52,7 +52,12 @@
 </script>
 
 <style lang="sass">
+
+// VARS
+
 $swatchBorder: rgba(0, 0, 0, .1)
+
+// STYLES
 
 .swatch
   border: 1px solid $swatchBorder
@@ -74,4 +79,5 @@ $swatchBorder: rgba(0, 0, 0, .1)
 .inputPicker
   cursor: pointer
   padding-left: 2.25em
+
 </style>

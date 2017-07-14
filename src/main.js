@@ -19,7 +19,7 @@ new Vue({
 })
 
 // CLIPBOARD
-new Clipboard('.embedCopyButton', {
+new Clipboard('.embed .copy', {
   text: function (target) {
     // FIRE GOOGLE ANALYTICS EVENT
     ga('send', {
@@ -31,6 +31,7 @@ new Clipboard('.embedCopyButton', {
 
     // CHANGE BUTTON TEXT
     target.innerText = 'Copied'
+    setTimeout(() => { target.innerText = 'Copy' }, 1000)
 
     // COPY INNER TEXT TO CLIPBOARD
     return target.previousElementSibling.innerText

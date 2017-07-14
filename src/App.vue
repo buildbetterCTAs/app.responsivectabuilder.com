@@ -52,7 +52,7 @@
     <footer class="footer">
       <div class="container">
         <div class="content has-text-centered">
-          <p>Made with 💙 by <a href="https://www.reiner.io">Jeff Reiner</a> and <a href="https://twitter.com/_danieljmurphy">Daniel Murphy</a>.</p>
+          <p>Made with <span class="icon is-small is-danger"><i class="fa fa-heart"></i></span> by <a href="https://www.reiner.io">Jeff Reiner</a> and <a href="https://twitter.com/_danieljmurphy">Daniel Murphy</a>.</p>
           <p><small>© 2017 Daniel J. Murphy and Jeff Reiner</small></p>
           <div class="nav-center">
             <a class="nav-item" href="https://twitter.com/buildBetterCTAs" target="_blank">
@@ -103,7 +103,11 @@
           localStorage.setItem('id_token', authResult.idToken)
           self.lock.getProfile(authResult.idToken, (error, profile) => {
             if (error) {
-              console.error(error)
+              // console.error(error)
+              this.$toast.open({
+                message: error,
+                type: 'is-danger'
+              })
               return
             }
             // Set the token and user profile in local storage
@@ -112,7 +116,11 @@
           })
         })
         self.lock.on('authorization_error', (error) => {
-          console.error(error)
+          // console.error(error)
+          this.$toast.open({
+            message: error.error_description,
+            type: 'is-danger'
+          })
         })
       })
     },
@@ -144,10 +152,13 @@
 </script>
 
 <style lang="sass">
+
 // VARS
+
 $picton: #48a7f9
 $dodger: #1385e8
 $yale: #0e589a
+$red: #ff1744
 
 $white: #fff
 $black: #000
@@ -158,8 +169,10 @@ $grey400: #bdbdbd
 $grey500: #9e9e9e
 
 $primary: $dodger
+$danger: $red
 
 // OVERWRITE BULMA'S DEFAULT GRID WIDTH
+
 $grid: 1136px
 $widescreen: $grid
 $fullhd: $grid
@@ -170,18 +183,14 @@ $fullhd: $grid
 
 // STYLES
 
-html
-  background-color: $grey50
+//*****************
+// Main App Styles
+//*****************
 
-.footer
-  background-color: $grey50
-
+html,
+.footer,
 .grey50
   background-color: $grey50
-
-.profile
-  img
-    border-radius: 2px
 
 .container
   &.editor
@@ -191,7 +200,6 @@ html
       margin: 0 -5px
 
       .tab-content // sass-lint:disable-line class-name-format
-        flex-direction: column
         overflow: visible
 
       .tabs
@@ -226,7 +234,7 @@ html
 // VUE-RANGE-SLIDER
 //******************
 
-// sass-lint:disable-all
+// sass-lint:disable class-name-format variable-name-format
 $slider-height: 48px
 $slider-width: 100%
 $rail-height: 12px
@@ -243,14 +251,17 @@ $knob-shadow-hover: 0 7px 14px rgba(50, 50, 93, .1),  0 3px 6px rgba(0, 0, 0, .0
 
   &:hover
     box-shadow: $knob-shadow-hover
-// sass-lint:enable-all
+// sass-lint:enable class-name-format variable-name-format
 
 @import "~vue-range-slider/dist/vue-range-slider.scss"
 
-// AUTH0 Lock Customizations
+//************
+// Auth0 Lock
+//************
 
-// sass-lint:disable-all
+$overlay: rgba(0, 0, 0, .8)
 
+// sass-lint:disable class-name-format
 .auth0-lock
   &.auth0-lock
     .auth0-lock-header-bg
@@ -261,44 +272,7 @@ $knob-shadow-hover: 0 7px 14px rgba(50, 50, 93, .1),  0 3px 6px rgba(0, 0, 0, .0
         box-shadow: none !important
 
 .auth0-lock-overlay
-  background: rgba(0, 0, 0, .8) !important
+  background: $overlay !important
+// sass-lint:enable class-name-format
 
-// sass-lint:enable-all
-
-</style>
-
-<!-- EMBEDER STYLES -->
-
-<style lang="sass">
-$white: #fff
-$black: #000
-$grey300: #e0e0e0
-$grey400: #bdbdbd
-$grey500: #9e9e9e
-
-// Embed Section
-pre
-  border-radius: 4px
-
-.embedCopy
-  position: relative
-  width: 100%
-
-  &:not(:last-child)
-    margin-bottom: 16px
-
-  .embedCopyButton
-    background-color: $grey400
-    border-radius: 4px 0
-    bottom: 0
-    color: $white
-    cursor: pointer
-    font-size: 14px
-    font-weight: bold
-    padding: 2px 10px
-    position: absolute
-    right: 0
-
-    &:hover
-      background-color: $grey500
 </style>

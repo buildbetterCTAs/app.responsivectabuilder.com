@@ -173,12 +173,12 @@
 </script>
 
 <style lang="sass" scoped>
-// sass-lint:disable class-name-format
 
 //******************
 // CTA EMBED STYLES
 //******************
 
+// sass-lint:disable class-name-format
 .rcta_embed
   transition: all .2s ease // sass-lint:disable-line no-transition-all
 
@@ -250,7 +250,6 @@
 
   .rcta_headline
     font-size: 24px
-
 // sass-lint:enable class-name-format
 
 //*****************
