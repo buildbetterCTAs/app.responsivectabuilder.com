@@ -1455,9 +1455,9 @@ csso@~2.3.1:
     clap "^1.0.9"
     source-map "^0.5.3"
 
-cta.css@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/cta.css/-/cta.css-2.0.0.tgz#93524989e6dab2be39a584c2e82a18367a223aec"
+cta.css@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/cta.css/-/cta.css-2.0.1.tgz#c4de80d7d148716797fc2c83d1426713769ac123"
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
@@ -2790,19 +2790,19 @@ js-tokens@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
-js-yaml@^3.4.3, js-yaml@~3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.7.0.tgz#5c967ddd837a9bfdca5f2de84253abe8a1c03b80"
-  dependencies:
-    argparse "^1.0.7"
-    esprima "^2.6.0"
-
-js-yaml@^3.8.4:
+js-yaml@^3.4.3, js-yaml@^3.8.4:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.9.0.tgz#4ffbbf25c2ac963b8299dc74da7e3740de1c18ce"
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
+
+js-yaml@~3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.7.0.tgz#5c967ddd837a9bfdca5f2de84253abe8a1c03b80"
+  dependencies:
+    argparse "^1.0.7"
+    esprima "^2.6.0"
 
 jsbn@~0.1.0:
   version "0.1.1"

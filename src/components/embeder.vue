@@ -5,10 +5,10 @@
       <p>Click to copy CTA embed code and styles and then paste them into the <strong>source code</strong> view of your blog's editor</p>
     </div>
     <!-- EMBED CODE -->
-    <div class="embedCopy">
+    <figure class="embed">
       <pre><code v-text="embedCode"></code></pre>
-      <a class="embedCopyButton">Copy</a>
-    </div>
+      <a class="copy">Copy</a>
+    </figure>
   </div>
 </template>
 
@@ -45,7 +45,7 @@
                     `    ${this.buttonEmbedCode}\n`
         }
 
-        return `<script>function load(e){var t=document.getElementsByTagName("head")[0],n=document.createElement("link");return n.type="text/css",n.rel="stylesheet",n.href=e,t.appendChild(n),n}load('https://unpkg.com/cta.css@2.0.0');${this.fontStylesheet}<\/script>\n` + // eslint-disable-line no-useless-escape
+        return `<script>function load(e){var t=document.getElementsByTagName("head")[0],n=document.createElement("link");return n.type="text/css",n.rel="stylesheet",n.href=e,t.appendChild(n),n}load('https://unpkg.com/cta.css@2.0.1');${this.fontStylesheet}<\/script>\n` + // eslint-disable-line no-useless-escape
                `<div class="rcta_embed" style="${this.fontFamily}border-radius: ${radius}px; ${this.backgroundImageAndOverlay}background-color: ${bgColor};">\n` +
                `${ctaBody}` +
                `</div>`
@@ -172,3 +172,42 @@
     }
   }
 </script>
+
+<style lang="sass" scoped>
+
+// VARS
+
+$white: #fff
+$black: #000
+$grey300: #e0e0e0
+$grey400: #bdbdbd
+$grey500: #9e9e9e
+
+// STYLES
+
+.embed
+  position: relative
+  width: 100%
+
+  &:not(:last-child)
+    margin-bottom: 16px
+
+  pre
+    border-radius: 4px
+
+  .copy
+    background-color: $grey400
+    border-radius: 4px 0
+    bottom: 0
+    color: $white
+    cursor: pointer
+    font-size: 14px
+    font-weight: bold
+    padding: 2px 10px
+    position: absolute
+    right: 0
+
+    &:hover
+      background-color: $grey500
+
+</style>
