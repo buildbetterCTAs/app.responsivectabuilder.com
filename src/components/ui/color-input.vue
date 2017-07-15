@@ -53,11 +53,7 @@
 
 <style lang="sass">
 
-// VARS
-
 $swatchBorder: rgba(0, 0, 0, .1)
-
-// STYLES
 
 .swatch
   border: 1px solid $swatchBorder

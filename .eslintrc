@@ -3,7 +3,8 @@
   "plugins": [
     "standard",
     "promise",
-    "html"
+    "html",
+    "vue"
   ],
   "globals": {
     "ga": true

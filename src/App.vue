@@ -154,7 +154,6 @@
 <style lang="sass">
 
 // VARS
-
 $picton: #48a7f9
 $dodger: #1385e8
 $yale: #0e589a
@@ -168,100 +167,60 @@ $grey300: #e0e0e0
 $grey400: #bdbdbd
 $grey500: #9e9e9e
 
+// AUTH0 VARS
+$auth-0verlay: rgba(0, 0, 0, .8) // sass-lint:disable-line variable-name-format
+
+// BULMA VARS
 $primary: $dodger
 $danger: $red
-
-// OVERWRITE BULMA'S DEFAULT GRID WIDTH
-
 $grid: 1136px
 $widescreen: $grid
 $fullhd: $grid
 
 @import "~bulma"
+
 @import "~buefy/src/scss/buefy"
-
-
-// STYLES
 
 //*****************
 // Main App Styles
 //*****************
 
-html,
-.footer,
+html
+  background-color: $grey50
+
+.footer
+  background-color: $grey50
+
 .grey50
   background-color: $grey50
 
 .container
   &.editor
-    max-width: $grid - (128px * 1.5)
+    max-width: $grid - 176px
 
-    .b-tabs // sass-lint:disable-line class-name-format
+    .b-tabs // sass-lint:disable-block class-name-format
       margin: 0 -5px
 
-      .tab-content // sass-lint:disable-line class-name-format
+      .tab-content
         overflow: visible
+
+        .box-wrapper
+          padding: 0 5px 5px
+
+          .box
+            border-radius: 0 0 5px 5px
 
       .tabs
         margin: 0 5px
 
-        &:not(:last-child)
-          margin-bottom: 0
-
-      .boxWrapper
-        padding: 0 5px 5px
-
-        .box
-          border-radius: 0 0 5px 5px
-
     .title
       line-height: 1.3
-
-.borderRadiusSlider
-  height: 32px
-  margin-right: 8px
-
-  & + p
-    display: inline-block
-    line-height: 32px
-    position: absolute
-
-.ctaWidthSlider
-  margin: 0 auto
-  max-width: 1000px
-
-//******************
-// VUE-RANGE-SLIDER
-//******************
-
-// sass-lint:disable class-name-format variable-name-format
-$slider-height: 48px
-$slider-width: 100%
-$rail-height: 12px
-$knob-size: 28px
-$rail-color: #e2e2e2
-$rail-fill-color: $primary
-$knob-color: #fff
-$knob-border: 4px solid $primary
-$knob-shadow: 0 4px 6px rgba(50, 50, 93, .11),  0 1px 3px rgba(0, 0, 0, .08)
-$knob-shadow-hover: 0 7px 14px rgba(50, 50, 93, .1),  0 3px 6px rgba(0, 0, 0, .08)
-
-.range-slider-knob
-  transition: box-shadow .2s ease
-
-  &:hover
-    box-shadow: $knob-shadow-hover
-// sass-lint:enable class-name-format variable-name-format
-
-@import "~vue-range-slider/dist/vue-range-slider.scss"
 
 //************
 // Auth0 Lock
 //************
 
-$overlay: rgba(0, 0, 0, .8)
-
-// sass-lint:disable class-name-format
+// sass-lint:disable class-name-format variable-name-format
 .auth0-lock
   &.auth0-lock
     .auth0-lock-header-bg
@@ -272,7 +231,6 @@ $overlay: rgba(0, 0, 0, .8)
         box-shadow: none !important
 
 .auth0-lock-overlay
-  background: $overlay !important
+  background: $auth-0verlay !important
 // sass-lint:enable class-name-format
-
 </style>

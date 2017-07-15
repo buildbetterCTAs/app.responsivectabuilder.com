@@ -175,15 +175,11 @@
 
 <style lang="sass" scoped>
 
-// VARS
-
 $white: #fff
 $black: #000
 $grey300: #e0e0e0
 $grey400: #bdbdbd
 $grey500: #9e9e9e
-
-// STYLES
 
 .embed
   position: relative

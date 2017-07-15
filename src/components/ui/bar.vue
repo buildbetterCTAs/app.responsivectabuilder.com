@@ -13,15 +13,11 @@
 
 <style lang="sass" scoped>
 
-// VARS
-
 $black: #000
 $white: #fff
 $grey50: #fafafa
 $widthBarStroke: 2px solid rgba($black, .12)
 $widthBarTextColor: rgba($black, .38)
-
-// STYLES
 
 .bars
   border-left: $widthBarStroke
