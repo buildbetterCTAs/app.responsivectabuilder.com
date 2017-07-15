@@ -76,8 +76,9 @@ $swatchBorder: rgba(0, 0, 0, .1)
   position: absolute
   z-index: 3
 
-.inputPicker
-  cursor: pointer
-  padding-left: 2.25em
+.input
+  &.inputPicker
+    cursor: pointer
+    padding-left: 2.25em
 
 </style>
