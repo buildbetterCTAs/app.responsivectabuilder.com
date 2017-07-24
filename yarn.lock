@@ -4867,9 +4867,9 @@ vue-clickaway@^2.1.0:
   dependencies:
     loose-envify "^1.2.0"
 
-vue-color@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/vue-color/-/vue-color-2.2.0.tgz#ef467055b3b2cce98a9d228cb65239bfb6576e3d"
+vue-color@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/vue-color/-/vue-color-2.2.2.tgz#3d03d1c7b53377b4ea464c3182aa97a0fac87498"
   dependencies:
     lodash.throttle "^4.0.0"
     material-colors "^1.0.0"
