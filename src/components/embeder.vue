@@ -7,7 +7,9 @@
     <!-- EMBED CODE -->
     <figure class="embed">
       <pre><code v-text="embedCode"></code></pre>
-      <a class="copy">Copy</a>
+      <div>
+        <a v-clipboard="embedCode" key="embedCode" @success="copySuccess" class="copy">Copy</a>
+      </div>
     </figure>
   </div>
 </template>
@@ -15,6 +17,45 @@
 <script>
   export default {
     name: 'embeder',
+    data: function () {
+      return {
+        myData: 'yo'
+      }
+    },
+    methods: {
+      copySuccess: function () {
+        // TOAST FOR SUCCESS COPY!
+        this.$toast.open('Copy Success!')
+
+        // FIRE GOOGLE ANALYTICS EVENT
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'Call-to-Action',
+          eventAction: 'copy',
+          eventLabel: 'Embed Code Copied'
+        })
+
+        // // OLD CLIPBOARD CODE SHIT
+        // new Clipboard('.embed .copy', {
+        //   text: function (target) {
+        //     // FIRE GOOGLE ANALYTICS EVENT
+        //     ga('send', {
+        //       hitType: 'event',
+        //       eventCategory: 'Call-to-Action',
+        //       eventAction: 'copy',
+        //       eventLabel: 'Embed Code Copied'
+        //     })
+
+        //     // CHANGE BUTTON TEXT
+        //     target.innerText = 'Copied'
+        //     setTimeout(() => { target.innerText = 'Copy' }, 1000)
+
+        //     // COPY INNER TEXT TO CLIPBOARD
+        //     return target.previousElementSibling.innerText
+        //   }
+        // })
+      }
+    },
     computed: {
       embedCode: function () {
         const headline = this.cta.headline
