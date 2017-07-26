@@ -180,7 +180,7 @@
 
 // sass-lint:disable class-name-format
 .rcta_embed
-  transition: all .2s ease // sass-lint:disable-line no-transition-all
+  transition: padding .2s ease, font-size .2s ease
 
 @import "~cta.css"
 
