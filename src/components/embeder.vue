@@ -7,9 +7,7 @@
     <!-- EMBED CODE -->
     <figure class="embed">
       <pre><code v-text="embedCode"></code></pre>
-      <div>
-        <a v-clipboard="embedCode" key="embedCode" @success="copySuccess" class="copy">Copy</a>
-      </div>
+      <a v-clipboard="embedCode" @success="copySuccess" class="copy">Copy</a>
     </figure>
   </div>
 </template>
@@ -17,15 +15,10 @@
 <script>
   export default {
     name: 'embeder',
-    data: function () {
-      return {
-        myData: 'yo'
-      }
-    },
     methods: {
       copySuccess: function () {
         // TOAST FOR SUCCESS COPY!
-        this.$toast.open('Copy Success!')
+        this.$toast.open('Copied')
 
         // FIRE GOOGLE ANALYTICS EVENT
         ga('send', {
@@ -34,26 +27,6 @@
           eventAction: 'copy',
           eventLabel: 'Embed Code Copied'
         })
-
-        // // OLD CLIPBOARD CODE SHIT
-        // new Clipboard('.embed .copy', {
-        //   text: function (target) {
-        //     // FIRE GOOGLE ANALYTICS EVENT
-        //     ga('send', {
-        //       hitType: 'event',
-        //       eventCategory: 'Call-to-Action',
-        //       eventAction: 'copy',
-        //       eventLabel: 'Embed Code Copied'
-        //     })
-
-        //     // CHANGE BUTTON TEXT
-        //     target.innerText = 'Copied'
-        //     setTimeout(() => { target.innerText = 'Copy' }, 1000)
-
-        //     // COPY INNER TEXT TO CLIPBOARD
-        //     return target.previousElementSibling.innerText
-        //   }
-        // })
       }
     },
     computed: {
@@ -239,7 +212,7 @@ $grey500: #9e9e9e
     color: $white
     cursor: pointer
     font-size: 14px
-    font-weight: bold
+    font-weight: 500
     padding: 2px 10px
     position: absolute
     right: 0

@@ -4870,9 +4870,9 @@ vue-clickaway@^2.1.0:
   dependencies:
     loose-envify "^1.2.0"
 
-vue-clipboards@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/vue-clipboards/-/vue-clipboards-1.0.4.tgz#f920b34d1d2023b8ef999a6201a04c8dc8ee8ed6"
+vue-clipboards@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/vue-clipboards/-/vue-clipboards-1.0.5.tgz#665ac4d950ab0f8b4a7f50d4a93006c6f78e408f"
   dependencies:
     clipboard "^1.7.1"
 
