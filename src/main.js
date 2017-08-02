@@ -4,7 +4,7 @@
 import Vue from 'vue'
 import App from './App'
 import Buefy from 'buefy'
-import VueClipboards from 'vue-clipboards';
+import VueClipboards from 'vue-clipboards'
 
 Vue.use(Buefy, {
   defaultTooltipAnimated: true
