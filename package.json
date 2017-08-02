@@ -9,10 +9,10 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "clipboard": "^1.7.1",
     "cta.css": "^2.0.1",
     "vue": "^2.3.4",
     "vue-clickaway": "^2.1.0",
+    "vue-clipboards": "^1.0.5",
     "vue-color": "^2.2.2",
     "vue-range-slider": "^0.2.4"
   },

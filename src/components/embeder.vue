@@ -7,7 +7,7 @@
     <!-- EMBED CODE -->
     <figure class="embed">
       <pre><code v-text="embedCode"></code></pre>
-      <a class="copy">Copy</a>
+      <a v-clipboard="embedCode" @success="copySuccess" class="copy">Copy</a>
     </figure>
   </div>
 </template>
@@ -15,6 +15,20 @@
 <script>
   export default {
     name: 'embeder',
+    methods: {
+      copySuccess: function () {
+        // TOAST FOR SUCCESS COPY!
+        this.$toast.open('Copied')
+
+        // FIRE GOOGLE ANALYTICS EVENT
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'Call-to-Action',
+          eventAction: 'copy',
+          eventLabel: 'Embed Code Copied'
+        })
+      }
+    },
     computed: {
       embedCode: function () {
         const headline = this.cta.headline
@@ -198,7 +212,7 @@ $grey500: #9e9e9e
     color: $white
     cursor: pointer
     font-size: 14px
-    font-weight: bold
+    font-weight: 500
     padding: 2px 10px
     position: absolute
     right: 0
