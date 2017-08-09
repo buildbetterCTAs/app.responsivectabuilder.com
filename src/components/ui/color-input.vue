@@ -53,11 +53,11 @@
 
 <style lang="sass">
 
-$swatchBorder: rgba(0, 0, 0, .1)
+$swatchShadow: rgba(0, 0, 0, .1)
 
 .swatch
-  border: 1px solid $swatchBorder
   border-radius: 3px
+  box-shadow: inset 0 0 0 1px $swatchShadow
   display: block
   height: 1.5em
   left: 0

@@ -205,6 +205,9 @@ $grey500: #9e9e9e
   pre
     border-radius: 4px
 
+    code
+      font-size: 12.8px
+
   .copy
     background-color: $grey400
     border-radius: 4px 0

@@ -3,7 +3,7 @@
     <!-- NAVIGATION & NOT AUTHENTICATED UI -->
     <section class="hero" v-bind:class="{ 'is-fullheight': !authenticated }">
       <div class="hero-head">
-        <header class="nav">
+        <header style="background-color: white" class="nav">
           <div class="container">
             <div class="nav-left">
               <a href="/" class="nav-item is-brand">
@@ -167,15 +167,25 @@ $grey300: #e0e0e0
 $grey400: #bdbdbd
 $grey500: #9e9e9e
 
+$grid: 1136px
+
 // AUTH0 VARS
 $auth-0verlay: rgba(0, 0, 0, .8) // sass-lint:disable-line variable-name-format
 
-// BULMA VARS
-$primary: $dodger
-$danger: $red
-$grid: 1136px
+// sass-lint:disable variable-name-format
+
+// INITIAL BULMA VARS
 $widescreen: $grid
 $fullhd: $grid
+
+@import "~bulma/sass/utilities/initial-variables"
+
+// DERIVED BULMA VARS
+$primary: $dodger
+$danger: $red
+$title-weight: $weight-light
+
+// sass-lint:enable variable-name-format
 
 @import "~bulma"
 
