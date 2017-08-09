@@ -2,7 +2,7 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/buildbetterCTAs/app.responsivectabuilder.com.svg)](https://greenkeeper.io/)
 
-> A Vue.js project
+> A Vue.js project test
 
 ## Build Setup
 
